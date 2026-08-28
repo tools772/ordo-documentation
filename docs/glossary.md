@@ -121,11 +121,8 @@ One specific ability, such as “Upload EOBs” or “Post payment.”
 **Organization / clinic / practice**  
 Your dental office in Ordo. Multi-location practices can also have **locations** and map users to them.
 
-**Platform administrator**  
-An Ordo (vendor) staff member, not a clinic employee. They see the **Administrator** module: onboarding clinics, allowlists, developer keys.
-
 **Allowlist**  
-The list of people or clinics allowed into the product. If someone cannot sign in, they may not be on the allowlist yet.
+The list of people or clinics allowed into the product. If someone cannot sign in, they may not be on the allowlist yet. Ask your office manager to contact Ordo support.
 
 **API logs**  
 A technical diary of calls to Open Dental. Useful when a connection test fails. Most billing staff will rarely need this; office managers might, with Ordo support.

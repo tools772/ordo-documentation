@@ -121,7 +121,7 @@ Prefer Audit over API Logs when the question is about *people*. Prefer API Logs 
 
 ## If the page says no clinic is provisioned
 
-Integrations may show: an administrator needs to add this practice first. That is the [Administrator](administrator.md) module — Ordo staff onboarding, not something a Reviewer can fix.
+Integrations may show that this practice is not set up yet. That is Ordo onboarding — not something a Reviewer can fix. Ask your office manager to contact Ordo support.
 
 ---
 
@@ -129,4 +129,3 @@ Integrations may show: an administrator needs to add this practice first. That i
 
 - [Roles and who can do what](../people/roles.md)
 - [Demo vs Actual](../workflows/demo-vs-actual.md)
-- [Administrator](administrator.md)

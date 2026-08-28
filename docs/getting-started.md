@@ -29,8 +29,7 @@ The sidebar is the building directory. From top to bottom you will typically see
 1. **Ordo** (the logo) — you are in payment operations.
 2. **Modules** — EOB Dashboard, Patients, Reports, Docs.
 3. **Practice** — Clinic settings (if your role can open it).
-4. **Ordo** (admin) — Administrator (Ordo staff only).
-5. **App mode** — Demo or Actual toggle, plus a HIPAA-ready note.
+4. **App mode** — Demo or Actual toggle, plus a HIPAA-ready note.
 
 If a module is missing, that is normal. Your **role** hides what you are not allowed to use. A Viewer will not see posting buttons. An insurance reviewer may not see Clinic settings. See [Roles and who can do what](people/roles.md).
 

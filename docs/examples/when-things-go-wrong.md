@@ -80,7 +80,7 @@ Short scenes and what to do. If you only remember one rule: **do not keep clicki
 
 **What to do.** Ask an Owner to check [Roles](../people/roles.md). Do not use someone else’s login.
 
-If the whole clinic cannot sign in, the practice may be **disallowed** or never provisioned — that is [Administrator](../modules/administrator.md) work for Ordo staff.
+If the whole clinic cannot sign in, the practice may not be set up yet. Contact Ordo support.
 
 ---
 

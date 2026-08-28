@@ -53,7 +53,6 @@ Ordo is organized into **modules**. A module is simply a section of the product 
 | **Reports** | Counts and dollars for operations: uploaded, posted, failed, by carrier. |
 | **Docs** | Short in-app help, plus a link to this longer site. |
 | **Clinic settings** | Your practice: people, roles, locations, Open Dental connection, logs. |
-| **Administrator** | Ordo staff only. Onboarding clinics, allowlists, platform keys. |
 
 Start with [What is a module?](modules/overview.md) if you want a map before diving in.
 

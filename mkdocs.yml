@@ -1,8 +1,6 @@
 site_name: Ordo Help
 site_description: Plain-language guide to Ordo — insurance payment posting for dental practices
-site_url: https://tools772.github.io/ordo-documentation/
-repo_url: https://github.com/tools772/ordo-documentation
-repo_name: tools772/ordo-documentation
+site_url: https://docs.ordo/
 edit_uri: ''
 copyright: Ordo · Payment operations for dental practices
 
@@ -39,7 +37,6 @@ theme:
     - content.tabs.link
     - toc.follow
   icon:
-    repo: fontawesome/brands/github
     logo: material/tooth
 
 extra_css:
@@ -62,11 +59,6 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/tools772/ordo-documentation
-
 nav:
   - Home:
       - Welcome: index.md
@@ -79,7 +71,6 @@ nav:
       - Patients: modules/patients.md
       - Reports: modules/reports.md
       - Clinic settings: modules/clinic-settings.md
-      - Administrator: modules/administrator.md
   - How to:
       - Post a payment: workflows/posting-a-payment.md
       - Matching and remarks: workflows/matching-and-remarks.md

@@ -47,13 +47,7 @@ You do not have to visit every room every day. Many coordinators live in **EOB D
 | --- | --- | --- |
 | **Clinic settings** | Team, roles, locations, Open Dental connection, logs. | Owner, clinic admin. |
 
-### Ordo (vendor)
-
-| Menu label | Job in one sentence | Typical visitor |
-| --- | --- | --- |
-| **Administrator** | Onboard clinics, allow access, platform keys. | Ordo staff only. |
-
-If **Administrator** is missing for you, that is correct. It is not a clinic role.
+If a menu item is missing, that is normal. Your role only shows the rooms you are allowed to enter.
 
 ---
 
@@ -78,7 +72,7 @@ Three common reasons:
 
 1. **Role.** Your permission set does not include that module or button. Ask an Owner or Admin to change your role — do not try to “fix” the screen.
 2. **Mode.** In Demo you are often signed in as a Viewer. Switch to Actual (with a live account) for real posting, or ask for a role that can post.
-3. **No clinic yet.** Integrations and some settings stay empty until an Administrator has added the practice.
+3. **No clinic yet.** Integrations and some settings stay empty until Ordo has set up this practice. Ask your office manager to contact Ordo support.
 
 ---
 
@@ -89,5 +83,4 @@ Three common reasons:
 - [Patients](patients.md)
 - [Reports](reports.md)
 - [Clinic settings](clinic-settings.md)
-- [Administrator](administrator.md)
 - [Roles and who can do what](../people/roles.md)

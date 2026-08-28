@@ -2,7 +2,7 @@
 
 A **role** is a nametag that turns modules and buttons on or off. Two people can work the same EOB and see different buttons. That is intentional.
 
-Owners and Admins manage roles in **Clinic settings → Users** (roles panel). Platform Administrator permissions cannot be added to a clinic role.
+Owners and Admins manage roles in **Clinic settings → Users** (roles panel).
 
 ---
 
@@ -51,12 +51,6 @@ Grouped the way the product labels them.
 | --- | --- |
 | Manage team and roles | Create roles, invite users, edit locations, manage the Open Dental connection |
 
-### Platform (not on clinic roles)
-
-| Permission | Who has it |
-| --- | --- |
-| Administrator / Manage Administrator | Ordo staff only |
-
 ---
 
 ## What each starter role can do
@@ -69,7 +63,6 @@ Grouped the way the product labels them.
 | Approve / reject match | Yes | Yes | Yes | No |
 | Post payment | Yes | Yes | No | No |
 | Manage team | Yes | Yes | No | No |
-| Administrator module | No | No | No | No |
 
 \*Default Reviewer does **not** include Reports. If your coordinators should see the scoreboard, clone Reviewer and tick **Reports**.
 
@@ -108,19 +101,7 @@ A user can be Admin and still “see nothing” if they are mapped to **North Cl
 
 ---
 
-## Platform vs clinic — do not mix them up
-
-| | Clinic Owner | Platform Administrator |
-| --- | --- | --- |
-| Works at | The dental practice | Ordo |
-| Can invite hygienists | Yes | Only as support, via clinic workspace |
-| Can allow/disallow a whole clinic | No | Yes |
-| Can post Maria’s cleaning | Yes | Not their job |
-
----
-
 ## Related pages
 
 - [Clinic settings](../modules/clinic-settings.md)
-- [Administrator](../modules/administrator.md)
 - [Post a payment](../workflows/posting-a-payment.md)
