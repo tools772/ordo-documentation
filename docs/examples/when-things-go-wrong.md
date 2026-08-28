@@ -1,6 +1,6 @@
 # When something looks wrong
 
-Short scenes and what to do. If you only remember one rule: **do not keep clicking Post payment**. Stop, read the status, then pick the matching section below.
+Stories and walkthroughs: [When something looks wrong](../examples/when-things-go-wrong.md). For the message catalog and when to contact Ordo, see [Errors and getting help](../errors/index.md).
 
 ---
 
@@ -119,6 +119,7 @@ Do not paste entire remittances into a group chat.
 
 ## Related pages
 
+- [Errors and getting help](../errors/index.md)
 - [Inside an EOB](../modules/working-an-eob.md)
 - [Matching and remarks](../workflows/matching-and-remarks.md)
 - [Clinic settings](../modules/clinic-settings.md)

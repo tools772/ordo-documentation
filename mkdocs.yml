@@ -80,3 +80,5 @@ nav:
   - Examples:
       - A typical Monday morning: examples/typical-morning.md
       - When something looks wrong: examples/when-things-go-wrong.md
+  - Errors:
+      - Errors and getting help: errors/index.md
