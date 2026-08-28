@@ -123,7 +123,7 @@ Wait for the success confirmation. If Open Dental returns a claim payment number
 
 Maria’s row should say **Posted**.
 
-If posting fails, do not click it ten times. Open [When something looks wrong](../examples/when-things-go-wrong.md) and Clinic settings **API Logs**.
+If posting fails, do not click it ten times. Open [When something looks wrong](../examples/when-things-go-wrong.md), [Open Dental errors](../errors/open-dental.md), and Clinic settings **API Logs**.
 
 ---
 
@@ -151,6 +151,9 @@ If posting fails, do not click it ten times. Open [When something looks wrong](.
 
 ## Related pages
 
+- [What each operation does](operations.md)
+- [Statuses](statuses.md)
+- [Open Dental errors](../errors/open-dental.md)
 - [Inside an EOB](../modules/working-an-eob.md)
 - [Matching and remarks](matching-and-remarks.md)
 - [A typical Monday morning](../examples/typical-morning.md)

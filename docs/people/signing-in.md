@@ -23,6 +23,16 @@ That is enough to learn the inbox. It is not enough to practice **Post payment**
 
 ---
 
+## Create an account first
+
+Anyone can **sign up** with name, email, and password. That only creates a login. It does **not** open the clinic inbox.
+
+A clinic Owner or Admin still has to add that same email under **Clinic settings → Users**. Until they do, sign-in lands on a **Waiting for access** page. After they add you, sign out and sign in again (or tap **I've been added — check again**).
+
+You can also skip self-serve signup: the clinic can add your email first. Then you sign in (or set a password from the invite / forgot-password flow).
+
+---
+
 ## Actual sign-in
 
 Two methods:
@@ -30,7 +40,7 @@ Two methods:
 ### Email and password
 
 1. Select **Actual**.
-2. Enter the email your clinic invited.
+2. Enter the email you signed up with (or the email your clinic added).
 3. Enter your password.
 4. Submit.
 
@@ -51,14 +61,13 @@ Use **Forgot password** on the sign-in screen. You will get an email to set a ne
 
 ## After you sign in
 
-Ordo sends you to the first module you are allowed to see (often EOB Dashboard). If you have **no access** at all, you will see a no-access page instead of the inbox.
+If a clinic admin has granted access, Ordo sends you to the first module you are allowed to see (often EOB Dashboard).
 
-Common reasons:
+If nobody has added your email yet, you stay on **Waiting for access** and cannot open Dashboard, Patients, or Settings.
 
-- Your user exists but is **inactive**
-- The clinic is **disallowed** (Ordo staff must allow it)
-- You are not on the **allowlist** yet
-- You signed into Actual with an email that was never invited
+If your user exists but is **inactive**, you see **Access is turned off**. Ask an Owner to set you back to Active, then sign in again.
+
+A different **no-access** page means you are in the clinic, but your role does not include that module. Ask an Owner if you need it.
 
 Contact your office manager first, then Ordo support if the clinic itself cannot sign in.
 

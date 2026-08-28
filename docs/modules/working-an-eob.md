@@ -36,17 +36,20 @@ You can fetch again later if someone just posted a claim in Open Dental and you 
 
 ---
 
-## Review statuses on the row
+### Review statuses on the row
 
 | Status you might see | What to do |
 | --- | --- |
-| **Pending** | Not fetched yet, or matching has not decided. Fetch, then look. |
+| **Not fetched** | Tick the patient, click **Fetch Open Dental**, then open the row. |
+| **Pending** | Matching has not decided yet. Fetch if you have not; then look. |
 | **Needs review** | Ordo is unsure, or identity checks failed. Open **Audit**. |
 | **Approved** | Someone confirmed the claim. Ready to post (if your role allows). |
 | **Posted** | Payment is in Open Dental. You are done with this person on this file. |
 | **Rejected** | Match was thrown away. Decide whether to try another claim or leave it. |
 | **No match** | No plausible Open Dental claim. Search the chart; you may need to post by hand in Open Dental. |
 | **Failed** | Fetch or a later step failed. Retry fetch; check API logs if it keeps failing. |
+
+The file can stay **Extracted** while people on it are in different statuses. Full map: [Statuses](../workflows/statuses.md).
 
 ---
 
@@ -146,5 +149,8 @@ If step 3 had recommended last year’s claim instead, Mike would pick the June 
 ## Related pages
 
 - [Post a payment](../workflows/posting-a-payment.md) — the full ritual
+- [What each operation does](../workflows/operations.md)
+- [Statuses](../workflows/statuses.md)
 - [Matching and remarks](../workflows/matching-and-remarks.md)
 - [When something looks wrong](../examples/when-things-go-wrong.md)
+- [Open Dental errors](../errors/open-dental.md)

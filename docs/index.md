@@ -76,6 +76,7 @@ Switching is in the sidebar (and on the sign-in screen). Details: [Demo vs Actua
 - Looking for a screen? Use the **Modules** tab.
 - Looking for a procedure (“how do I post?”)? Use the **How to** tab.
 - Prefer stories? Use the **Examples** tab.
-- An error on screen? Use the **Errors** tab — what it means, what to try, and when to contact Ordo.
+- An error on screen? Use the **Errors** tab — what it means, what to try, and when to contact Ordo. Open Dental API numbers (400, 401, …) have their own page: [Open Dental errors](errors/open-dental.md).
+- Want every button explained, including which **status** it changes? [What each operation does](workflows/operations.md) and [Statuses](workflows/statuses.md).
 
 There is a search box at the top of every page. Try typing a button name, such as **Approve match** or **Fetch Open Dental**.

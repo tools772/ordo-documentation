@@ -68,9 +68,11 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 
 1. Do not hammer the button.
 2. Note the time. Open **Clinic settings → API Logs** (or the error panel on the Open Dental tab).
-3. Common human fixes: connection dropped, customer key expired, claim was locked or changed in Open Dental after approve.
+3. Common human fixes: connection dropped, customer key expired, eConnector stopped, claim was locked or already had a check in Open Dental after approve.
 4. If Ordo says the claim changed, **review again** (fetch, confirm lines, approve, then post once).
 5. If a payment number never appeared but Open Dental already shows the money, **stop**. Call Ordo support before posting twice.
+
+The full decoder for `Open Dental API 400` (and 401, 429, 504) is [Open Dental errors](../errors/open-dental.md).
 
 ---
 
@@ -120,6 +122,9 @@ Do not paste entire remittances into a group chat.
 ## Related pages
 
 - [Errors and getting help](../errors/index.md)
+- [Open Dental errors](../errors/open-dental.md)
+- [What each operation does](../workflows/operations.md)
+- [Statuses](../workflows/statuses.md)
 - [Inside an EOB](../modules/working-an-eob.md)
 - [Matching and remarks](../workflows/matching-and-remarks.md)
 - [Clinic settings](../modules/clinic-settings.md)

@@ -126,5 +126,8 @@ A Reviewer at Bright Smile can approve and reject but cannot post. Jennifer post
 ## Related pages
 
 - [Post a payment](posting-a-payment.md)
+- [What each operation does](operations.md)
+- [Statuses](statuses.md)
 - [Inside an EOB](../modules/working-an-eob.md)
 - [When something looks wrong](../examples/when-things-go-wrong.md)
+- [Open Dental errors](../errors/open-dental.md)

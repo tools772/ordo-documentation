@@ -85,4 +85,5 @@ Export uses the **current** filter and search. If you filtered to Needs review, 
 
 - [Inside an EOB](working-an-eob.md)
 - [EOB Dashboard](eob-dashboard.md)
+- [Statuses](../workflows/statuses.md)
 - [Roles and who can do what](../people/roles.md)

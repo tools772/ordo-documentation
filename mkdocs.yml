@@ -73,6 +73,8 @@ nav:
       - Clinic settings: modules/clinic-settings.md
   - How to:
       - Post a payment: workflows/posting-a-payment.md
+      - What each operation does: workflows/operations.md
+      - Statuses — what changes when: workflows/statuses.md
       - Matching and remarks: workflows/matching-and-remarks.md
       - Demo vs Actual: workflows/demo-vs-actual.md
       - Sign in: people/signing-in.md
@@ -82,3 +84,4 @@ nav:
       - When something looks wrong: examples/when-things-go-wrong.md
   - Errors:
       - Errors and getting help: errors/index.md
+      - Open Dental errors: errors/open-dental.md

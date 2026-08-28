@@ -115,4 +115,4 @@ Copy this and tick it off:
 - [ ] I know **Approve match** does not post, and **Post payment** does.
 - [ ] I know my role may hide some buttons, and that is expected.
 
-When you are ready, read [What is a module?](modules/overview.md) or jump straight into [Inside an EOB](modules/working-an-eob.md).
+When you are ready, read [What is a module?](modules/overview.md) or jump straight into [Inside an EOB](modules/working-an-eob.md). For a full button catalog, see [What each operation does](workflows/operations.md).

@@ -95,18 +95,24 @@ Statuses describe **where work is**, not whether anyone did a bad job.
 | Queued | Waiting its turn to be read. |
 | Extracting / Processing | Ordo is reading the PDF. |
 | Extracted / Ready | Patients and lines are available to review. |
+| Not fetched | This person has not had **Fetch Open Dental** yet. |
 | Needs review | A person should look. Matching was unsure or flagged. |
 | Approved | Someone confirmed the Open Dental claim. Not posted yet. |
 | Posting | The write to Open Dental is in progress. |
 | Posted / Completed | The payment is in Open Dental. |
-| Failed | Reading or posting did not succeed. Open the file or logs. |
+| Failed | Reading, fetch, or posting did not succeed. Open the file or logs. |
 | Retry required | Try again after the underlying problem is fixed. |
 | Archived | Hidden from the active inbox and from Reports. Not deleted. |
 | Pending | Not fetched yet, or matching has not produced a decision. |
 | No match | Ordo could not find a plausible Open Dental claim. |
+| Rejected | Someone threw away the match without posting. |
 | Matched | A candidate was found; you still review before posting. |
+| Hard mismatch | Identity failed on this candidate. Do not approve it. |
+| Open Dental API 400 / 401 / 429 / 504 | Open Dental refused or timed out. See [Open Dental errors](errors/open-dental.md). |
 
 On the **Patients** list, filters such as Pending, Needs review, Matched, No match, and Archived refer to that person’s match status across files.
+
+The full lifecycle (file vs patient vs match): [Statuses](workflows/statuses.md). Each button: [What each operation does](workflows/operations.md).
 
 ---
 
@@ -125,7 +131,16 @@ Your dental office in Ordo. Multi-location practices can also have **locations**
 The list of people or clinics allowed into the product. If someone cannot sign in, they may not be on the allowlist yet. Ask your office manager to contact Ordo support.
 
 **API logs**  
-A technical diary of calls to Open Dental. Useful when a connection test fails. Most billing staff will rarely need this; office managers might, with Ordo support.
+A technical diary of calls to Open Dental. Useful when a connection test or post fails. How to read the numbers: [Open Dental errors](errors/open-dental.md). Most billing staff will rarely need this; office managers might, with Ordo support.
+
+**eConnector**  
+The Open Dental service at the office that lets the cloud API reach your charts. If it is not running, Test, Fetch, and Post fail with a 400-style message.
+
+**ClaimProc**  
+Open Dental’s name for one insurance line on a claim (the row that holds `InsPayAmt`). Ordo posts onto ClaimProcs.
+
+**ClaimPayment / ClaimPaymentNum**  
+The insurance check record in Open Dental. After a successful post, Ordo shows this number as confirmation.
 
 **Audit log**  
 A people-oriented diary: who uploaded, who approved, who posted. This is the log to open when you need “who did what, when.”

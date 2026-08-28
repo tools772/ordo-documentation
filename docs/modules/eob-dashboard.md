@@ -131,4 +131,5 @@ Viewers can watch the inbox. They cannot upload or archive.
 - [Inside an EOB](working-an-eob.md) — after you click a file
 - [Patients](patients.md) — find a person without knowing the file
 - [Reports](reports.md) — the same files, totaled
+- [Statuses](../workflows/statuses.md) — what Uploaded / Extracted / Failed mean
 - [When something looks wrong](../examples/when-things-go-wrong.md)

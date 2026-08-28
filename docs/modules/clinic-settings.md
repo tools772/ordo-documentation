@@ -29,13 +29,15 @@ The Users tab also contains **roles** and **locations** for people who can manag
 
 Each person has a name, email, role, active/inactive flag, and optional **locations**.
 
-**Example — invite a new coordinator**
+**Example — grant access to someone who already signed up**
 
-1. Sarah (Owner) opens **Clinic settings → Users**.
-2. She clicks to add a person: `Priya Nair`, `priya@brightsmile.com`, role **Reviewer**, location **Main Street**.
-3. Priya can now review and approve matches. She cannot post and cannot invite others.
+1. Priya signs up on Ordo with `priya@brightsmile.com`. She sees **Waiting for access**.
+2. Sarah (Owner) opens **Clinic settings → Users** and invites that same email: `Priya Nair`, role **Reviewer**, location **Main Street**.
+3. Priya taps **I've been added — check again** (or signs out and in). She can now review and approve matches. She cannot post and cannot invite others.
 
-Deactivating someone keeps the history (audit still shows their name) but they should no longer work in the product. Do not recycle logins.
+You can also add an email before they sign up. They will get in on first sign-in.
+
+Deactivating someone keeps the history (audit still shows their name) but they cannot open Ordo until you set them Active again. Do not recycle logins.
 
 The last **Owner** cannot be demoted. That protects you from locking the practice out.
 
@@ -93,6 +95,8 @@ Until this is connected, **Fetch Open Dental** in Actual mode cannot load live c
 
 Each call to Open Dental can appear here: test connection, sync, fetch, post. If Test fails, open API Logs (or the error card on the integrations panel) and look at the latest row. The message is often enough for Ordo support without sending screenshots of patient names.
 
+How to read the **status code** (400, 401, 429, …) and the posting refusals Open Dental sends: [Open Dental errors](../errors/open-dental.md).
+
 Most coordinators will never need this tab. Office managers use it with support on the phone.
 
 ---
@@ -129,3 +133,5 @@ Integrations may show that this practice is not set up yet. That is Ordo onboard
 
 - [Roles and who can do what](../people/roles.md)
 - [Demo vs Actual](../workflows/demo-vs-actual.md)
+- [What each operation does](../workflows/operations.md)
+- [Open Dental errors](../errors/open-dental.md)

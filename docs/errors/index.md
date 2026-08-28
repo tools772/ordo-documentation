@@ -4,7 +4,7 @@ When Ordo cannot finish a step, it shows a **status** (Failed, Needs review, No 
 
 The one rule: **do not keep clicking Post payment** after a failure. Stop, read the message, then use this page.
 
-Stories and walkthroughs: [When something looks wrong](../examples/when-things-go-wrong.md).
+Stories and walkthroughs: [When something looks wrong](../examples/when-things-go-wrong.md). Open Dental HTTP codes and posting refusals: [Open Dental errors](open-dental.md). What each button changes: [Operations](../workflows/operations.md) and [Statuses](../workflows/statuses.md).
 
 ---
 
@@ -75,8 +75,12 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 | --- | --- | --- | --- |
 | **Approve failed** / **Reject failed** | The save did not complete (session, permission, or server). | Sign in again. Confirm your role includes Approve/Reject. Try once. | **Yes** after one retry. |
 | **Enter a remark, or uncheck Add remark** | You ticked the payment-remark box but left it blank. | Type a note or untick the box. | No. |
-| **Open Dental changed since approval** | Someone edited the claim in Open Dental after you approved. Ordo will not overwrite quietly. | Fetch, read the lines, approve again, then post **once**. | No, unless it repeats every time with nobody editing the chart. |
-| **Post payment failed** / **Push failed** | The write to Open Dental did not finish (connection, key, locked claim, API error). | Do not click Post again yet. Check Open Dental: is the money already there? If **yes, stop**. If **no**, check API Logs, test the connection, then post once. | **Yes immediately** if Open Dental already shows the payment **or** you are unsure. |
+| **Pick a candidate without a hard mismatch** / **Cannot approve a hard-mismatch candidate** | Identity checks failed on the selected claim. | Open Audit. Pick another claim or reject. | No. |
+| **That Open Dental claim is no longer a valid match** | The replica changed after you loaded candidates. | Refetch, then approve again. | No. |
+| **Open Dental changed since approval** | Someone edited the claim in Open Dental after you approved (line gone, code changed, or amount already there). Ordo will not overwrite quietly. | Fetch, read the lines, approve again, then post **once**. | No, unless it repeats every time with nobody editing the chart. |
+| **ClaimProc … already has InsPayAmt** / **Verify failed for ClaimProc** | The chart already has money on that line, or the write did not stick. | Look in Open Dental. If the payment is there, **stop**. | **Yes immediately** if you are unsure. |
+| **InsPayAmt cannot be updated once the procedure is attached to a check** | Open Dental already has a check on that line. | Open the chart. If the money is there, **stop**. | **Yes** if you did not expect a check to be there. |
+| **Post payment failed** / **Push failed** / **Open Dental API 400/401/429/504** | The write to Open Dental did not finish (connection, key, locked claim, eConnector, rate limit, or a business rule). | Do not click Post again yet. Check Open Dental: is the money already there? If **yes, stop**. If **no**, check API Logs, test the connection, then post once. Decoder: [Open Dental errors](open-dental.md). | **Yes immediately** if Open Dental already shows the payment **or** you are unsure. |
 | Success toast with a **claim payment number** | The write worked. | You are done with that patient on this file. | No. |
 
 ### Sign-in, roles, and connection
@@ -86,7 +90,10 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 | **Invalid or expired code** | Email code was wrong or too old. | Request a new code. Check spam. | No, unless codes never arrive. |
 | Missing **Post payment** or **Upload** | Your **role** does not include that permission. | Ask an Owner to change the role. Do not share logins. | No. |
 | Whole clinic cannot sign in | Practice not set up, inactive users, or access turned off. | One Owner tries a password reset. | **Yes** — this is Ordo-side access. |
-| **Connection test failed** / **Open Dental sync failed** | Customer key, API URL, or Open Dental API rejected the call. | Admin: confirm the customer key, Test, then Sync. See API Logs. | **Yes** if Test still fails with a saved, current key. |
+| **Connection test failed** / **Open Dental sync failed** | Customer key, API URL, eConnector, or Open Dental API rejected the call. | Admin: confirm the customer key, Test, then Sync. See API Logs. | **Yes** if Test still fails with a saved, current key. |
+| **Open Dental API 401** | Keys invalid, unassigned, or disabled. | Re-save the customer key. Test. Do not paste keys into chat. | **Yes** if the key is current and Test still fails. |
+| **Open Dental API 429** / **504** | Too many requests queued, or the office took longer than 60 seconds. | Wait, then retry **once**. If this was Post, check the chart first. | **Yes** if it keeps happening. |
+| **eConnector is not running** | The office connector service is stopped. | IT / Open Dental: start eConnector, then Test in Ordo. | Yes if you cannot start it. |
 | **No organization found for your account** | The user is not attached to a practice. | Do not keep signing up. | **Yes**. |
 
 ---
@@ -116,6 +123,9 @@ If posting might have happened twice, say that in the first sentence. We would r
 
 ## Related pages
 
+- [Open Dental errors](open-dental.md) — HTTP codes, posting refusals, API Logs
+- [What each operation does](../workflows/operations.md)
+- [Statuses](../workflows/statuses.md)
 - [When something looks wrong](../examples/when-things-go-wrong.md) — short scenes
 - [Matching and remarks](../workflows/matching-and-remarks.md)
 - [Clinic settings](../modules/clinic-settings.md)
