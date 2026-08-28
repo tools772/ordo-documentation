@@ -1,0 +1,91 @@
+site_name: Ordo Help
+site_description: Plain-language guide to Ordo — insurance payment posting for dental practices
+site_url: https://tools772.github.io/ordo-documentation/
+repo_url: https://github.com/tools772/ordo-documentation
+repo_name: tools772/ordo-documentation
+edit_uri: ''
+copyright: Ordo · Payment operations for dental practices
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: '(prefers-color-scheme: light)'
+      scheme: default
+      primary: cyan
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: '(prefers-color-scheme: dark)'
+      scheme: slate
+      primary: cyan
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.tabs.link
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/tooth
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/tools772/ordo-documentation
+
+nav:
+  - Home:
+      - Welcome: index.md
+      - First day with Ordo: getting-started.md
+      - Word list: glossary.md
+  - Modules:
+      - What is a module?: modules/overview.md
+      - EOB Dashboard: modules/eob-dashboard.md
+      - Inside an EOB: modules/working-an-eob.md
+      - Patients: modules/patients.md
+      - Reports: modules/reports.md
+      - Clinic settings: modules/clinic-settings.md
+      - Administrator: modules/administrator.md
+  - How to:
+      - Post a payment: workflows/posting-a-payment.md
+      - Matching and remarks: workflows/matching-and-remarks.md
+      - Demo vs Actual: workflows/demo-vs-actual.md
+      - Sign in: people/signing-in.md
+      - Roles and who can do what: people/roles.md
+  - Examples:
+      - A typical Monday morning: examples/typical-morning.md
+      - When something looks wrong: examples/when-things-go-wrong.md
