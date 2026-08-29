@@ -11,7 +11,7 @@ The page has two layers:
 
 ## The patient list
 
-Each row is a person Ordo read from the PDF. You will typically see name, patient / subscriber identifiers, claim, date of service, procedure count, amount, Open Dental id (after a match), and a **review status**.
+Each row is a person Ordo read from the PDF. You will see name, subscriber ID, claim #, date of service (DOS), procedure count, amount, **Status**, and a **Remark** column explaining what the status means and what to do next.
 
 ### Search, sort, pages
 
