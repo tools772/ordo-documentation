@@ -49,7 +49,7 @@ You can fetch again later if someone just posted a claim in Open Dental and you 
 | **No match** | No plausible Open Dental claim. Search the chart; you may need to post by hand in Open Dental. |
 | **Failed** | Fetch or a later step failed. Retry fetch; check API logs if it keeps failing. |
 
-The file can stay **Extracted** while people on it are in different statuses. Full map: [Statuses](../workflows/statuses.md).
+The file can stay **Extracted** while people on it are in different statuses. Status map with arrows (what is allowed vs off): [Statuses](../workflows/statuses.md#status-map).
 
 ---
 

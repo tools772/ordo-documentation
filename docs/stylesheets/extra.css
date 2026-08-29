@@ -17,3 +17,32 @@
 .md-typeset table {
   font-size: 0.82rem;
 }
+
+.md-typeset .mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.5rem;
+}
+
+.md-typeset .status-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+  margin: 0.25rem 0 1rem;
+}
+
+.md-typeset .status-legend i {
+  display: inline-block;
+  width: 1.6rem;
+  height: 0;
+  margin-right: 0.35rem;
+  vertical-align: middle;
+  border-top: 2px solid var(--md-primary-fg-color);
+}
+
+.md-typeset .status-legend i.blocked {
+  border-top-style: dashed;
+  border-color: var(--md-default-fg-color--light);
+}

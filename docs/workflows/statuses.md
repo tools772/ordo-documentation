@@ -10,25 +10,118 @@ A file can be **Extracted** while Maria is still **Not fetched** and James is al
 
 The tables below answer **what you can click** at each status. Fetch, Approve, Post, and Reject also need the matching permission on your role.
 
+Solid arrows are **allowed**. Dashed arrows are **not allowed** (the button is off, or the action does not change that status).
+
+<p class="status-legend">
+  <span><i></i> Allowed</span>
+  <span><i class="blocked"></i> Not allowed / does not change this status</span>
+</p>
+
 ---
 
-## The happy path (one patient)
+## Status map
 
+### Patient — what is possible
+
+```mermaid
+flowchart LR
+  NF[Not fetched]
+  NR[Needs review]
+  AP[Approved]
+  PO[Posted]
+  RJ[Rejected]
+  NM[No match]
+  FL[Failed]
+
+  NF -->|Fetch finds claims| NR
+  NF -->|Fetch finds nobody| NM
+  NF -->|Fetch errors| FL
+  NR -->|Approve match| AP
+  NR -->|Reject match| RJ
+  AP -->|Post payment| PO
+  AP -->|Reject match| RJ
+  AP -->|Post failed or chart changed| NR
+  FL -->|Retry Fetch| NR
+  NM -->|Fetch after the visit is charted| NR
+  RJ -->|Pick again and Approve| AP
+
+  PO -.->|Post payment| X1[Off]
+  PO -.->|Reject match| X2[Off]
+  PO -.->|Approve match| X3[Off]
+  PO -->|Fetch / Refetch| PO
+
+  classDef done fill:#d1fae5,stroke:#059669,color:#065f46
+  classDef off fill:#f1f5f9,stroke:#94a3b8,color:#64748b
+  classDef work fill:#e0f2fe,stroke:#0891b2,color:#0e7490
+  class PO done
+  class X1,X2,X3 off
+  class NF,NR,AP work
 ```
-Upload PDF
-    → file: Uploaded → Queued → Extracting → Extracted
 
-Tick Maria, Fetch Open Dental
-    → Maria: Not fetched → Needs review  (or No match)
+**Posted is the end of the line.** Fetch still runs, but it does not take Maria back to Needs review, and it does not turn **Post payment** back on.
 
-Approve match
-    → Maria: Needs review → Approved
+### Match — Open Dental tab
 
-Post payment
-    → Maria: Approved → Posted
+```mermaid
+flowchart LR
+  C[Candidate / Needs manual]
+  A[Approved]
+  P[Posted]
+  R[Rejected]
+  F[Push failed]
+  V[Push requires review]
+
+  C -->|Approve match| A
+  C -->|Reject match| R
+  A -->|Post payment| P
+  A -->|Reject match| R
+  A -->|API / network failed| F
+  A -->|Chart changed after approve| V
+  F -->|Approve again| A
+  V -->|Fetch, confirm, Approve again| A
+  R -->|Pick again and Approve| A
+
+  P -.->|Post payment| X1[Off]
+  P -.->|Reject match| X2[Off]
+  P -.->|Switch claim / edit remarks| X3[Off]
+
+  classDef done fill:#d1fae5,stroke:#059669,color:#065f46
+  classDef off fill:#f1f5f9,stroke:#94a3b8,color:#64748b
+  class P done
+  class X1,X2,X3 off
 ```
 
-If you **Reject match**, Maria becomes **Rejected** instead of Approved. The file stays **Extracted**.
+After **Push failed** or **Push requires review**, **Post payment** stays off until you **Approve match** again.
+
+### File — the envelope on the dashboard
+
+```mermaid
+flowchart LR
+  U[Uploaded]
+  Q[Queued]
+  X[Extracting]
+  E[Extracted]
+  F[Failed]
+  A[Archived]
+
+  U --> Q
+  Q --> X
+  X -->|Read succeeds| E
+  X -->|Read fails| F
+  E -->|Archive| A
+  A -->|Restore| E
+  F -.->|Fetch / Approve / Post| Xn[Does not move the file]
+  E -.->|Fetch / Approve / Post| Xn
+
+  classDef done fill:#e0f2fe,stroke:#0891b2,color:#0e7490
+  classDef off fill:#f1f5f9,stroke:#94a3b8,color:#64748b
+  class E done
+  class Xn off
+```
+
+A file can stay **Extracted** while Maria is **Posted** and James is **No match**. That is expected.
+
+If you **Reject match**, the patient becomes **Rejected**. The file stays **Extracted**.
 
 ---
 
