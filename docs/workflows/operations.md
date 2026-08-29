@@ -257,27 +257,27 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 10. Post payment
 
-**Who.** Permission **Post payment**. Disabled until the match is **Approved**.
+**Who.** Permission **Post payment**. Disabled until the match is **Approved**. After a successful post it stays available so you can confirm.
 
 **Writes to Open Dental?** **Yes** in Actual when connected. In Demo it is a simulation.
 
 **What happens in Actual (the real write).** Ordo talks to Open Dental in this order:
 
 1. Re-reads the claim procedure lines. If they changed since approve (amount, code, or a line disappeared), it **stops** and asks you to review again.
-2. Updates each matched procedure: insurance paid amount (`InsPayAmt`), status **Received**, and your line remark if you typed one.
+2. Updates each matched procedure that is **not** already on a check: insurance paid amount (`InsPayAmt`), status **Received**, and your line remark if you typed one. If the line is already on a check with the **same** amount, Ordo skips that write.
 3. Marks the claim **Received** (`ClaimStatus` **R**) and sets the date received.
-4. Creates an insurance **claim payment** (the check) and returns a **claim payment number** when the API does.
+4. Creates an insurance **claim payment** (the check) if one does not already exist, and returns a **claim payment number** when the API does.
 5. Double-checks that the amounts now sitting in Open Dental match what Ordo intended.
 
 **Status change.**
 
 | Result | Patient / match | Meaning |
 | --- | --- | --- |
-| Success | **Posted** | Money is on the claim. Remarks become read-only. |
-| Chart changed | **Needs review** (match: **push requires review**) | Fetch, read the lines, approve again, post **once**. |
-| API / network failure | **Needs review** (match: **push failed**) | See below. Do not hammer Post. |
+| Success (including already posted with the same amounts) | **Posted** | Money is on the claim. Remarks become read-only. **Post payment** stays available. |
+| Chart changed, or an attached check has a **different** amount | **Needs review** (match: **push requires review**) | Fetch, read the lines, approve again, post **once**. |
+| API / network failure | **Needs review** (match: **push failed**) | Approve again, then post. Check the chart first. |
 
-**Success toast.** `Posted to Open Dental` with `ClaimPaymentNum 897` when the API returns one. Keep that number if the dentist asks “did it really post?”
+**Success popup.** `Posted to Open Dental` with `ClaimPaymentNum` when the API returns one, plus the amount. Failed posts open a popup with the error and **View audit** (the patient’s **Audit** tab). Keep the claim payment number if the dentist asks “did it really post?”
 
 **Typical failures.**
 
@@ -287,10 +287,10 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 | **Open Dental is not connected…** | Connect and Test first. |
 | **Cannot post payment: Open Dental ClaimNum is missing** | The match snapshot has no claim number. Reject, fetch, approve again. |
 | **Push package not found** / **documentId and an approved push package are required** | Approve again, then post. |
-| **Post payment failed** / **Push failed** / **Open Dental API 400…** | The write did not finish cleanly. **Look in Open Dental first.** If the money is already there, **stop** and contact Ordo. Do not post twice. Decoder: [Open Dental errors](../errors/open-dental.md). |
+| **Post payment failed** / **Push failed** / **Open Dental API 400…** | The write did not finish cleanly. **Look in Open Dental first.** If the money is already there and matches the EOB, you can post again — Ordo will treat it as already posted. If the amount is different, stop and review. Decoder: [Open Dental errors](../errors/open-dental.md). |
 
-!!! danger "Double-post rule"
-    After any post failure, open Open Dental and look at the claim. If the insurance payment is already there, do not click Post payment again.
+!!! note "Post again after Posted"
+    **Post payment** stays on after a successful post. That is how you confirm the claim without changing lines that are already on a check. After a **failed** post, approve again before posting.
 
 ---
 

@@ -2,7 +2,7 @@
 
 When Ordo talks to **Open Dental**, a failure often arrives as a toast plus a row in **Clinic settings → API Logs** (and the **Open Dental errors** card on Integrations). This page translates those messages into office language.
 
-The one rule after a **Post payment** failure: **look in Open Dental first.** If the insurance payment is already on the claim, **stop**. Do not click Post again. Contact Ordo.
+The one rule after a **Post payment** failure: **look in Open Dental first.** If the insurance payment is already on the claim **and matches the EOB**, you can post again — Ordo will treat it as already posted. If the amount is different, stop, fetch, and review. Open Dental API calls for that EOB are on the patient’s **Audit** tab.
 
 Stories: [When something looks wrong](../examples/when-things-go-wrong.md). Other Ordo messages (upload, matching, sign-in): [Errors and getting help](index.md).
 
@@ -12,16 +12,17 @@ Stories: [When something looks wrong](../examples/when-things-go-wrong.md). Othe
 
 | Place | What it is |
 | --- | --- |
-| Red **toast** | The action you just took (Test, Fetch, Sync, Post, Reject). |
+| Red **popup** (after Post payment) | Success (ClaimPaymentNum and amount) or the error, with **View audit**. |
+| Red **toast** | Other actions you just took (Test, Fetch, Sync, Reject). |
 | Patient row **Failed** | Fetch for that person did not complete. |
 | Match banner **Open Dental post failed** / **Open Dental changed since approval** | Post was attempted. |
 | **API Logs** | One row per HTTP call: method, path (for example `PUT /claimprocs/293`), status code, body. |
 | **Open Dental errors** card | Failed calls only — copy this when you write to Ordo. |
-| **Audit** | Human history (`Open Dental post failed`, sync completed, connection tested). |
+| **Audit** (on the patient) | Open Dental API calls for this EOB, plus the signal-by-signal match checks. |
 
 A toast often starts with `Open Dental API 400:` (or 401, 404, …) and then Open Dental’s own explanation. The number is an **HTTP status**. The text after the colon is Open Dental (or the eConnector) talking.
 
-**Example.** Jennifer posts Maria. Toast: `Open Dental API 400: InsPayAmt cannot be updated once the procedure is attached to a check.` That means Open Dental already has a check on that line. She opens the chart, sees the payment, and does **not** post again.
+**Example.** Jennifer posts Maria. Popup: `Cannot change InsPayAmt when Status is Received and attached to a ClaimPayment.` She opens the chart. If the payment already matches the EOB, she can post again — Ordo skips that line. If a *different* amount is on the check, she does not post; she fetches and reviews.
 
 ---
 
@@ -53,7 +54,7 @@ These are the codes Open Dental documents for its API. Ordo shows them as `Open 
 | Code | Open Dental’s name | What it usually means in the office | What you can do |
 | --- | --- | --- | --- |
 | **200** | OK | Read or update succeeded. | Nothing — this is success. |
-| **201** | Created | A new claim payment (check) was created. | You should see a **ClaimPaymentNum** in the success toast. |
+| **201** | Created | A new claim payment (check) was created. | You should see a **ClaimPaymentNum** in the success popup. |
 | **400** | Bad request | Open Dental refused the request. Common causes: **eConnector** not running (or two eConnectors fighting over the same registration key), the office **version** is too old for this method, a **timeout** on the way to the office, missing headers, **or a business rule** (line already on a check, amounts do not add up, claim payment batch-only preference). | Read the text after the colon. Table below. Test the connection. If posting, check the chart before retrying. |
 | **401** | Unauthorized | **Customer key** or **developer key** is wrong, unassigned, or disabled — or the developer key is not allowed to use that method. | Admin: confirm the customer key, Test. If it still fails, Ordo + Open Dental support (do not paste keys in chat). |
 | **404** | Not found | That patient, claim, or procedure number does not exist (deleted, wrong id) — or the URL is wrong. | Fetch again. If the claim was deleted in Open Dental, you cannot post it; enter a new claim in Open Dental first. |
@@ -95,13 +96,13 @@ This is the first write during **Post payment**. Open Dental treats claim proced
 
 | You might see (idea) | Meaning | What to do |
 | --- | --- | --- |
-| **InsPayAmt cannot be updated once the procedure is attached to a check** | That line already has a **ClaimPayment** (a check). Open Dental will not let Ordo change the paid amount. | Open the claim in Open Dental. If the payment is already there, **stop**. If a *different* check is attached, this visit cannot be posted through Ordo until that is sorted in Open Dental. |
+| **InsPayAmt cannot be updated once the procedure is attached to a check** / **Cannot change InsPayAmt when Status is Received and attached to a ClaimPayment** | That line already has a **ClaimPayment** (a check). Open Dental will not let Ordo change the paid amount. | Open the claim in Open Dental. If the payment **matches** the EOB, post again — Ordo skips the write and marks **Posted**. If a *different* check or amount is attached, fetch and review; this visit cannot be overwritten through Ordo. |
 | Cannot update a ClaimProc that **IsTransfer** is true | This row is an income transfer, not a normal insurance line. | Do not post this candidate. Pick another claim or post by hand. |
 | Cannot update status **Adjustment**, **InsHist**, **CapClaim**, **CapComplete**, **CapEstimate** | That row type is not a receivable claim line Ordo can receive. | Wrong claim or a capitation/adjustment row. Reject or handle in Open Dental. |
 | ClaimProc not found (404) | The procedure number from approval no longer exists. | Same as “chart changed.” Fetch, approve again. |
 | Editing a received ClaimProc can delete income transfers | Open Dental’s own warning: changing a received line has side effects. | If you see unexpected transfers disappear in the chart, stop and call Ordo / your OD admin. |
 
-Ordo tries to be careful: if a line is **already** attached to a check, it does **not** send a Status change; it still may send `InsPayAmt`. If Open Dental still refuses, you will see the “attached to a check” style 400.
+Ordo tries to be careful: if a line is **already** attached to a check, it does **not** send a Status change or a new `InsPayAmt`. If the amounts already match, the post succeeds as **Posted**. If they differ, you are asked to review.
 
 ### Posting — mark claim received (`PUT /claims/…`)
 
@@ -117,9 +118,9 @@ After a successful post, the claim should show as **Received** (**R**) with a da
 | You might see (idea) | Meaning | What to do |
 | --- | --- | --- |
 | **ClaimPaymentBatchOnly** is true / cannot use this method | The office preference requires **batch** insurance payments only. The single-claim finalize API is turned off. | Post that check in Open Dental with the office’s usual batch payment screen, or ask an OD admin about the preference. Contact Ordo so we know this clinic needs a different posting path. |
-| **CheckAmt** must match the total of ClaimProcs’ InsPayAmt … ClaimPaymentNum of 0 | The check amount Ordo sent does not equal the unpaid received lines on the claim. | Often means some lines were already attached to another check, or amounts changed. **Look at the chart.** Do not post twice. Fetch and review. |
+| **CheckAmt** must match the total of ClaimProcs’ InsPayAmt … ClaimPaymentNum of 0 | The check amount Ordo sent does not equal the unpaid received lines on the claim. | Often means some lines were already attached to another check, or amounts changed. **Look at the chart.** Fetch and review. |
 | Claim not found (404) | Claim number missing or deleted. | Same as above. |
-| 201 with **ClaimPaymentNum** | Success — this is the number in the Ordo toast. | You are done. |
+| 201 with **ClaimPaymentNum** | Success — this is the number in the Ordo popup. | You are done. |
 
 ### Reject remark (`PUT` note on a claimproc)
 
@@ -139,8 +140,8 @@ These are Ordo’s own sentences. They still usually mean “something about Ope
 | **Open Dental changed since approval** | After approve, a line disappeared, a **code** changed, or a line already has a different `InsPayAmt`. | Fetch, read lines, approve, post **once**. | Yes if it repeats with nobody editing the chart. |
 | **ClaimProc {number} is no longer on the Open Dental claim** | That procedure was removed or moved after you approved. | Fetch and pick the claim again. | No if you can see the change in OD. |
 | **ClaimProc {number} code changed (D1110 → D0120)** | Someone changed the code sent on that line. | Fetch, confirm you still want this visit. | No |
-| **ClaimProc {number} already has InsPayAmt $80, expected $100** | Money is already on the line, and it is not the amount Ordo planned. | Open Open Dental. If it is the same payment, stop. If it is old estimate leftover vs EOB, decide with your office policy; often you must receive it in OD by hand. | **Yes** if you are unsure whether it is this remittance. |
-| **Verify failed for ClaimProc {number}: expected InsPayAmt …** | Ordo wrote (or thought it wrote), then re-read the line and the amount did not match. | **Check Open Dental.** Partial write is possible. Do not post again until you know. | **Yes immediately** |
+| **ClaimProc {number} already has InsPayAmt $80, expected $100** | Money is already on the line, and it is not the amount Ordo planned. | Open Open Dental. If it is this remittance with a different amount, fetch and review — Ordo will not overwrite an attached check. | **Yes** if you are unsure whether it is this remittance. |
+| **Verify failed for ClaimProc {number}: expected InsPayAmt …** | Ordo wrote (or thought it wrote), then re-read the line and the amount did not match. | **Check Open Dental.** Partial write is possible. Approve again only after you know what is on the claim. | **Yes immediately** |
 | **Cannot post payment: Open Dental ClaimNum is missing on this match.** | The approved snapshot has no claim number. | Reject, fetch, approve again. | Yes if it happens on a clearly matched claim. |
 | **Push package has no ClaimProc lines** | Approve produced an empty write list (no matched procedures). | Do not post. Pick a claim with matching codes, or post by hand. | No |
 | **Push package not found** / **approved push package are required** | Post ran without a fresh approve. | Approve again, then post. | No |

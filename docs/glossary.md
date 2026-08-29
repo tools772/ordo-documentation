@@ -66,7 +66,7 @@ A serious identity problem: the patient, date of service, or procedure codes do 
 Locks in the Open Dental claim you selected. **Does not post money.**
 
 **Post payment**  
-Writes the amounts (and optional notes) to Open Dental. Stays disabled until the match is approved.
+Writes the amounts (and optional notes) to Open Dental. Stays off until the match is **Approved**. After **Posted** it stays on so you can confirm; it does not try to change lines that are already on a check with the same amount.
 
 **Reject match**  
 Throws away the current match without posting. Use this when the recommended claim is the wrong visit.
@@ -78,7 +78,7 @@ A short note. There are two kinds:
 - **Payment remark** — the optional box at the bottom of the card. Becomes a note on the whole payment.
 
 **Audit**  
-The checklist of individual comparisons: patient ID, name, date of service, procedures, amounts. Open this tab when a match looks “off.”
+On a patient: Open Dental API calls for this EOB, plus the checklist of comparisons (patient ID, name, date of service, procedures, amounts). Open this tab when a match looks “off” or a post failed.
 
 **Signal**  
 One row on that checklist. A failed signal is Ordo saying “these two values are not the same.”

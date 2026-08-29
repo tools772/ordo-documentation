@@ -91,7 +91,7 @@ Check each line:
 | D0150 | $42.00 | Same code, same dollars to write | Status **Match** |
 | D1110 | $100.00 | Same code, same dollars to write | Status **Match** |
 
-Remarks start as **Match** or **Not matched**. You may edit them (for example `Cigna paid $100 cleaning — patient copay separate`). After a successful post, remarks become read-only.
+Remarks start as **Match** or **Not matched**. You may edit them (for example `Cigna paid $100 cleaning — patient copay separate`). After a successful post, remarks become read-only. **Post payment** stays available.
 
 The optional **Add remark to Open Dental** box at the bottom is a *payment-level* note, not a line note.
 
@@ -117,13 +117,13 @@ If the button is disabled, you likely have a hard mismatch or no candidate selec
 
 Someone with **Post payment** clicks **Post payment**.
 
-In **Demo**, this is a simulation. In **Actual**, Ordo writes `InsPayAmt` on the matched Open Dental procedures and sends the notes.
+In **Demo**, this is a simulation. In **Actual**, Ordo writes `InsPayAmt` on the matched Open Dental procedures (unless those lines are already on a check with the same amount) and sends the notes.
 
-Wait for the success confirmation. If Open Dental returns a claim payment number, you should see it. Keep that number if the dentist asks “did it really post?”
+A **popup** reports the result. On success you should see **ClaimPaymentNum** when Open Dental returns one. On failure, use **View audit** for the Open Dental calls. Keep that payment number if the dentist asks “did it really post?”
 
-Maria’s row should say **Posted**.
+Maria’s row should say **Posted**. **Post payment** stays available so you can confirm. **Reject match** does not.
 
-If posting fails, do not click it ten times. Open [When something looks wrong](../examples/when-things-go-wrong.md), [Open Dental errors](../errors/open-dental.md), and Clinic settings **API Logs**.
+If posting fails, do not click it ten times. Approve again only after you have looked at the chart. Open [When something looks wrong](../examples/when-things-go-wrong.md), [Open Dental errors](../errors/open-dental.md), and the patient’s **Audit** tab.
 
 ---
 

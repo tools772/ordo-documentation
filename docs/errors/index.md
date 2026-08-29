@@ -2,7 +2,7 @@
 
 When Ordo cannot finish a step, it shows a **status** (Failed, Needs review, No match) and often a **short message**. This page is the decoder ring: what that usually means, what you can try, and when to stop and **reach out to Ordo**.
 
-The one rule: **do not keep clicking Post payment** after a failure. Stop, read the message, then use this page.
+The one rule: after a **Post payment** failure, **look in Open Dental first**, then use this page. If the payment already matches the EOB, posting again is allowed. If the amount is different, fetch and review before you approve again.
 
 Stories and walkthroughs: [When something looks wrong](../examples/when-things-go-wrong.md). Open Dental HTTP codes and posting refusals: [Open Dental errors](open-dental.md). What each button changes: [Operations](../workflows/operations.md) and [Statuses](../workflows/statuses.md).
 
@@ -12,13 +12,14 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 
 | Where it appears | What it is |
 | --- | --- |
-| Red or amber **toast** (corner of the screen) | A one-line message for the action you just took. |
+| Red or amber **toast** (corner of the screen) | A one-line message for Fetch, Approve, Reject, Test, and similar. |
+| **Popup** after Post payment | Success (ClaimPaymentNum and amount) or the error, with **View audit**. |
 | File status **Failed** on the EOB Dashboard | Ordo could not read the PDF, or a later step failed for that file. |
 | Patient status **Needs review**, **No match**, **Hard mismatch** | Matching needs a person. Not always a product bug. |
-| **Audit** tab | Each failed **signal** is one comparison (name, date, codes, amounts). |
-| **API Logs** (Clinic settings) | Technical diary of calls to Open Dental. Use this when posting or Fetch fails. |
+| **Audit** tab | Open Dental API calls for this EOB, plus each failed **signal** (name, date, codes, amounts). |
+| **API Logs** (Clinic settings) | Clinic-wide diary of calls to Open Dental. |
 
-**Example.** Jennifer posts Maria Santos. A toast says `Open Dental changed since approval`. That is not “Ordo is down.” It means the chart changed after Mike approved. She fetches again, checks the lines, approves, and posts once.
+**Example.** Jennifer posts Maria Santos. A popup says `Open Dental changed since approval`. That is not “Ordo is down.” It means the chart changed after Mike approved. She fetches again, checks the lines, approves, and posts once.
 
 ---
 
@@ -78,10 +79,10 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 | **Pick a candidate without a hard mismatch** / **Cannot approve a hard-mismatch candidate** | Identity checks failed on the selected claim. | Open Audit. Pick another claim or reject. | No. |
 | **That Open Dental claim is no longer a valid match** | The replica changed after you loaded candidates. | Refetch, then approve again. | No. |
 | **Open Dental changed since approval** | Someone edited the claim in Open Dental after you approved (line gone, code changed, or amount already there). Ordo will not overwrite quietly. | Fetch, read the lines, approve again, then post **once**. | No, unless it repeats every time with nobody editing the chart. |
-| **ClaimProc … already has InsPayAmt** / **Verify failed for ClaimProc** | The chart already has money on that line, or the write did not stick. | Look in Open Dental. If the payment is there, **stop**. | **Yes immediately** if you are unsure. |
-| **InsPayAmt cannot be updated once the procedure is attached to a check** | Open Dental already has a check on that line. | Open the chart. If the money is there, **stop**. | **Yes** if you did not expect a check to be there. |
-| **Post payment failed** / **Push failed** / **Open Dental API 400/401/429/504** | The write to Open Dental did not finish (connection, key, locked claim, eConnector, rate limit, or a business rule). | Do not click Post again yet. Check Open Dental: is the money already there? If **yes, stop**. If **no**, check API Logs, test the connection, then post once. Decoder: [Open Dental errors](open-dental.md). | **Yes immediately** if Open Dental already shows the payment **or** you are unsure. |
-| Success toast with a **claim payment number** | The write worked. | You are done with that patient on this file. | No. |
+| **ClaimProc … already has InsPayAmt** / **Verify failed for ClaimProc** | The chart already has money on that line, or the write did not stick. | Look in Open Dental. If it matches the EOB, you can post again. If it differs, fetch and review. | **Yes immediately** if you are unsure. |
+| **InsPayAmt cannot be updated once the procedure is attached to a check** | Open Dental already has a check on that line. | Open the chart. If the amount matches the EOB, post again. If it differs, fetch and review. | **Yes** if you did not expect a check to be there. |
+| **Post payment failed** / **Push failed** / **Open Dental API 400/401/429/504** | The write to Open Dental did not finish (connection, key, locked claim, eConnector, rate limit, or a business rule). | Check Open Dental. If the money matches the EOB, post again. If not, approve again only after you know. Decoder: [Open Dental errors](open-dental.md). | **Yes immediately** if you are unsure. |
+| Success popup with a **claim payment number** | The write worked. | You are done with that patient on this file. **Post payment** stays available to confirm. | No. |
 
 ### Sign-in, roles, and connection
 

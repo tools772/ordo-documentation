@@ -44,7 +44,7 @@ You can fetch again later if someone just posted a claim in Open Dental and you 
 | **Pending** | Matching has not decided yet. Fetch if you have not; then look. |
 | **Needs review** | Ordo is unsure, or identity checks failed. Open **Audit**. |
 | **Approved** | Someone confirmed the claim. Ready to post (if your role allows). |
-| **Posted** | Payment is in Open Dental. You are done with this person on this file. |
+| **Posted** | Payment is in Open Dental. You are done with this person on this file. **Post payment** stays available to confirm. |
 | **Rejected** | Match was thrown away. Decide whether to try another claim or leave it. |
 | **No match** | No plausible Open Dental claim. Search the chart; you may need to post by hand in Open Dental. |
 | **Failed** | Fetch or a later step failed. Retry fetch; check API logs if it keeps failing. |
@@ -83,7 +83,7 @@ In short:
     | **Remark** | Editable note on that line. |
 
 3. You **Approve match** (still nothing written).
-4. You **Post payment** (writes amounts and notes).
+4. You **Post payment** (writes amounts and notes). A popup reports success or the error.
 5. Or you **Reject match** if it is the wrong visit.
 
 !!! danger "Hard mismatch"
@@ -91,13 +91,16 @@ In short:
 
 If Open Dental changed after you approved, Ordo will ask you to review again rather than overwrite quietly.
 
-After a successful post you should see a confirmation, including the Open Dental claim payment number when the API returns one.
+After a successful post you should see a **popup**, including the Open Dental claim payment number when the API returns one. **Post payment** stays available. Which buttons work at each status: [Statuses](../workflows/statuses.md).
 
 ---
 
 ## Tab 3 — Audit
 
-Audit is the “show your work” list. Each **signal** is one comparison:
+Two things live here:
+
+1. **Open Dental audit** — every fetch, reject remark, and post for this EOB. Copy the report when a write fails.
+2. **Match audit** — the “show your work” list. Each **signal** is one comparison:
 
 - Patient ID
 - Patient name
@@ -115,6 +118,7 @@ Use Audit when:
 
 - Status is **Needs review**
 - You see **Hard mismatch**
+- A post failed (use **View audit** on the popup, or open this tab)
 - The dollars match but your gut says it is the wrong visit (twins, same last name, two cleanings in one month)
 
 ---
@@ -140,7 +144,7 @@ Use Audit when:
 4. Audit: all signals green.
 5. Mike clicks **Approve match**. Toast: nothing posted yet.
 6. Jennifer (who can post) clicks **Post payment**.
-7. Confirmation appears with a claim payment number. Maria’s row says **Posted**.
+7. A popup appears with a claim payment number. Maria’s row says **Posted**. **Post payment** stays available.
 
 If step 3 had recommended last year’s claim instead, Mike would pick the June 12 claim from the candidate list — or **Reject match** and stop.
 

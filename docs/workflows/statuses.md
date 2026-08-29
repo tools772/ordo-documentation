@@ -8,6 +8,8 @@ Statuses describe **where the work is**, not whether anyone did a bad job. Ordo 
 
 A file can be **Extracted** while Maria is still **Not fetched** and James is already **Posted**. That is normal: the file is the envelope; the people inside it move at different speeds.
 
+The tables below answer **what you can click** at each status. Fetch, Approve, Post, and Reject also need the matching permission on your role.
+
 ---
 
 ## The happy path (one patient)
@@ -81,7 +83,7 @@ These are the badges on each **person** in the file.
 | **Pending** | Matching has not produced a decision yet (rare on a fetched row). | Fetch if you have not; otherwise open the patient. |
 | **Needs review** | Candidates exist, or identity checks need a person. | Open **Open Dental** and **Audit**. |
 | **Approved** | Someone confirmed the Open Dental claim. Money is **not** posted. | Someone with Post payment clicks **Post payment**. |
-| **Posted** | Payment is in Open Dental (or simulated in Demo). | Done with this person on this file. |
+| **Posted** | Payment is in Open Dental (or simulated in Demo). | Done for this person. **Post payment** stays available to confirm. |
 | **Rejected** | Match was thrown away. | Another candidate, post by hand in Open Dental, or leave it. |
 | **No match** | Fetch ran; no plausible Open Dental claim. | Search the chart; Sync; enter the claim in Open Dental if it was never charted. |
 | **Failed** | Fetch (or a later Open Dental call for this person) errored. | Retry Fetch. Check API Logs. |
@@ -95,12 +97,26 @@ These are the badges on each **person** in the file.
 | Fetch finds nobody | **No match** |
 | Fetch API error | **Failed** |
 | Approve match | **Approved** |
-| Post succeeds | **Posted** |
-| Post: chart changed | Back toward **Needs review** (see match status below) |
-| Post: API failed | **Needs review** with a failed-post flag on the match |
+| Post succeeds (or Open Dental already had the same payment) | **Posted** |
+| Post: chart changed | Back toward **Needs review** (match: **Push requires review**) |
+| Post: API failed | **Needs review** (match: **Push failed**) — approve again before posting |
 | Reject match | **Rejected** |
 
 **Posted**, **Approved**, and **Rejected** win over fetch: refetching Maria after she is Posted does not take her back to Needs review.
+
+### What you can do on the patient row
+
+| Patient status | Fetch / Refetch | Approve match | Post payment | Reject match |
+| --- | --- | --- | --- | --- |
+| **Not fetched** | Fetch | No — fetch first | No | No — nothing to reject yet |
+| **Needs review** | Yes | Yes, unless hard mismatch | No — approve first | Yes |
+| **Approved** | Yes (does not undo approve) | Already done | **Yes** | Yes |
+| **Posted** | Yes (does not undo posted) | No | **Yes** — confirm | **No** |
+| **Rejected** | Yes | Yes — pick again | No | Already rejected |
+| **No match** | Yes | No — no claim to approve | No | No |
+| **Failed** | Yes — retry | No until fetch succeeds | No | No |
+
+The Open Dental tab buttons follow the **match** status in the next section. If a patient has more than one claim, the row uses the “furthest along” rule: all posted → **Posted**; all approved or posted → **Approved**.
 
 **Example.** Mike fetches Maria and James. Maria becomes Needs review. James is No match (no chart claim). Mike approves Maria. Jennifer posts Maria → Posted. James is still No match until someone charts the visit in Open Dental and Mike fetches again.
 
@@ -108,21 +124,46 @@ These are the badges on each **person** in the file.
 
 ## Match statuses (Open Dental tab)
 
-These describe **this EOB claim vs that Open Dental claim**. You see them as banners, disabled buttons, and toasts more than as a second badge.
+These describe **this EOB claim vs that Open Dental claim**. You see them as banners, disabled buttons, and the post-result popup more than as a second badge.
 
-| Status | Meaning | Approve? | Post? |
-| --- | --- | --- | --- |
-| **Candidate found** | Ordo listed claims. You still pick and confirm. | If not hard mismatch | No |
-| **Needs manual** | Ordo wants a person (ambiguous or flagged). | After you pick a safe candidate | No |
-| **Approved** | Claim locked in Ordo. Snapshot taken. | Already done | **Yes** |
-| **Posted** | Write succeeded. Remarks read-only. | No | Already done |
-| **Rejected** | Match discarded. | Start over (fetch / pick again) | No |
-| **Push failed** | Post was attempted; Open Dental (or the network) did not finish cleanly. | Do not approve-and-hammer. Check the chart. | Only if Open Dental has **no** payment yet |
-| **Push requires review** | The chart changed after approve (line gone, code changed, or amount already sitting there). | Fetch, confirm, approve again | After a new approve |
+### How the match status changes
 
-### Hard mismatch (not a status, a flag)
+```
+Fetch Open Dental
+    → Candidate found   (Ordo listed claims — you still confirm)
+    → Needs manual      (Ordo wants a person to pick)
 
-A candidate can be **Hard mismatch** while the patient is still **Needs review**. Identity failed (patient, date of service, or zero procedure overlap). **Approve is disabled** for that candidate. Pick another claim or reject.
+Approve match
+    → Approved          (claim locked in Ordo; money not written yet)
+
+Post payment
+    → Posted                    (write succeeded, or Open Dental already had the same payment)
+    → Push failed               (Open Dental or the network did not finish)
+    → Push requires review      (the chart changed after approve)
+
+Reject match
+    → Rejected
+```
+
+After **Posted**, you can still click **Post payment**. If Open Dental already has the same amounts on a check, Ordo treats that as posted again — it does not try to change `InsPayAmt` a second time. After **Push failed** or **Push requires review**, **Post payment** is off until you **Approve match** again.
+
+### What you can click
+
+You also need the matching **permission** (Approve match, Post payment, Reject match). If your role does not include it, the button is missing.
+
+| Match status | Switch claim | Edit remarks | Approve match | Post payment | Reject match |
+| --- | --- | --- | --- | --- | --- |
+| **Candidate found** | Yes | Yes | Yes, unless **Hard mismatch** | No — approve first | Yes |
+| **Needs manual** | Yes | Yes | Yes, after you pick a safe candidate | No — approve first | Yes |
+| **Approved** | Yes | Yes | Hidden (already done) | **Yes** | Yes |
+| **Posted** | No | No (read-only) | Hidden | **Yes** — confirm / refresh | **No** |
+| **Rejected** | Yes | Yes | Yes — pick again and approve | No | Yes |
+| **Push failed** | Yes | Yes | **Yes** — approve again before a new post | No until you approve again | Yes |
+| **Push requires review** | Yes | Yes | **Yes** — fetch, confirm, approve again | No until you approve again | Yes |
+
+**Hard mismatch** is a flag on a candidate, not a status. Approve stays disabled for that claim. Pick another claim or reject. The patient row can still say **Needs review**.
+
+Open Dental API calls for fetch, reject, and post live on the patient’s **Audit** tab. After **Post payment**, a popup reports success (including **ClaimPaymentNum** when Open Dental returns one) or the error, with a **View audit** link.
 
 ---
 
@@ -135,7 +176,7 @@ On the Open Dental tab, each EOB line has its own **Status** column. That is not
 | **Match** | The CDT code mapped to an Open Dental claim procedure. |
 | **Differs** / **Not matched** | No matching Open Dental procedure on this claim. |
 
-After a successful **Post payment**, remarks freeze (read-only).
+After a successful **Post payment**, remarks freeze (read-only). **Post payment** stays available; switching the Open Dental claim and **Reject match** do not.
 
 ---
 
@@ -161,11 +202,11 @@ Open Dental uses a letter. After a successful post, Ordo sets the claim to **Rec
 | Word Ordo sends | Meaning |
 | --- | --- |
 | **NotReceived** | Estimate / not paid yet. |
-| **Received** | Insurance paid amount is on this line. **This is what Ordo sets on post** (unless the line is already attached to a check — then Ordo does not change status, only amounts if still allowed). |
+| **Received** | Insurance paid amount is on this line. **This is what Ordo sets on post** (unless the line is already attached to a check — then Ordo does not change status or `InsPayAmt`). |
 | **Supplemental** | Extra payment after the first receive. |
 | **Estimate** / **Adjustment** / capitation types | Special rows Ordo does not treat as a normal EOB line to post. |
 
-If Open Dental says the line is already attached to a check, it will **refuse** a new `InsPayAmt`. That is a common **400** on post. See [Open Dental errors](../errors/open-dental.md).
+If Open Dental already has the line on a check with the **same** `InsPayAmt`, Ordo skips that write and still treats the post as **Posted**. If the attached check has a **different** amount, post stops and asks you to review. Open Dental will **refuse** a new `InsPayAmt` on an attached line — that used to be a common **400**. See [Open Dental errors](../errors/open-dental.md).
 
 ---
 
