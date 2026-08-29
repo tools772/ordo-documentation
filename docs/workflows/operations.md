@@ -257,7 +257,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 10. Post payment
 
-**Who.** Permission **Post payment**. Disabled until the match is **Approved**. After a successful post it stays available so you can confirm.
+**Who.** Permission **Post payment**. Disabled until the match is **Approved**. After a successful post it is off.
 
 **Writes to Open Dental?** **Yes** in Actual when connected. In Demo it is a simulation.
 
@@ -273,7 +273,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 | Result | Patient / match | Meaning |
 | --- | --- | --- |
-| Success (including already posted with the same amounts) | **Posted** | Money is on the claim. Remarks become read-only. **Post payment** stays available. |
+| Success (including already posted with the same amounts) | **Posted** | Money is on the claim. Remarks become read-only. **Post payment** is off. |
 | Chart changed, or an attached check has a **different** amount | **Needs review** (match: **push requires review**) | Fetch, read the lines, approve again, post **once**. |
 | API / network failure | **Needs review** (match: **push failed**) | Approve again, then post. Check the chart first. |
 
@@ -287,10 +287,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 | **Open Dental is not connected…** | Connect and Test first. |
 | **Cannot post payment: Open Dental ClaimNum is missing** | The match snapshot has no claim number. Reject, fetch, approve again. |
 | **Push package not found** / **documentId and an approved push package are required** | Approve again, then post. |
-| **Post payment failed** / **Push failed** / **Open Dental API 400…** | The write did not finish cleanly. **Look in Open Dental first.** If the money is already there and matches the EOB, you can post again — Ordo will treat it as already posted. If the amount is different, stop and review. Decoder: [Open Dental errors](../errors/open-dental.md). |
-
-!!! note "Post again after Posted"
-    **Post payment** stays on after a successful post. That is how you confirm the claim without changing lines that are already on a check. After a **failed** post, approve again before posting.
+| **Post payment failed** / **Push failed** / **Open Dental API 400…** | The write did not finish cleanly. **Look in Open Dental first.** If the money is already there and matches the EOB, you are done — do not keep posting. If the amount is different, fetch and review. Decoder: [Open Dental errors](../errors/open-dental.md). |
 
 ---
 

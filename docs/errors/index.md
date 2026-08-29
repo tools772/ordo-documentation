@@ -82,7 +82,7 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 | **ClaimProc … already has InsPayAmt** / **Verify failed for ClaimProc** | The chart already has money on that line, or the write did not stick. | Look in Open Dental. If it matches the EOB, you can post again. If it differs, fetch and review. | **Yes immediately** if you are unsure. |
 | **InsPayAmt cannot be updated once the procedure is attached to a check** | Open Dental already has a check on that line. | Open the chart. If the amount matches the EOB, post again. If it differs, fetch and review. | **Yes** if you did not expect a check to be there. |
 | **Post payment failed** / **Push failed** / **Open Dental API 400/401/429/504** | The write to Open Dental did not finish (connection, key, locked claim, eConnector, rate limit, or a business rule). | Check Open Dental. If the money matches the EOB, post again. If not, approve again only after you know. Decoder: [Open Dental errors](open-dental.md). | **Yes immediately** if you are unsure. |
-| Success popup with a **claim payment number** | The write worked. | You are done with that patient on this file. **Post payment** stays available to confirm. | No. |
+| Success popup with a **claim payment number** | The write worked. | You are done with that patient on this file. **Post payment** is off. | No. |
 
 ### Sign-in, roles, and connection
 

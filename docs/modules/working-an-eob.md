@@ -44,7 +44,7 @@ You can fetch again later if someone just posted a claim in Open Dental and you 
 | **Pending** | Matching has not decided yet. Fetch if you have not; then look. |
 | **Needs review** | Ordo is unsure, or identity checks failed. Open **Audit**. |
 | **Approved** | Someone confirmed the claim. Ready to post (if your role allows). |
-| **Posted** | Payment is in Open Dental. You are done with this person on this file. **Post payment** stays available to confirm. |
+| **Posted** | Payment is in Open Dental. You are done with this person on this file. |
 | **Rejected** | Match was thrown away. Decide whether to try another claim or leave it. |
 | **No match** | No plausible Open Dental claim. Search the chart; you may need to post by hand in Open Dental. |
 | **Failed** | Fetch or a later step failed. Retry fetch; check API logs if it keeps failing. |
@@ -91,7 +91,7 @@ In short:
 
 If Open Dental changed after you approved, Ordo will ask you to review again rather than overwrite quietly.
 
-After a successful post you should see a **popup**, including the Open Dental claim payment number when the API returns one. **Post payment** stays available. Which buttons work at each status: [Statuses](../workflows/statuses.md).
+After a successful post you should see a **popup**, including the Open Dental claim payment number when the API returns one. **Post payment** is then off. Which buttons work at each status: [Statuses](../workflows/statuses.md).
 
 ---
 
@@ -144,7 +144,7 @@ Use Audit when:
 4. Audit: all signals green.
 5. Mike clicks **Approve match**. Toast: nothing posted yet.
 6. Jennifer (who can post) clicks **Post payment**.
-7. A popup appears with a claim payment number. Maria’s row says **Posted**. **Post payment** stays available.
+7. A popup appears with a claim payment number. Maria’s row says **Posted**. **Post payment** is off.
 
 If step 3 had recommended last year’s claim instead, Mike would pick the June 12 claim from the candidate list — or **Reject match** and stop.
 

@@ -66,7 +66,7 @@ A serious identity problem: the patient, date of service, or procedure codes do 
 Locks in the Open Dental claim you selected. **Does not post money.**
 
 **Post payment**  
-Writes the amounts (and optional notes) to Open Dental. Stays off until the match is **Approved**. After **Posted** it stays on so you can confirm; it does not try to change lines that are already on a check with the same amount.
+Writes the amounts (and optional notes) to Open Dental. Stays off until the match is **Approved**. After **Posted** it stays off.
 
 **Reject match**  
 Throws away the current match without posting. Use this when the recommended claim is the wrong visit.

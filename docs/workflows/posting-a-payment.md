@@ -91,7 +91,7 @@ Check each line:
 | D0150 | $42.00 | Same code, same dollars to write | Status **Match** |
 | D1110 | $100.00 | Same code, same dollars to write | Status **Match** |
 
-Remarks start as **Match** or **Not matched**. You may edit them (for example `Cigna paid $100 cleaning — patient copay separate`). After a successful post, remarks become read-only. **Post payment** stays available.
+Remarks start as **Match** or **Not matched**. You may edit them (for example `Cigna paid $100 cleaning — patient copay separate`). After a successful post, remarks become read-only and **Post payment** is off.
 
 The optional **Add remark to Open Dental** box at the bottom is a *payment-level* note, not a line note.
 
@@ -121,7 +121,7 @@ In **Demo**, this is a simulation. In **Actual**, Ordo writes `InsPayAmt` on the
 
 A **popup** reports the result. On success you should see **ClaimPaymentNum** when Open Dental returns one. On failure, use **View audit** for the Open Dental calls. Keep that payment number if the dentist asks “did it really post?”
 
-Maria’s row should say **Posted**. **Post payment** stays available so you can confirm. **Reject match** does not.
+Maria’s row should say **Posted**. **Post payment** and **Reject match** are off.
 
 If posting fails, do not click it ten times. Approve again only after you have looked at the chart. Open [When something looks wrong](../examples/when-things-go-wrong.md), [Open Dental errors](../errors/open-dental.md), and the patient’s **Audit** tab.
 
