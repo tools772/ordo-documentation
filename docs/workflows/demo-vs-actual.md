@@ -2,7 +2,9 @@
 
 Ordo has two **app modes**. They look similar on purpose, so training feels like the real product. They are not the same world.
 
-You can switch in the **sidebar** (bottom) and on the **sign-in** screen.
+You can switch in the **sidebar** (bottom) and on the **sign-in** screen. The top header also shows **Demo** on the clinic pill when you are in sample data.
+
+On the **live production site**, a blue **Production** bar sits at the top of the sign-in page and of the app. That bar means you are on the live host — not a training URL. You can still choose **Demo** there; Demo still uses sample data only.
 
 | | **Demo** | **Actual** |
 | --- | --- | --- |
@@ -43,9 +45,10 @@ Choose Actual when the PDF in your hand is a real remittance.
 ## How to switch without getting confused
 
 1. Look at the sidebar label: it says **Demo** or **Actual**.
-2. If you are about to upload a **real** EOB, it must say **Actual**.
-3. If you are training, it must say **Demo**.
-4. After switching, you should see a confirmation toast. Lists will reload. A file that exists only in Actual will not appear in Demo, and vice versa.
+2. Look at the top of the page: an amber **Demo mode** banner, or a blue **Production** bar on the live site.
+3. If you are about to upload a **real** EOB, the sidebar must say **Actual**.
+4. If you are training, it must say **Demo**.
+5. After switching, you should see a confirmation toast. Lists will reload. A file that exists only in Actual will not appear in Demo, and vice versa.
 
 !!! danger "The mix-up to avoid"
     Uploading a real patient EOB while still in Demo (or into a training discussion) is how real names end up in the wrong place. Check the sidebar **before** you drop the PDF.

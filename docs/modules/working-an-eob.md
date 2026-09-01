@@ -13,6 +13,8 @@ The page has two layers:
 
 Each row is a person Ordo read from the PDF. You will see name, subscriber ID, claim #, date of service (DOS), procedure count, amount, **Status**, and a **Remark** column explaining what the status means and what to do next.
 
+A **Workflow guide** button on this page (and on a single-patient header) opens a short map of which actions are allowed at each status. The full version is [Statuses](../workflows/statuses.md).
+
 ### Search, sort, pages
 
 - Search by name, identifiers, subscriber, or claim-ish text.
@@ -25,7 +27,7 @@ This is the most important habit on the page.
 
 1. Tick one or more patients you are about to work.
 2. Click **Fetch Open Dental**.
-3. Wait until the fetch finishes.
+3. Wait until the fetch finishes. The button shows **Fetching Open Dental…** and the Open Dental tab shows a spinner until the chart data is back. Do not open the patient mid-fetch.
 4. Then open a patient.
 
 Fetch loads matching chart data from Ordo’s copy of Open Dental. **Opening a patient before fetch only shows the EOB side.** People often think the Open Dental tab is “broken” when they skipped this step.
@@ -125,7 +127,9 @@ Use Audit when:
 
 ## Other buttons on this page
 
-- **Export** — download this file’s current view (or the open patient tab).
+- **Download EOB** — saves the original uploaded remittance (PDF or image), the same file as the dashboard row menu.
+- **Workflow guide** — which buttons work at each patient, match, and file status.
+- **Export** — download this file’s current *list* view (or the open patient tab) as a spreadsheet. That is not the original PDF.
 - Summary / board panels — totals for the remittance, useful on a long file.
 - Back to dashboard — returns to the inbox. Your work is saved; you do not “lose” an approval by leaving.
 

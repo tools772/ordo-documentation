@@ -17,7 +17,7 @@ Stories: [When something looks wrong](../examples/when-things-go-wrong.md). Othe
 | Patient row **Failed** | Fetch for that person did not complete. |
 | Match banner **Open Dental post failed** / **Open Dental changed since approval** | Post was attempted. |
 | **API Logs** | One row per HTTP call: method, path (for example `PUT /claimprocs/293`), status code, body. |
-| **Open Dental errors** card | Failed calls only — copy this when you write to Ordo. |
+| **Open Dental errors** card | Failed calls only — copy this when you email **[help@perfect.ventures](mailto:help@perfect.ventures)**. |
 | **Audit** (on the patient) | Open Dental API calls for this EOB, plus the signal-by-signal match checks. |
 
 A toast often starts with `Open Dental API 400:` (or 401, 404, …) and then Open Dental’s own explanation. The number is an **HTTP status**. The text after the colon is Open Dental (or the eConnector) talking.
@@ -169,16 +169,21 @@ Open the claim in Open Dental.
         │         → If 429/504: wait, then post once.
         │
         └── You cannot tell
-                  → STOP. Contact Ordo with EOB ID, time, and API Logs error text.
+                  → STOP. Email **help@perfect.ventures** with EOB ID, time, and API Logs error text.
 ```
 
 ---
 
 ## What to send Ordo (copy and fill in)
 
+Send your report to our dedicated support team at **[help@perfect.ventures](mailto:help@perfect.ventures)**.
+
 Do **not** paste the customer key, the full EOB PDF, or screenshots of patient names.
 
 ```
+To: help@perfect.ventures
+Subject: [Ordo Open Dental Error] <Clinic Name>
+
 What I was doing (Test / Fetch / Sync / Post):
 Exact message (from toast or API Logs):
 HTTP status (if shown, e.g. 400):

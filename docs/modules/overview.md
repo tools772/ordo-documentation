@@ -37,7 +37,7 @@ You do not have to visit every room every day. Many coordinators live in **EOB D
 | Menu label | Job in one sentence | Typical visitor |
 | --- | --- | --- |
 | **EOB Dashboard** | Inbox of remittance files. | Everyone who posts or reviews. |
-| **Patients** | All extracted people, across files. | “Where is this patient?” questions. |
+| **Patients** | All extracted people, across files, plus EOB history on the person. | “Where is this patient?” questions. |
 | **Reports** | Uploaded / posted / failed, with filters. | Office manager, owner. |
 | **Docs** | Short in-app articles, plus a link here. | Anyone. |
 
@@ -72,7 +72,7 @@ Three common reasons:
 
 1. **Role.** Your permission set does not include that module or button. Ask an Owner or Admin to change your role — do not try to “fix” the screen.
 2. **Mode.** In Demo you are often signed in as a Viewer. Switch to Actual (with a live account) for real posting, or ask for a role that can post.
-3. **No clinic yet.** Integrations and some settings stay empty until Ordo has set up this practice. Ask your office manager to contact Ordo support.
+3. **No clinic yet.** Integrations and some settings stay empty until Ordo has set up this practice. Ask your office manager to email **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 ---
 

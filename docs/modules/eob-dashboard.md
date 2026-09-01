@@ -31,6 +31,8 @@ Each row typically shows:
 - How far along it is (Uploaded, Extracting, Extracted, Failed, Archived, …)
 - Counts once reading finishes: patients, claims, procedure lines, payment amount
 
+The row menu (three dots) includes **Download EOB**. That saves the original uploaded PDF or image to your computer. It is the file you dropped, not an Ordo export. Use it when you need to re-read the remittance, attach it to a support email (prefer EOB ID first), or compare it to what Ordo extracted.
+
 ### Search
 
 Type part of the **file name** or **EOB ID**. This does not search patient names. For patient names, use the [Patients](patients.md) module.
@@ -95,7 +97,7 @@ If she is in **Demo**, she may skip upload and use a sample file that is already
 
 ## Opening a file
 
-Click the row. You leave the inbox and enter [Inside an EOB](working-an-eob.md) — the patient list for that remittance.
+Click the row. You leave the inbox and enter [Inside an EOB](working-an-eob.md) — the patient list for that remittance. **Download EOB** is also on that page if you already have the file open.
 
 Nothing has been posted yet. Opening is always safe.
 

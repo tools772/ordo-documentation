@@ -39,7 +39,7 @@ Each operation has:
 | --- | --- |
 | **Invalid or expired code** | The email code was wrong or too old. Request a new one. |
 | **Waiting for access** | You signed up, but no Owner has invited you yet. |
-| **No organization found for your account** | Your login is not attached to a practice. Contact Ordo. |
+| **No organization found for your account** | Your login is not attached to a practice. Email **[help@perfect.ventures](mailto:help@perfect.ventures)**. |
 
 Story: [Sign in](../people/signing-in.md).
 
@@ -68,7 +68,7 @@ Story: [Sign in](../people/signing-in.md).
 | You see | Meaning |
 | --- | --- |
 | **You must be signed in to upload** / **Session expired** | Sign in again, then drop the file. |
-| **Upload failed** | The file did not save. Try once more; contact Ordo if it repeats. |
+| **Upload failed** | The file did not save. Try once more; email **[help@perfect.ventures](mailto:help@perfect.ventures)** if it repeats. |
 | File stays **Extracting** | Reading is still running, or stuck. Refresh; wait a few minutes. |
 
 Accepted types: PDF, TIFF, PNG, JPEG. Reading today understands **Cigna Dental** standard remittances.
@@ -98,7 +98,7 @@ When it finishes: **Extracted** (extraction **Completed**), or **Failed** (extra
 | --- | --- |
 | **Unsupported EOB format — expected Cigna Dental standard layout** | This layout is not read yet. Post that check in Open Dental by hand. Archive the failed file so it does not sit in Failed. |
 | **No claims extracted** / **Parsed as Cigna Dental but found no claims or procedures** | Layout looked Cigna-ish but no claim lines were found. Re-export a clean PDF from the payer portal. |
-| **Could not download EOB file** | The stored file could not be opened. Contact Ordo with the EOB ID. |
+| **Could not download EOB file** | The stored file could not be opened. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** with the EOB ID. |
 
 A notification such as “extraction finished” or “extraction failed” may appear if your practice enabled it.
 
@@ -114,7 +114,25 @@ A notification such as “extraction finished” or “extraction failed” may 
 
 **Status change.** None. Opening is always safe.
 
-**Success.** You see names, amounts, and a review status on each row.
+**Success.** You see names, amounts, and a review status on each row. **Download EOB** and **Workflow guide** sit in the header.
+
+---
+
+## Download original EOB
+
+**Who.** Anyone who can see the file on the Dashboard or inside the EOB.
+
+**Writes to Open Dental?** No.
+
+**What happens.** The original uploaded PDF or image is saved to your computer. This is the remittance you dropped, not an Ordo spreadsheet export.
+
+**Where.** Dashboard row menu → **Download EOB**, or the **Download EOB** button on [Inside an EOB](../modules/working-an-eob.md).
+
+**Status change.** None.
+
+**Success toast.** `EOB downloaded`.
+
+**Typical failure.** **Download failed** / **Could not download EOB file** — the stored file is missing. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** with the EOB ID. Do not attach the whole remittance unless we ask.
 
 ---
 
@@ -130,8 +148,9 @@ This is the most important habit after upload.
 
 1. Tick one or more patients.
 2. Click **Fetch Open Dental**.
-3. In **Actual**, Ordo looks up those names in Open Dental (via the API), copies matching patients / claims / procedure lines into Ordo’s **replica**, then scores claim **candidates**.
-4. In **Demo**, Ordo uses sample charts. You still must click Fetch.
+3. Wait for **Fetching from Open Dental…** (spinner on the button and on the Open Dental tab).
+4. In **Actual**, Ordo looks up those names in Open Dental (via the API), copies matching patients / claims / procedure lines into Ordo’s **replica**, then scores claim **candidates**.
+5. In **Demo**, Ordo uses sample charts. You still must click Fetch.
 
 **Status change (patient row).**
 
@@ -223,7 +242,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 | **Cannot approve a hard-mismatch candidate** | Same rule, from the server. |
 | **EOB claim not found. Refetch Open Dental…** | Fetch again, then approve. |
 | **That Open Dental claim is no longer a valid match…** | The replica changed. Refetch, then approve again. |
-| **Approve failed** | Session, permission, or server. Try once; then contact Ordo. |
+| **Approve failed** | Session, permission, or server. Try once; then email **[help@perfect.ventures](mailto:help@perfect.ventures)**. |
 
 ---
 
@@ -345,9 +364,9 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 **Writes to Open Dental?** No.
 
-**What happens.** The customer key and API URL are stored for this clinic. Saving does not replace Test — Test is how you know the key works.
+**What happens.** The customer key and API URL are stored for this clinic. Saving does **not** require a successful Test — you can save keys that are not registered in Open Dental yet. Test is still how you know the key works before Fetch and Post.
 
-**Success.** Toast such as `Open Dental saved for Bright Smile Dental`.
+**Success.** Toast such as `Open Dental saved for Bright Smile Dental`, or `Open Dental keys saved. Test when the keys are registered in Open Dental.`
 
 ---
 
@@ -393,6 +412,7 @@ Until Sync (or Fetch) has succeeded at least once, matching has nothing to compa
 | --- | --- | --- |
 | Upload / extract / edit EOB | No | No |
 | Fetch / Refetch / Sync / Test | Yes | No |
+| Download original EOB | No | No |
 | Approve match | No | No |
 | Reject match | Only if you send a remark | Note only, not money |
 | Post payment | Yes (to verify) | **Yes** — amounts, claim received, claim payment |

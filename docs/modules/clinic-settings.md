@@ -6,6 +6,8 @@ Open it from the sidebar: **Clinic settings**. You need a role that can view cli
 
 If you do not see this item, your role is view-or-work only (for example Viewer or Reviewer). Ask an Owner or Admin.
 
+The **top header** shows the clinic and location you are in. If you have more than one site, click that pill to switch. Owners and Admins can also open **Manage or add locations** from that menu.
+
 ---
 
 ## The tabs
@@ -76,12 +78,14 @@ Typical pieces:
 
 A **developer key** is held by Ordo (platform). The practice provides the **customer key**. If Test stays disabled, either the developer key is missing (Ordo staff) or no customer key has been entered yet.
 
+**Save** and **Test** are separate. You can **Save** the customer key even if Test has not succeeded yet — for example the key is not registered in Open Dental yet. Ordo stores the key and reminds you to Test when it is registered. Fetch and Post still need a working connection, so Test (and then Sync) before live posting.
+
 **Example — first-time connect**
 
 1. Jennifer opens **Integrations**.
 2. She pastes the customer key Open Dental support provided.
-3. She clicks **Test**. Success toast: Ordo can reach Open Dental.
-4. She **Saves**.
+3. She **Saves**. Toast: keys saved (even if Test is still pending).
+4. When the key is live in Open Dental, she clicks **Test**. Success toast: Ordo can reach Open Dental.
 5. She clicks **Sync** and waits. Status shows last sync time and how many patients/claims were stored.
 
 Until this is connected, **Fetch Open Dental** in Actual mode cannot load live charts. Demo uses sample data and does not need a real key.
@@ -95,9 +99,11 @@ Until this is connected, **Fetch Open Dental** in Actual mode cannot load live c
 
 Each call to Open Dental can appear here: test connection, sync, fetch, post. If Test fails, open API Logs (or the error card on the integrations panel) and look at the latest row. The message is often enough for Ordo support without sending screenshots of patient names.
 
+The list is **paginated** (default 25 rows). You can search, filter to **success** or **failed**, and page through older calls. Expand a row for the endpoint and status code.
+
 How to read the **status code** (400, 401, 429, …) and the posting refusals Open Dental sends: [Open Dental errors](../errors/open-dental.md).
 
-Most coordinators will never need this tab. Office managers use it with support on the phone.
+Most coordinators will never need this tab. Office managers use it with support on the phone. Copy the error text (not patient names) into an email to **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 ---
 
@@ -110,7 +116,9 @@ This is the human history:
 - Who posted
 - Who changed settings, when that is logged
 
-**Example.** The dentist asks “who posted Maria Santos?” Jennifer opens **Audit**, searches the time window, and sees Jennifer Park posted at 2:14 p.m. after Mike approved at 2:09 p.m.
+Filter by event type (for example Payment Posted, Claim Approved, EOB Uploaded), by EOB, and by date range. Search and page through results the same way as API Logs.
+
+**Example.** The dentist asks “who posted Maria Santos?” Jennifer opens **Audit**, filters to **Payment Posted**, searches the time window, and sees Jennifer Park posted at 2:14 p.m. after Mike approved at 2:09 p.m.
 
 Prefer Audit over API Logs when the question is about *people*. Prefer API Logs when the question is about *the wire to Open Dental*.
 
@@ -125,7 +133,7 @@ Prefer Audit over API Logs when the question is about *people*. Prefer API Logs 
 
 ## If the page says no clinic is provisioned
 
-Integrations may show that this practice is not set up yet. That is Ordo onboarding — not something a Reviewer can fix. Ask your office manager to contact Ordo support.
+Integrations may show that this practice is not set up yet. That is Ordo onboarding — not something a Reviewer can fix. Ask your office manager to email **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 ---
 

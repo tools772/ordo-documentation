@@ -22,14 +22,17 @@ More detail: [Sign in](people/signing-in.md).
 
 ---
 
-## 2. Look at the left sidebar
+## 2. Look around the screen
 
-The sidebar is the building directory. From top to bottom you will typically see:
+The **top header** shows the clinic name and location you are working in. If you belong to more than one site, click that pill to switch. On the live production site a blue **Production** bar sits above the page.
+
+The **left sidebar** is the building directory. From top to bottom you will typically see:
 
 1. **Ordo** (the logo) — you are in payment operations.
 2. **Modules** — EOB Dashboard, Patients, Reports, Docs.
 3. **Practice** — Clinic settings (if your role can open it).
-4. **App mode** — Demo or Actual toggle, plus a HIPAA-ready note.
+4. **Help** — a link to this site, plus **help@perfect.ventures** if you need to raise an issue.
+5. **App mode** — Demo or Actual toggle, plus a HIPAA-ready note.
 
 If a module is missing, that is normal. Your **role** hides what you are not allowed to use. A Viewer will not see posting buttons. An insurance reviewer may not see Clinic settings. See [Roles and who can do what](people/roles.md).
 
@@ -50,6 +53,8 @@ Under the summary is the **file list**. You can search by file name, filter by s
 
 If your role allows it, there is an **Upload EOBs** button. Demo may already have sample files so you can skip uploading.
 
+Each row also has a menu with **Download EOB**. That downloads the original PDF (or image) you uploaded — useful when you want to compare what Ordo read against the paper.
+
 ---
 
 ## 4. Open one file
@@ -59,8 +64,8 @@ Click a row. You land on that remittance’s patient list.
 Do this in order the first time:
 
 1. Tick the checkbox next to one patient (or a few).
-2. Click **Fetch Open Dental**. This loads matching chart data so the Open Dental tab is not empty.
-3. Click the patient name.
+2. Click **Fetch Open Dental**. Wait for **Fetching from Open Dental…** to finish. This loads matching chart data so the Open Dental tab is not empty.
+3. Click the patient name. A **Workflow guide** button on the page explains which actions are allowed at each status.
 4. Look at the three tabs:
    - **EOB Review** — what Ordo read from the PDF.
    - **Open Dental** — the claim Ordo thinks is the match, line by line.
@@ -91,7 +96,7 @@ Walk through a full example: [Post a payment](workflows/posting-a-payment.md).
 
 ## 6. Peek at Patients and Reports
 
-- **Patients** is the same extracted people, but across every file. Use it when someone asks “where is Maria Santos?” and you do not remember which PDF she was on.
+- **Patients** is the same extracted people, but across every file. Use it when someone asks “where is Maria Santos?” and you do not remember which PDF she was on. Click a row to open her detail page, including **EOB History** if she appears on more than one remittance.
 - **Reports** is the operations scoreboard. Filter by uploaded date and by which EOBs you care about. Archived files are left out.
 
 ---
@@ -114,5 +119,6 @@ Copy this and tick it off:
 - [ ] I know I must **Fetch Open Dental** before the Open Dental tab has live chart data.
 - [ ] I know **Approve match** does not post, and **Post payment** does.
 - [ ] I know my role may hide some buttons, and that is expected.
+- [ ] I know to email **help@perfect.ventures** if I am stuck.
 
-When you are ready, read [What is a module?](modules/overview.md) or jump straight into [Inside an EOB](modules/working-an-eob.md). For a full button catalog, see [What each operation does](workflows/operations.md).
+When you are ready, read [What is a module?](modules/overview.md) or jump straight into [Inside an EOB](modules/working-an-eob.md). For a full button catalog, see [What each operation does](workflows/operations.md). Stuck? Email **[help@perfect.ventures](mailto:help@perfect.ventures)**.

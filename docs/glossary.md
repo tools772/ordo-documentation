@@ -9,6 +9,12 @@ Everyday language for the terms you will see in Ordo. You can skip this page and
 **EOB (Explanation of Benefits)**  
 The PDF (or image) the insurance company sends after they process claims. It lists patients, procedure codes, and how much the plan paid. In Ordo, one uploaded file is one EOB — even if that file contains twenty patients.
 
+**Download EOB**  
+Saves the original uploaded remittance (PDF or image) to your computer. Available from the Dashboard row menu and from inside a file. This is not the same as **Export**, which downloads a spreadsheet of the current list.
+
+**EOB History**  
+On a patient’s detail page, every remittance Ordo has for that person — not just the file you opened last.
+
 **Remittance**  
 Another word for the same insurance payment document. People say “today’s remittance” the way they say “today’s EOB.”
 
@@ -67,6 +73,9 @@ Locks in the Open Dental claim you selected. **Does not post money.**
 
 **Post payment**  
 Writes the amounts (and optional notes) to Open Dental. Stays off until the match is **Approved**. After **Posted** it stays off.
+
+**Workflow guide**  
+An in-app button on the EOB patient list that maps which actions are allowed at each status. The longer version is [Statuses](workflows/statuses.md).
 
 **Reject match**  
 Throws away the current match without posting. Use this when the recommended claim is the wrong visit.
@@ -128,10 +137,10 @@ One specific ability, such as “Upload EOBs” or “Post payment.”
 Your dental office in Ordo. Multi-location practices can also have **locations** and map users to them.
 
 **Allowlist**  
-The list of people or clinics allowed into the product. If someone cannot sign in, they may not be on the allowlist yet. Ask your office manager to contact Ordo support.
+The list of people or clinics allowed into the product. If someone cannot sign in, they may not be on the allowlist yet. Ask your office manager to email **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 **API logs**  
-A technical diary of calls to Open Dental. Useful when a connection test or post fails. How to read the numbers: [Open Dental errors](errors/open-dental.md). Most billing staff will rarely need this; office managers might, with Ordo support.
+A technical diary of calls to Open Dental. Useful when a connection test or post fails. How to read the numbers: [Open Dental errors](errors/open-dental.md). Most billing staff will rarely need this; office managers might, with Ordo support at **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 **eConnector**  
 The Open Dental service at the office that lets the cloud API reach your charts. If it is not running, Test, Fetch, and Post fail with a 400-style message.

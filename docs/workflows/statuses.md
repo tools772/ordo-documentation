@@ -10,6 +10,8 @@ A file can be **Extracted** while Maria is still **Not fetched** and James is al
 
 The tables below answer **what you can click** at each status. Fetch, Approve, Post, and Reject also need the matching permission on your role.
 
+In the app, **Workflow guide** (on the EOB patient list) is a short version of this page.
+
 Solid arrows are **allowed**. Dashed arrows are **not allowed** (the button is off, or the action does not change that status).
 
 <p class="status-legend">

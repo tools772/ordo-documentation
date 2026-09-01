@@ -101,13 +101,16 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 
 ## Reach out to Ordo
 
-If the table says **Need Ordo? Yes**, contact the Ordo team at **Perfect Ventures** (the people who onboarded your clinic).
+If the table says **Need Ordo? Yes**, or if you need help with any issue, email our dedicated support group at **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
-Do **not** paste the full EOB PDF or a screenshot of patient names into a group chat.
+Do **not** paste the full EOB PDF or a screenshot of patient names into a group chat or unencrypted email.
 
 Send this instead (copy and fill in):
 
 ```
+To: help@perfect.ventures
+Subject: [Ordo Issue] <Short summary>
+
 What I was doing:
 What I saw (copy the exact message):
 EOB ID (from the dashboard row):

@@ -16,7 +16,7 @@ This is not the Open Dental chart, and it is not a medical record. It is a **wor
 | “Maria Santos called — is her payment posted?” | **Patients** |
 | You want totals for the week | [Reports](reports.md) |
 
-**Example.** The front desk says Maria is at the window asking about her Cigna payment. Jennifer does not remember which remittance. She opens **Patients**, types `Santos`, sees the row, and clicks it. Ordo takes her to Maria *inside that EOB*, on the review screen.
+**Example.** The front desk says Maria is at the window asking about her Cigna payment. Jennifer does not remember which remittance. She opens **Patients**, types `Santos`, sees the row, and clicks it. Ordo opens Maria’s detail page. If she has more than one file, **EOB History** lists them.
 
 ---
 
@@ -25,15 +25,33 @@ This is not the Open Dental chart, and it is not a medical record. It is a **wor
 Typical columns:
 
 - Name
-- Patient ID / EOB patient id
-- Subscriber
-- Which EOB (file) she came from
+- Patient ID (Ordo’s short id for this extracted person)
+- Subscriber ID
 - Open Dental id (once matched)
+- Which EOB (file name and EOB ID)
 - Date of service
 - Paid / plan covered amount
 - Match status
 
-Click a row to land on that patient inside the EOB (the same place as [Inside an EOB](working-an-eob.md)).
+The list does **not** show a separate “EOB patient id.” Use **Patient ID** for the person and **EOB ID** for the file.
+
+Click a row to open that person’s **detail page** (Overview, EOB History, Open Dental) — not only the file they came from. From there you can still jump to the remittance.
+
+---
+
+## Patient detail and EOB History
+
+Opening a patient shows three tabs:
+
+| Tab | What it is for |
+| --- | --- |
+| **Overview** | Name, identifiers, and the procedure lines from the *current* remittance. |
+| **EOB History** | Every remittance Ordo has for this person: dates, amounts, match status, and procedure lines. Expand a file to see the codes. |
+| **Open Dental** | The same matching desk you use inside an EOB. |
+
+If Maria appears on more than one remittance, a badge such as **3 EOBs on file** appears next to her name. Click it (or open **EOB History**) when the front desk asks “did we already post her Cigna from last month?”
+
+**Example.** Jennifer types `Santos` on Patients, opens Maria, and sees two files: last Thursday’s Cigna (Posted) and this morning’s Cigna (Needs review). She works the new one; she does not re-post last week.
 
 ---
 
@@ -77,7 +95,7 @@ Export uses the **current** filter and search. If you filtered to Needs review, 
 
 - It will not let you chart treatment.
 - It will not show patients who were never on an uploaded EOB.
-- It will not post. Posting still happens on the Open Dental tab inside the file.
+- It will not post. Posting still happens on the Open Dental tab (here or inside the file).
 
 ---
 

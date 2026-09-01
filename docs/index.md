@@ -48,8 +48,8 @@ Ordo is organized into **modules**. A module is simply a section of the product 
 
 | Module | What it is for |
 | --- | --- |
-| **EOB Dashboard** | The file inbox. Upload remittances, see their status, open a file to work it. |
-| **Patients** | Find a person across all files without opening the EOB first. |
+| **EOB Dashboard** | The file inbox. Upload remittances, see their status, download the original file, open a file to work it. |
+| **Patients** | Find a person across all files without opening the EOB first. Open a row to see EOB history for that person. |
 | **Reports** | Counts and dollars for operations: uploaded, posted, failed, by carrier. |
 | **Docs** | Short in-app help, plus a link to this longer site. |
 | **Clinic settings** | Your practice: people, roles, locations, Open Dental connection, logs. |
@@ -65,7 +65,13 @@ Start with [What is a module?](modules/overview.md) if you want a map before div
 | **Demo** | Training, screenshots, “show me how this works” | Sample data only. Nothing touches your live charts. |
 | **Actual** | Real work for the practice | Live files, live patients, live Open Dental (when connected). |
 
-Switching is in the sidebar (and on the sign-in screen). Details: [Demo vs Actual](workflows/demo-vs-actual.md).
+Switching is in the sidebar (and on the sign-in screen). The top header shows your **clinic and location**; click it to switch if you work more than one site. On the live production site a blue **Production** bar sits at the top so you know you are not on a training host. Details: [Demo vs Actual](workflows/demo-vs-actual.md).
+
+---
+
+## Need help or found an issue?
+
+If you encounter unexpected errors, need assistance during onboarding, or have questions about a claim or remittance, reach out to our dedicated support group at **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 ---
 

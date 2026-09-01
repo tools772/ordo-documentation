@@ -70,7 +70,7 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 2. Note the time. Open **Clinic settings → API Logs** (or the error panel on the Open Dental tab).
 3. Common human fixes: connection dropped, customer key expired, eConnector stopped, claim was locked or already had a check in Open Dental after approve.
 4. If Ordo says the claim changed, **review again** (fetch, confirm lines, approve, then post once).
-5. If a payment number never appeared but Open Dental already shows the money, **stop**. Call Ordo support before posting twice.
+5. If a payment number never appeared but Open Dental already shows the money, **stop**. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** before posting twice.
 
 The full decoder for `Open Dental API 400` (and 401, 429, 504) is [Open Dental errors](../errors/open-dental.md).
 
@@ -82,7 +82,7 @@ The full decoder for `Open Dental API 400` (and 401, 429, 504) is [Open Dental e
 
 **What to do.** Ask an Owner to check [Roles](../people/roles.md). Do not use someone else’s login.
 
-If the whole clinic cannot sign in, the practice may not be set up yet. Contact Ordo support.
+If the whole clinic cannot sign in, the practice may not be set up yet. Email **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 ---
 
@@ -109,13 +109,13 @@ Reports use **upload date**, not date of service. June treatment uploaded in Aug
 
 ## Names and PHI on screenshots
 
-If you need help from Ordo, prefer:
+If you need help from Ordo, email **[help@perfect.ventures](mailto:help@perfect.ventures)**. Please provide:
 
 - EOB ID (from the dashboard row)
 - Time of the error
 - The **message text**, not a full-page screenshot of the PDF
 
-Do not paste entire remittances into a group chat.
+Do not paste entire remittances into an unencrypted chat or email.
 
 ---
 

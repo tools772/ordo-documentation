@@ -2,6 +2,8 @@
 
 You will hit a sign-in screen before any module. It asks two questions: **which world** (Demo or Actual) and **who you are**.
 
+On the live production site, a blue **Production** bar sits at the top so you know this is the live host, not a training URL. You can still pick **Demo** there; Demo still uses sample data only.
+
 ---
 
 ## Pick the mode first
@@ -69,7 +71,7 @@ If your user exists but is **inactive**, you see **Access is turned off**. Ask a
 
 A different **no-access** page means you are in the clinic, but your role does not include that module. Ask an Owner if you need it.
 
-Contact your office manager first, then Ordo support if the clinic itself cannot sign in.
+Contact your office manager first, then Ordo support at **[help@perfect.ventures](mailto:help@perfect.ventures)** if the clinic itself cannot sign in.
 
 ---
 

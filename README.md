@@ -23,6 +23,10 @@ Open [http://127.0.0.1:8000](http://127.0.0.1:8000).
 
 Pushes to `main` build Ordo into `/ordo/` and deploy GitHub Pages via `.github/workflows/deploy-docs.yml`.
 
+## Support & Issue Reporting
+
+Users and practice teams can report bugs and raise issues by emailing **[help@perfect.ventures](mailto:help@perfect.ventures)**.
+
 ## Custom domain (`docs.perfect.ventures`)
 
 In GoDaddy DNS for `perfect.ventures`:
