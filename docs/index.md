@@ -4,6 +4,8 @@ Ordo is a **payment operations** tool for dental practices. It takes the insuran
 
 This site is written for the people who actually do the work: office managers, insurance coordinators, billing staff, and practice owners. You do not need to be a programmer to use it.
 
+In Latin, **ordo** means **order**, **row**, **series**, or **methodical arrangement** — the root behind the modern English idea of a **system**. More on the name: [Where the name comes from](origination.md).
+
 ---
 
 ## The problem Ordo is solving
@@ -78,6 +80,7 @@ If you encounter unexpected errors, need assistance during onboarding, or have q
 ## How to use this site
 
 - New to Ordo? Read [First day with Ordo](getting-started.md).
+- Curious about the name? [Where the name comes from](origination.md).
 - Stuck on a word like “EOB” or “CDT”? Open the [Word list](glossary.md).
 - Looking for a screen? Use the **Modules** tab.
 - Looking for a procedure (“how do I post?”)? Use the **How to** tab.

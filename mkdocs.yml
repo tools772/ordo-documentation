@@ -67,6 +67,7 @@ nav:
   - Home:
       - Welcome: index.md
       - First day with Ordo: getting-started.md
+      - Where the name comes from: origination.md
       - Word list: glossary.md
   - Modules:
       - What is a module?: modules/overview.md

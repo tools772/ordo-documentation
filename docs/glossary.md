@@ -2,6 +2,8 @@
 
 Everyday language for the terms you will see in Ordo. You can skip this page and come back when a label on screen is unclear.
 
+**Ordo** (the product name) comes from Latin: order, row, series, or methodical arrangement — related to the modern English word **system**. See [Where the name comes from](origination.md).
+
 ---
 
 ## Documents and money
