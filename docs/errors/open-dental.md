@@ -42,7 +42,7 @@ A toast often starts with `Open Dental API 400:` (or 401, 404, …) and then Ope
 | **Test** | `GET /claims?ClaimStatus=S` (Sent claims — a cheap “are you there?”) |
 | **Sync** (clinic-wide) | `GET` patients, claims, claimprocs, carriers, plans, providers |
 | **Fetch Open Dental** | `GET /patients` by name, then claims and claimprocs for those patients |
-| **Post payment** | `PUT /claimprocs/{number}` (each line) → `PUT /claims/{number}` → `POST /claimpayments` |
+| **Post payment** | `PUT /claimprocs/{number}` (each remittance line) → `PUT /claimprocs/{number}` (Open Dental–only leftovers as Received **$0**, if any) → `PUT /claims/{number}` → `POST /claimpayments` |
 | **Reject** with a remark | `GET /claimprocs` then `PUT /claimprocs/{number}` with a **Note** only |
 
 ---
@@ -108,6 +108,7 @@ Ordo tries to be careful: if a line is **already** attached to a check, it does 
 
 | You might see (idea) | Meaning | What to do |
 | --- | --- | --- |
+| **ClaimStatus cannot be Received when attached ClaimProc(s) status is NotReceived** | Open Dental will not close the claim while any procedure line is still **NotReceived**. Usually an **extra chart line** (replacement code, old exam) that was not on this remittance. Ordo now sets those leftovers to **Received @ $0** before marking the claim Received. | If you still see this after a recent Ordo update, open the claim and find any line still NotReceived. Clear it in Open Dental, or contact Ordo. If money already posted on matched lines, fetch and review before retrying. |
 | Claim not found (404) | The claim was deleted or the number is wrong. | Fetch; if the claim is gone, it must be re-created in Open Dental. |
 | 400 with explanation | Open Dental rejected the status/date update (invalid status letter, date format, or a locked claim). | Copy the explanation. Check the claim in Open Dental (already Received? locked?). Contact Ordo if the money posted on lines but the claim header did not. |
 
