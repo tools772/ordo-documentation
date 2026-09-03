@@ -47,7 +47,7 @@ Opening a patient shows three tabs:
 | --- | --- |
 | **Overview** | Name, identifiers, and the procedure lines from the *current* remittance. |
 | **EOB History** | Every remittance Ordo has for this person: dates, amounts, match status, and procedure lines. Expand a file to see the codes. |
-| **Open Dental** | The same matching desk you use inside an EOB. |
+| **Open Dental** | Link the extracted person to an Open Dental chart ([Finding the patient](../workflows/finding-the-patient.md)), then match and post the claim. |
 
 If Maria appears on more than one remittance, a badge such as **3 EOBs on file** appears next to her name. Click it (or open **EOB History**) when the front desk asks “did we already post her Cigna from last month?”
 
@@ -102,6 +102,7 @@ Export uses the **current** filter and search. If you filtered to Needs review, 
 ## Related pages
 
 - [Inside an EOB](working-an-eob.md)
+- [Finding the patient](../workflows/finding-the-patient.md)
 - [EOB Dashboard](eob-dashboard.md)
 - [Statuses](../workflows/statuses.md)
 - [Roles and who can do what](../people/roles.md)

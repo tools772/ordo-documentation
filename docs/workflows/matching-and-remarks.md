@@ -1,8 +1,13 @@
 # Matching and remarks
 
-Matching is Ordo answering: **which Open Dental claim is this EOB talking about, and which procedure line is which?** Remarks are the notes that ride along when you post.
+Matching is two jobs:
 
-You do this on the **Open Dental** tab after **Fetch Open Dental**. See [Inside an EOB](../modules/working-an-eob.md) for the screen layout.
+1. **Which Open Dental patient is this?** — [Finding the patient](finding-the-patient.md)
+2. **Which Open Dental claim is this EOB talking about, and which procedure line is which?** — this page
+
+Names on the remittance and names in the chart often disagree. Use **Find possible patients** on the Open Dental tab so you do not have to edit the EOB name just to locate the chart. Then **Fetch Open Dental** and score claims as below.
+
+You do claim matching on the **Open Dental** tab after **Fetch Open Dental**. See [Inside an EOB](../modules/working-an-eob.md) for the screen layout.
 
 ---
 
@@ -125,6 +130,7 @@ A Reviewer at Bright Smile can approve and reject but cannot post. Jennifer post
 
 ## Related pages
 
+- [Finding the patient](finding-the-patient.md)
 - [Post a payment](posting-a-payment.md)
 - [What each operation does](operations.md)
 - [Statuses](statuses.md)

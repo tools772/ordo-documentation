@@ -168,7 +168,7 @@ The file stays **Extracted**. Fetch does not change the file-level status.
 | --- | --- |
 | **Nothing new to fetch** | Those patients were already fetched. Use **Refetch** if you need a fresh copy. |
 | **Open Dental is not connected…** | An Admin must save the customer key and Test under Clinic settings → Integrations. |
-| **No Open Dental patients matched the EOB names** | The replica search found nobody with those names. Check spelling on **EOB Review**, then fetch again. Search Open Dental yourself. |
+| **No Open Dental patients matched the EOB names** | The replica search found nobody with those names. On the Open Dental tab use **Find possible patients** (DOB / similar names) instead of only fixing spelling. You can still correct a misread PDF on **EOB Review**, then fetch again. |
 | **Open Dental fetch failed** / **Open Dental API 401…** | The wire to Open Dental failed. See [Open Dental errors](../errors/open-dental.md). |
 | Patient row **Failed** | Fetch recorded an error on that person. Read the remark; retry fetch. |
 

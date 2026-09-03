@@ -62,7 +62,7 @@ The insurance company (Cigna, Delta, and so on).
 Ordo’s guess (or your confirmation) that “this EOB claim is that Open Dental claim.”
 
 **Fetch Open Dental**  
-The button that loads chart data from the practice’s Open Dental copy so you can compare. Until you fetch, the Open Dental tab is empty or EOB-only.
+The button that loads chart data from the practice’s Open Dental copy so you can compare claims. Until you fetch, the Open Dental tab has no claim candidates. Finding the *person* (when names differ) is **Find possible patients**: [Finding the patient](workflows/finding-the-patient.md).
 
 **Candidate**  
 One possible Open Dental claim Ordo is offering you. The recommended row is pre-selected when Ordo is confident.

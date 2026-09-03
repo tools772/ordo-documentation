@@ -86,7 +86,7 @@ Open Dental usually adds a short **explanation** with 400 and 404. The wording c
 | You might see | Meaning | What to do |
 | --- | --- | --- |
 | Patient not found / 404 on `/patients/…` | That PatNum is gone. | Fetch by name again; the replica may be stale. |
-| **No Open Dental patients matched the EOB names** (Ordo) | Search by first/last name returned nobody. | Fix spelling on EOB Review, fetch again. Confirm the patient exists in Open Dental. |
+| **No Open Dental patients matched the EOB names** (Ordo) | Search by first/last name returned nobody. | On the Open Dental tab use **Find possible patients** (DOB / similar names). You can still fix a misread PDF on EOB Review, then fetch again. Confirm the patient exists in Open Dental. |
 | **Open Dental returned no Sent or Waiting claims** (Ordo, clinic Sync) | Clinic-wide sync looks for claims in Sent or Waiting and found none. | Confirm claims exist. Fetch on a specific patient still searches that person. |
 | **No matching patients found for this document** (Ordo) | Fetch was called with patient ids that are not on this file. | Re-select patients on the list, Fetch again. |
 

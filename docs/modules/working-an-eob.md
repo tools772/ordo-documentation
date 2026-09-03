@@ -69,7 +69,9 @@ If your role includes **Edit extracted data**, you can correct a misspelled name
 
 ## Tab 2 — Open Dental
 
-This is the posting desk. Full walkthrough: [Matching and remarks](../workflows/matching-and-remarks.md).
+If the EOB name and the Open Dental name disagree (nickname, missing middle name, spelling), do **not** start by rewriting the EOB. Open the **Open Dental** tab and use **Find possible patients** — Ordo can search by date of birth and similar names, then you select the chart. Details: [Finding the patient](../workflows/finding-the-patient.md).
+
+This is the posting desk for **claims**. Full walkthrough: [Matching and remarks](../workflows/matching-and-remarks.md).
 
 In short:
 
@@ -160,5 +162,6 @@ If step 3 had recommended last year’s claim instead, Mike would pick the June 
 - [What each operation does](../workflows/operations.md)
 - [Statuses](../workflows/statuses.md)
 - [Matching and remarks](../workflows/matching-and-remarks.md)
+- [Finding the patient](../workflows/finding-the-patient.md)
 - [When something looks wrong](../examples/when-things-go-wrong.md)
 - [Open Dental errors](../errors/open-dental.md)

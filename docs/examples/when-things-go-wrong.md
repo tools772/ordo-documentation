@@ -56,7 +56,7 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 
 **Usual causes.** Claim was never entered in Open Dental, patient is under a different name, replica is stale (not synced), or the EOB patient is not this practice’s patient.
 
-**What to do.** Search Open Dental yourself. If the claim exists, **Sync** (Admin) and fetch again. If the claim does not exist, enter it in Open Dental first, then return to Ordo. Ordo cannot invent a chart.
+**What to do.** On the Open Dental tab, use **Find possible patients** (date of birth and similar names) or **None of these are the correct patient** for a manual search. You do not have to edit the EOB name first. Guide: [Finding the patient](../workflows/finding-the-patient.md). If the **claim** exists under that chart, **Sync** (Admin) and fetch again. If the claim does not exist, enter it in Open Dental first, then return to Ordo. Ordo cannot invent a chart.
 
 ---
 
@@ -127,5 +127,6 @@ Do not paste entire remittances into an unencrypted chat or email.
 - [Statuses](../workflows/statuses.md)
 - [Inside an EOB](../modules/working-an-eob.md)
 - [Matching and remarks](../workflows/matching-and-remarks.md)
+- [Finding the patient](../workflows/finding-the-patient.md)
 - [Clinic settings](../modules/clinic-settings.md)
 - [A typical Monday morning](typical-morning.md)
