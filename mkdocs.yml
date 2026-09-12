@@ -78,6 +78,7 @@ nav:
       - Clinic settings: modules/clinic-settings.md
   - How to:
       - Post a payment: workflows/posting-a-payment.md
+      - What files and layouts Ordo reads: workflows/supported-formats.md
       - What each operation does: workflows/operations.md
       - Statuses — what changes when: workflows/statuses.md
       - Matching and remarks: workflows/matching-and-remarks.md

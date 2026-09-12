@@ -28,7 +28,7 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 Try it yourself when:
 
 - You skipped **Fetch Open Dental**
-- The PDF is the wrong kind of file (photo, statement, non-Cigna layout)
+- The file is the wrong kind (a statement, a claim form, or a [layout Ordo does not read yet](../workflows/supported-formats.md))
 - The recommended claim is the wrong visit
 - You are in **Demo** instead of **Actual** (or the reverse)
 - Your role does not include that button
@@ -40,7 +40,7 @@ Try it yourself when:
 - Posting may have written money **and** still showed an error (risk of a double post)
 - The whole clinic cannot sign in
 - Open Dental connection test fails after the customer key is saved
-- A Cigna PDF that used to work suddenly always fails
+- A supported remittance PDF that used to work suddenly always fails
 - You are not sure whether the payment landed in Open Dental
 
 ---
@@ -53,8 +53,9 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 
 | You see | Why | What you can do | Need Ordo? |
 | --- | --- | --- | --- |
-| **Unsupported EOB format** / expected Cigna Dental layout | The reader today understands **Cigna Dental** standard remittances. Other carriers or layouts are not parsed. | Confirm it is a Cigna remittance PDF from the payer portal, not a photo or a claim form. Post that check in Open Dental by hand if it is another carrier. Archive the failed file so it does not clutter Failed. | **Yes**, if it *is* a standard Cigna Dental EOB and still fails — send the EOB ID and time. |
-| **No claims extracted** | Ordo recognized Cigna-ish layout but found no claim/procedure lines. | Re-export a clean PDF. Do not scan a printout at an angle. | **Yes**, if a normal Cigna remittance comes out empty. |
+| **Unsupported EOB format** / **We don't read this layout yet** | The printed template is not one Ordo reads today. Current list: [What files and layouts Ordo reads](../workflows/supported-formats.md). | Confirm it is a remittance from the payer portal, not a letter or claim form. Post that check in Open Dental by hand if the layout is not supported. Archive the failed file so it does not clutter Failed. | **Yes**, if it *is* one of the supported layouts and still fails — send the EOB ID and time. |
+| **OCR ran but found little readable text** / older **OCR is not supported** | A JPG/PNG or scanned PDF was too poor to read, or an older failed job still shows the previous wording. | Prefer a text PDF from the payer portal. A sharp, full-page photo can work. | No, unless a known good remittance is treated as unreadable. |
+| **No claims extracted** | Ordo recognized a supported layout but found no claim/procedure lines. | Re-export a clean PDF. Do not scan a printout at an angle. | **Yes**, if a normal supported remittance comes out empty. |
 | **You must be signed in to upload** / **Session expired** | The login timed out. | Sign in again, then upload. | No, unless it happens immediately after a fresh sign-in. |
 | **Could not reach the server** | Network, VPN, or Ordo is briefly unreachable. | Check internet, try once more. | **Yes**, if it lasts more than a few minutes for the whole office. |
 | File stays **Extracting** for a long time | The job is queued or stuck. | Refresh the dashboard. Wait a few minutes. | **Yes**, if it never becomes Extracted or Failed. |
@@ -128,8 +129,10 @@ If posting might have happened twice, say that in the first sentence. We would r
 ## Related pages
 
 - [Open Dental errors](open-dental.md) — HTTP codes, posting refusals, API Logs
+- [What files and layouts Ordo reads](../workflows/supported-formats.md)
 - [What each operation does](../workflows/operations.md)
 - [Statuses](../workflows/statuses.md)
+- [What files and layouts Ordo reads](../workflows/supported-formats.md)
 - [When something looks wrong](../examples/when-things-go-wrong.md) — short scenes
 - [Matching and remarks](../workflows/matching-and-remarks.md)
 - [Clinic settings](../modules/clinic-settings.md)

@@ -71,23 +71,28 @@ Export downloads the **current** list (after search and filters), not the entire
 
 If your role includes **Upload EOBs**, you will see an upload control.
 
-**Accepted files:** PDF, TIFF, PNG, JPEG.
+**Accepted files:** PDF, JPG, and PNG, up to 50 MB each. Prefer a **text PDF** from the payer portal. Photos and scanned PDFs are read with on-server OCR when needed.
 
 **What happens after you drop a file:**
 
 1. The file is stored.
 2. Status moves through Uploaded → Queued → Extracting.
-3. Ordo reads the page and pulls out patients, claims, and procedure lines (plan covered amounts).
-4. Status becomes Extracted (ready) — or Failed if the layout is not supported.
+3. Ordo detects the remittance layout and pulls out patients, claims, and procedure lines (plan covered amounts). You do not pick a carrier.
+4. Status becomes Extracted (ready) — or Failed if the layout is not supported or the image is unreadable.
 
 !!! note "Which insurance layouts work today?"
-    Reading is built for **Cigna Dental** standard EOB layout. If you upload a different carrier’s format, the file may land in **Failed** with a message like “unsupported EOB format.” That is a limitation of the reader, not a problem with your PDF viewer.
+    Ordo auto-detects many remittance layouts, including **Cigna Dental**, **Cigna DHMO**, **MetLife**, **Guardian**, **BCBS (HCSC)**, several **Delta Dental** printed forms (not one Delta-for-all), **MCNA**, **United Concordia / Equitable**, **Envolve**, **Physicians Mutual**, **Sun Life**, **DentaQuest**, and **Careington**.
+
+    The full table, file types, and OCR notes: [What files and layouts Ordo reads](../workflows/supported-formats.md).
+
+    - Open **What’s supported?** on the upload dialog for the short in-app list.
+    - Other carrier layouts land in **Failed** with a clear message. That is a limitation of the reader, not a problem with your PDF viewer.
 
 ### Example: Jennifer uploads Monday’s remittance
 
 1. Jennifer (Admin) opens **EOB Dashboard**.
-2. She clicks **Upload EOBs** and drops `Cigna_Remit_Aug24.pdf`.
-3. A progress row appears. She waits until the status is **Extracted**.
+2. She clicks **Upload EOBs** and drops `Cigna_Remit_Aug24.pdf` (or any supported remittance PDF or image).
+3. She clicks **Upload & process** and waits until the status is **Extracted**.
 4. The row now shows something like **3 patients, 3 claims, 8 procedures**.
 5. She clicks the row to start work. (Mike could also open it; he cannot upload if his role forbids it.)
 
@@ -133,5 +138,6 @@ Viewers can watch the inbox. They cannot upload or archive.
 - [Inside an EOB](working-an-eob.md) — after you click a file
 - [Patients](patients.md) — find a person without knowing the file
 - [Reports](reports.md) — the same files, totaled
+- [What files and layouts Ordo reads](../workflows/supported-formats.md)
 - [Statuses](../workflows/statuses.md) — what Uploaded / Extracted / Failed mean
 - [When something looks wrong](../examples/when-things-go-wrong.md)

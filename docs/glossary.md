@@ -9,7 +9,7 @@ Everyday language for the terms you will see in Ordo. You can skip this page and
 ## Documents and money
 
 **EOB (Explanation of Benefits)**  
-The PDF (or image) the insurance company sends after they process claims. It lists patients, procedure codes, and how much the plan paid. In Ordo, one uploaded file is one EOB — even if that file contains twenty patients.
+The PDF (or JPG/PNG image) the insurance company sends after they process claims. It lists patients, procedure codes, and how much the plan paid. In Ordo, one uploaded file is one EOB — even if that file contains twenty patients.
 
 **Download EOB**  
 Saves the original uploaded remittance (PDF or image) to your computer. Available from the Dashboard row menu and from inside a file. This is not the same as **Export**, which downloads a spreadsheet of the current list.
@@ -53,6 +53,12 @@ The day the dentistry was actually done. Matching uses this date. A claim for Ju
 
 **Carrier / payer**  
 The insurance company (Cigna, Delta, and so on).
+
+**Layout / remittance format**  
+The printed template Ordo recognizes on the page — not just the company name. Delta Dental alone has several layouts. You do not pick this at upload. Catalog: [What files and layouts Ordo reads](workflows/supported-formats.md).
+
+**OCR**  
+Reading text from a photo or a scanned PDF (no selectable text). Ordo does this on the server for JPG/PNG and empty-text PDFs. A portal PDF is still more reliable.
 
 ---
 

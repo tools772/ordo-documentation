@@ -26,7 +26,7 @@ A Reviewer **cannot** post. That is a safety rail, not an insult. If your office
 
 - You are in the right **mode**. Demo is practice. Actual is live. See [Demo vs Actual](demo-vs-actual.md).
 - In Actual, Open Dental is **connected** and has been **synced** recently ([Clinic settings](../modules/clinic-settings.md)).
-- You have the remittance PDF (Cigna Dental standard layout is what Ordo reads today).
+- You have the remittance file (PDF, JPG, or PNG). Ordo auto-detects supported layouts — see [What files and layouts Ordo reads](supported-formats.md).
 
 ---
 
@@ -151,6 +151,8 @@ If posting fails, do not click it ten times. Approve again only after you have l
 
 ## Related pages
 
+- [What files and layouts Ordo reads](supported-formats.md)
+- [What files and layouts Ordo reads](supported-formats.md)
 - [What each operation does](operations.md)
 - [Statuses](statuses.md)
 - [Open Dental errors](../errors/open-dental.md)

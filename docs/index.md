@@ -27,7 +27,7 @@ That work is slow, easy to mistype, and hard to audit later. Ordo is the inbox, 
 
 | Ordo **does** | Ordo **does not** |
 | --- | --- |
-| Read the EOB PDF and pull out patients, claims, and procedure amounts | Replace Open Dental as your practice management system |
+| Read supported EOB PDFs (and JPG/PNG images) and pull out patients, claims, and procedure amounts | Replace Open Dental as your practice management system |
 | Show you the Open Dental claim it thinks is the right match | Automatically write money into Open Dental without a person clicking **Post payment** |
 | Let a reviewer approve the match, then a poster write the payment | Decide medical necessity or change what the insurance paid |
 | Keep a log of who uploaded, approved, rejected, or posted | File the original claim with the payer |
@@ -84,6 +84,7 @@ If you encounter unexpected errors, need assistance during onboarding, or have q
 - Stuck on a word like “EOB” or “CDT”? Open the [Word list](glossary.md).
 - Looking for a screen? Use the **Modules** tab.
 - Looking for a procedure (“how do I post?”)? Use the **How to** tab.
+- Wondering whether Ordo can read *this* remittance? [What files and layouts Ordo reads](workflows/supported-formats.md).
 - Prefer stories? Use the **Examples** tab.
 - An error on screen? Use the **Errors** tab — what it means, what to try, and when to contact Ordo. Open Dental API numbers (400, 401, …) have their own page: [Open Dental errors](errors/open-dental.md).
 - Want every button explained, including which **status** it changes? [What each operation does](workflows/operations.md) and [Statuses](workflows/statuses.md).

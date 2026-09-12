@@ -53,7 +53,7 @@ Story: [Sign in](../people/signing-in.md).
 
 **What happens.**
 
-1. You drop a PDF (or TIFF / PNG / JPEG) on the [EOB Dashboard](../modules/eob-dashboard.md).
+1. You drop a PDF, JPG, or PNG on the [EOB Dashboard](../modules/eob-dashboard.md).
 2. Ordo saves the file and starts **reading** it (extraction).
 3. You wait until the row is **Extracted** or **Failed**.
 
@@ -71,7 +71,7 @@ Story: [Sign in](../people/signing-in.md).
 | **Upload failed** | The file did not save. Try once more; email **[help@perfect.ventures](mailto:help@perfect.ventures)** if it repeats. |
 | File stays **Extracting** | Reading is still running, or stuck. Refresh; wait a few minutes. |
 
-Accepted types: PDF, TIFF, PNG, JPEG. Reading today understands **Cigna Dental** standard remittances.
+Accepted types: **PDF**, **JPG**, and **PNG** (up to 50 MB). Prefer a text remittance from the payer portal; photos and scanned PDFs are read with on-server OCR. Layouts: [What files and layouts Ordo reads](supported-formats.md).
 
 ---
 
@@ -83,7 +83,7 @@ You do not click this. It starts after upload.
 
 **Writes to Open Dental?** No.
 
-**What happens.** Ordo opens the PDF, looks for a Cigna Dental layout, and pulls out patients, claims, procedure codes, and plan covered amounts.
+**What happens.** Ordo opens the file, detects a supported remittance layout (you do not pick a carrier), and pulls out patients, claims, procedure codes, and plan covered amounts. Text PDFs are read directly. JPG/PNG images and scanned PDFs (no selectable text) go through on-server OCR first. Catalog: [What files and layouts Ordo reads](supported-formats.md).
 
 **Status change (file).**
 
@@ -96,8 +96,9 @@ When it finishes: **Extracted** (extraction **Completed**), or **Failed** (extra
 
 | You see | Meaning |
 | --- | --- |
-| **Unsupported EOB format — expected Cigna Dental standard layout** | This layout is not read yet. Post that check in Open Dental by hand. Archive the failed file so it does not sit in Failed. |
-| **No claims extracted** / **Parsed as Cigna Dental but found no claims or procedures** | Layout looked Cigna-ish but no claim lines were found. Re-export a clean PDF from the payer portal. |
+| **We don't read this layout yet** / **Unsupported EOB format** | This printed template is not read yet. See [supported layouts](supported-formats.md). Post that check in Open Dental by hand. Archive the failed file so it does not sit in Failed. |
+| **OCR ran but found little readable text** / older **OCR is not supported** | A photo or scan was unreadable, or an older failed job still shows the old wording. Try a clearer image or a text PDF from the payer portal. |
+| **No claims extracted** / **Recognised this as … but found no claims or procedures** | Layout matched but no claim lines were found. Re-export a clean PDF from the payer portal. |
 | **Could not download EOB file** | The stored file could not be opened. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** with the EOB ID. |
 
 A notification such as “extraction finished” or “extraction failed” may appear if your practice enabled it.
@@ -284,9 +285,10 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 1. Re-reads the claim procedure lines. If they changed since approve (amount, code, or a line disappeared), it **stops** and asks you to review again.
 2. Updates each matched procedure that is **not** already on a check: insurance paid amount (`InsPayAmt`), status **Received**, and your line remark if you typed one. If the line is already on a check with the **same** amount, Ordo skips that write.
-3. Marks the claim **Received** (`ClaimStatus` **R**) and sets the date received.
-4. Creates an insurance **claim payment** (the check) if one does not already exist, and returns a **claim payment number** when the API does.
-5. Double-checks that the amounts now sitting in Open Dental match what Ordo intended.
+3. If other procedure lines on that claim are still **NotReceived** (for example a replacement code that was not on this remittance), Ordo sets those leftovers to **Received @ $0** so Open Dental will accept the claim as Received.
+4. Marks the claim **Received** (`ClaimStatus` **R**) and sets the date received.
+5. Creates an insurance **claim payment** (the check) if one does not already exist, and returns a **claim payment number** when the API does.
+6. Double-checks that the amounts now sitting in Open Dental match what Ordo intended.
 
 **Status change.**
 

@@ -55,6 +55,8 @@ If your role allows it, there is an **Upload EOBs** button. Demo may already hav
 
 Each row also has a menu with **Download EOB**. That downloads the original PDF (or image) you uploaded — useful when you want to compare what Ordo read against the paper.
 
+Upload accepts **PDF**, **JPG**, and **PNG** (up to 50 MB). Ordo auto-detects the remittance layout — Cigna, MetLife, Guardian, several Delta forms, and others. The full list: [What files and layouts Ordo reads](workflows/supported-formats.md).
+
 ---
 
 ## 4. Open one file

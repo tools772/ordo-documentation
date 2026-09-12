@@ -22,16 +22,16 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 
 **Usual causes.**
 
-- The PDF is not a **Cigna Dental** standard layout (other carriers may not read yet).
-- The file is a photograph of a page, a password-protected PDF, or a statement that is not an EOB.
+- The file is not one of the [supported remittance layouts](../workflows/supported-formats.md) (Cigna PPO and DHMO, MetLife, Guardian, several Delta forms, and others).
+- The file is a password-protected PDF, a statement that is not an EOB, or a photo so poor that OCR cannot read it.
 - A temporary reading error.
 
 **What to do.**
 
-1. Open the file if you can and read the error message.
+1. Open the file if you can and read the error message (scan vs unsupported layout).
 2. Confirm you uploaded the remittance, not an explanation letter or a claim form.
-3. Try a clear PDF export from the payer portal, not a phone photo.
-4. If it is a non-Cigna format, plan to post that one in Open Dental by hand until that layout is supported. Archive the failed duplicate so it does not sit in Failed forever.
+3. Try a clear text PDF export from the payer portal when you have one. A JPG/PNG of the remittance can work if the page is sharp and fully in frame.
+4. If the layout is not supported yet, plan to post that one in Open Dental by hand. Archive the failed duplicate so it does not sit in Failed forever.
 
 ---
 
