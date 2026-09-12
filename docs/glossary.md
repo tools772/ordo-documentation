@@ -60,6 +60,21 @@ The printed template Ordo recognizes on the page — not just the company name. 
 **OCR**  
 Reading text from a photo or a scanned PDF (no selectable text). Ordo does this on the server for JPG/PNG and empty-text PDFs. A portal PDF is still more reliable.
 
+**Detect & upload**  
+Upload mode that identifies the remittance layout, then asks you to **Process EOB** before extracting patients.
+
+**Fill from sample**  
+Upload mode that starts from a clinic sample (text/CSV), fills your data, and creates the EOB.
+
+**Confirm layout**  
+File status after detect: the payer/layout is known, but patients are not extracted yet. Confirm with **Process EOB**, **Process {payer}** on the row menu, or **Confirm & process** inside the file.
+
+**EOB processing mode**  
+Clinic setting: **Parser Mode** (normal readers), **AI Mode** (AI for every remittance when enabled), or **Fallback Mode** (parser first, then AI). See [Clinic settings](modules/clinic-settings.md).
+
+**Continue with Google**  
+Actual sign-in option that uses your Google account instead of typing a password.
+
 ---
 
 ## Matching and posting
@@ -109,6 +124,7 @@ Statuses describe **where work is**, not whether anyone did a bad job.
 | You might see | Plain meaning |
 | --- | --- |
 | Uploaded | The file arrived. Reading has not finished. |
+| Confirm layout | Layout detected; waiting for **Confirm & process** / **Process EOB**. |
 | Queued | Waiting its turn to be read. |
 | Extracting / Processing | Ordo is reading the PDF. |
 | Extracted / Ready | Patients and lines are available to review. |

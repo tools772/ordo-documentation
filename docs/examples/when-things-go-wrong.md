@@ -12,7 +12,7 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 
 **What to do.** Go back to the list, tick the patient, click **Fetch Open Dental**, wait, open the patient again.
 
-**Still empty in Actual?** Open Dental may not be connected or synced. An Admin should test the connection under [Clinic settings → Integrations](../modules/clinic-settings.md). In Demo, fetch still needs to be clicked; it uses sample charts, not your office.
+**Still empty in Actual?** Open Dental may not be connected or synced. An Admin should test the connection under [Clinic settings → PMS Integrations](../modules/clinic-settings.md). In Demo, fetch still needs to be clicked; it uses sample charts, not your office.
 
 ---
 

@@ -1,6 +1,6 @@
 # Open Dental errors
 
-When Ordo talks to **Open Dental**, a failure often arrives as a toast plus a row in **Clinic settings → API Logs** (and the **Open Dental errors** card on Integrations). This page translates those messages into office language.
+When Ordo talks to **Open Dental**, a failure often arrives as a toast plus a row in **Clinic settings → Audit** (and the **Open Dental errors** card on PMS Integrations). This page translates those messages into office language.
 
 The one rule after a **Post payment** failure: **look in Open Dental first.** If the insurance payment is already on the claim **and matches the EOB**, you can post again — Ordo will treat it as already posted. If the amount is different, stop, fetch, and review. Open Dental API calls for that EOB are on the patient’s **Audit** tab.
 
@@ -135,9 +135,9 @@ These are Ordo’s own sentences. They still usually mean “something about Ope
 
 | You see | Meaning | What to do | Need Ordo? |
 | --- | --- | --- | --- |
-| **Open Dental is not connected. Save API keys in Settings → Integrations.** | No customer key (and/or developer key) on file. | Admin: paste customer key, Test, Save, Sync. | Yes if Test still fails with a current key. |
+| **Open Dental is not connected. Save API keys in Settings → Integrations.** | No customer key (and/or developer key) on file. | Admin: paste customer key, Test, Save, Sync under **PMS Integrations**. | Yes if Test still fails with a current key. |
 | **The Ordo developer key is not configured…** | Platform key missing. | Ordo staff (Administrator). | **Yes** |
-| **Add the clinic customer key in Clinic settings → Integrations.** | Practice key missing. | Paste the key from Open Dental support. | No, unless you do not have a key. |
+| **Add the clinic customer key in Clinic settings → Integrations.** | Practice key missing. | Paste the key from Open Dental support under **PMS Integrations**. | No, unless you do not have a key. |
 | **Open Dental changed since approval** | After approve, a line disappeared, a **code** changed, or a line already has a different `InsPayAmt`. | Fetch, read lines, approve, post **once**. | Yes if it repeats with nobody editing the chart. |
 | **ClaimProc {number} is no longer on the Open Dental claim** | That procedure was removed or moved after you approved. | Fetch and pick the claim again. | No if you can see the change in OD. |
 | **ClaimProc {number} code changed (D1110 → D0120)** | Someone changed the code sent on that line. | Fetch, confirm you still want this visit. | No |
@@ -148,7 +148,7 @@ These are Ordo’s own sentences. They still usually mean “something about Ope
 | **Push package not found** / **approved push package are required** | Post ran without a fresh approve. | Approve again, then post. | No |
 | **Connection test failed** | Test’s GET claims call failed. The toast/API Logs have the Open Dental body. | Use the HTTP table above. | Yes if Test fails with a saved, current key. |
 | **Open Dental sync failed** / **Open Dental fetch failed** | Read path failed. | Test, then retry Sync/Fetch once. | Yes if it lasts. |
-| **Failed to load Open Dental status** | Integrations screen could not load last sync. | Refresh. Sign in again. | Yes if it persists. |
+| **Failed to load Open Dental status** | PMS Integrations screen could not load last sync. | Refresh. Sign in again. | Yes if it persists. |
 
 ---
 

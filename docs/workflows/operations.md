@@ -27,7 +27,7 @@ Each operation has:
 
 **Writes to Open Dental?** No.
 
-**What happens.** You pick **Demo** or **Actual**, then prove who you are (password or email code). Ordo loads the modules your **role** allows.
+**What happens.** You pick **Demo** or **Actual**, then prove who you are (**Continue with Google**, or username/email and password). Ordo loads the modules your **role** allows.
 
 **Status change.** None on files. You land on the EOB Dashboard if you can see it.
 
@@ -37,7 +37,7 @@ Each operation has:
 
 | You see | Meaning |
 | --- | --- |
-| **Invalid or expired code** | The email code was wrong or too old. Request a new one. |
+| Wrong password / sign-in failed | Check username or email spelling, or use **Forgot password?**. |
 | **Waiting for access** | You signed up, but no Owner has invited you yet. |
 | **No organization found for your account** | Your login is not attached to a practice. Email **[help@perfect.ventures](mailto:help@perfect.ventures)**. |
 
@@ -53,13 +53,16 @@ Story: [Sign in](../people/signing-in.md).
 
 **What happens.**
 
-1. You drop a PDF, JPG, or PNG on the [EOB Dashboard](../modules/eob-dashboard.md).
-2. Ordo saves the file and starts **reading** it (extraction).
-3. You wait until the row is **Extracted** or **Failed**.
+1. On the [EOB Dashboard](../modules/eob-dashboard.md) you open **Upload EOB Documents**.
+2. Choose a mode: **Upload**, **Detect & upload**, or **Fill from sample**.
+3. Drop a PDF, JPG, or PNG (or a filled sample for Fill from sample).
+4. With **Detect & upload**, review the detected payer and click **Process EOB** (or **Later**).
+5. Wait until the row is **Extracted** or **Failed**.
 
 **Status change (file).**
 
-`Uploaded` → **Queued** → **Extracting** → **Extracted** (ready) or **Failed**.
+`Uploaded` → **Confirm layout** (when a layout is detected) → **Queued** → **Extracting** → **Extracted** (ready) or **Failed**.  
+Plain **Upload** may sit at Uploaded until someone processes it from the row menu or inside the file.
 
 **Success.** The row shows patient / claim / procedure counts. Example: `Cigna_Remit_Aug24.pdf` → **3 patients, 3 claims, 8 procedures**.
 
@@ -69,21 +72,42 @@ Story: [Sign in](../people/signing-in.md).
 | --- | --- |
 | **You must be signed in to upload** / **Session expired** | Sign in again, then drop the file. |
 | **Upload failed** | The file did not save. Try once more; email **[help@perfect.ventures](mailto:help@perfect.ventures)** if it repeats. |
+| **Unsupported** on detect | Layout not recognized. See [supported layouts](supported-formats.md). |
 | File stays **Extracting** | Reading is still running, or stuck. Refresh; wait a few minutes. |
 
 Accepted types: **PDF**, **JPG**, and **PNG** (up to 50 MB). Prefer a text remittance from the payer portal; photos and scanned PDFs are read with on-server OCR. Layouts: [What files and layouts Ordo reads](supported-formats.md).
 
 ---
 
+## 2b. Confirm & process / Process EOB
+
+**Who.** Permission **Upload EOBs**.
+
+**Writes to Open Dental?** No.
+
+**What happens.** After detect, the remittance type is known but patients are not extracted yet. You confirm from:
+
+- The upload dialog — **Process EOB** / **Process EOBs**
+- The dashboard row ⋯ menu — **Process {payer}** or **Process EOB**
+- Inside the file — **Confirm & process {payer}**
+
+**Status change (file).** **Confirm layout** → Queued / Extracting → **Extracted** or **Failed**.
+
+**Success.** Same as a finished extraction: patient counts on the row.
+
+**If it fails.** Same extraction messages as below. The file may return to Failed; re-upload or ask support with the EOB ID.
+
+---
+
 ## 3. Extraction (automatic)
 
-You do not click this. It starts after upload.
+You do not click this. It starts after you confirm process (or when a file is already queued for reading).
 
 **Who.** The system.
 
 **Writes to Open Dental?** No.
 
-**What happens.** Ordo opens the file, detects a supported remittance layout (you do not pick a carrier), and pulls out patients, claims, procedure codes, and plan covered amounts. Text PDFs are read directly. JPG/PNG images and scanned PDFs (no selectable text) go through on-server OCR first. Catalog: [What files and layouts Ordo reads](supported-formats.md).
+**What happens.** Ordo opens the file, uses the detected remittance layout (you do not pick a carrier), and pulls out patients, claims, procedure codes, and plan covered amounts. Text PDFs are read directly. JPG/PNG images and scanned PDFs (no selectable text) go through on-server OCR first. Catalog: [What files and layouts Ordo reads](supported-formats.md).
 
 **Status change (file).**
 
@@ -97,8 +121,8 @@ When it finishes: **Extracted** (extraction **Completed**), or **Failed** (extra
 | You see | Meaning |
 | --- | --- |
 | **We don't read this layout yet** / **Unsupported EOB format** | This printed template is not read yet. See [supported layouts](supported-formats.md). Post that check in Open Dental by hand. Archive the failed file so it does not sit in Failed. |
-| **OCR ran but found little readable text** / older **OCR is not supported** | A photo or scan was unreadable, or an older failed job still shows the old wording. Try a clearer image or a text PDF from the payer portal. |
-| **No claims extracted** / **Recognised this as … but found no claims or procedures** | Layout matched but no claim lines were found. Re-export a clean PDF from the payer portal. |
+| **OCR ran but found little readable text** / older **OCR is not supported** / **Need a text PDF from the portal** | A photo or scan was unreadable, or an older failed job still shows the old wording. Try a clearer image or a text PDF from the payer portal. |
+| **No claims extracted** / **Recognised this as … but found no claims or procedures** / **No claims found on this file** | Layout matched but no claim lines were found. Re-export a clean PDF from the payer portal. |
 | **Could not download EOB file** | The stored file could not be opened. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** with the EOB ID. |
 
 A notification such as “extraction finished” or “extraction failed” may appear if your practice enabled it.
@@ -168,7 +192,7 @@ The file stays **Extracted**. Fetch does not change the file-level status.
 | You see | Meaning |
 | --- | --- |
 | **Nothing new to fetch** | Those patients were already fetched. Use **Refetch** if you need a fresh copy. |
-| **Open Dental is not connected…** | An Admin must save the customer key and Test under Clinic settings → Integrations. |
+| **Open Dental is not connected…** | An Admin must save the customer key and Test under Clinic settings → PMS Integrations. |
 | **No Open Dental patients matched the EOB names** | The replica search found nobody with those names. On the Open Dental tab use **Find possible patients** (DOB / similar names) instead of only fixing spelling. You can still correct a misread PDF on **EOB Review**, then fetch again. |
 | **Open Dental fetch failed** / **Open Dental API 401…** | The wire to Open Dental failed. See [Open Dental errors](../errors/open-dental.md). |
 | Patient row **Failed** | Fetch recorded an error on that person. Read the remark; retry fetch. |
@@ -340,7 +364,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 13. Test Open Dental connection
 
-**Who.** Permission **Manage team and roles** (Owner / Admin). Clinic settings → **Integrations**.
+**Who.** Permission **Manage team and roles** (Owner / Admin). Clinic settings → **PMS Integrations**.
 
 **Writes to Open Dental?** No. Ordo only **reads** a small claim list (`GET /claims` with status Sent) to prove the keys work.
 
@@ -374,13 +398,13 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 15. Sync (refresh the replica)
 
-**Who.** Manage team and roles. Clinic settings → Integrations → **Sync**. (Fetch on a file is a *patient-scoped* sync plus match. This Sync is the clinic-wide refresh.)
+**Who.** Manage team and roles. Clinic settings → PMS Integrations → **Sync**. (Fetch on a file is a *patient-scoped* sync plus match. This Sync is the clinic-wide refresh.)
 
 **Writes to Open Dental?** No. Read-only copy into Ordo.
 
 **What happens.** Ordo copies patients, claims, and procedure lines it needs for matching. Matching itself still waits until someone clicks **Fetch Open Dental** on a file.
 
-**Status change.** Last sync time and counts update. A failed sync stores an error on the connection (visible on Integrations).
+**Status change.** Last sync time and counts update. A failed sync stores an error on the connection (visible on PMS Integrations).
 
 **Success.** Something like `Synced 120 patients, 40 claims`.
 

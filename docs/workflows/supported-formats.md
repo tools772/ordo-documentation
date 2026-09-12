@@ -23,7 +23,7 @@ Each file can be up to **50 MB**.
 
 **Not for upload:** Word files, Excel, password-protected PDFs, claim *forms* (the paper you sent *to* insurance), eligibility letters, and patient-facing “this is not a bill” statements that are not the remittance.
 
-The upload dialog also has **What’s supported?** — the same list, in short.
+This page is the full list. If detect fails, the row shows **Unsupported** with a short reason — use that plus the EOB ID when you email support.
 
 ---
 
@@ -63,6 +63,9 @@ Delta is not one template. If the footer or title matches one of these, it shoul
 | **Delta Explanation of Payment** | Northwest-style **Explanation of Payment** (Alaska, Oregon, and similar). |
 | **Northeast Delta Dental** | Northeast Delta **Explanation of Benefits**. |
 | **Delta Dental of Iowa** | Iowa portal **claim submission / claim details** printout. |
+| **Delta Dental (portal FFS)** | Delta Dental **Provider Tools** fee-for-service claim detail. |
+| **Delta Dental (EOB ODS)** | Delta Dental **EOB ODS** form (for example Kentucky). |
+| **Delta Dental of Idaho** | Idaho **Claims Remittance Advice**. |
 
 ### Other carriers
 
@@ -75,15 +78,22 @@ Delta is not one template. If the footer or title matches one of these, it shoul
 | **Sun Life** | Sun Life dental **claim / procedure information**. |
 | **DentaQuest** | DentaQuest or **TX HHSC Dental Program** claim detail. |
 | **Careington** | Careington / **Maximum Care Network** explanation of payment. |
+| **Mutual of Omaha** | Mutual of Omaha **Services Detail** remittance. |
+| **Aetna Medicare** | Aetna Medicare Advantage dental EOB. |
+| **ManhattanLife** | ManhattanLife dental explanation of benefits. |
+| **Lincoln Financial Group** | Lincoln Financial **QuicRemit** / ECHO remittance. |
+| **Premera Blue Cross** | Premera Blue Cross **Detailed Explanation of Payment**. |
 
 ---
 
 ## What happens after you drop a file
 
+How you upload changes the path slightly. Full upload options: [EOB Dashboard](../modules/eob-dashboard.md).
+
 1. The file is stored.
-2. Status moves **Uploaded → Queued → Extracting**.
-3. Ordo detects a layout from the list above (no carrier picker).
-4. Status becomes **Extracted** — or **Failed** with a reason.
+2. With **Detect & upload**, Ordo identifies the layout and the row sits at **Confirm layout** until someone clicks **Process EOB** (or **Confirm & process** inside the file).
+3. With plain **Upload**, the file waits until you process it from the dashboard or open it later.
+4. After confirm, status moves **Queued → Extracting → Extracted** — or **Failed** with a reason.
 
 You still **Fetch Open Dental** and **Approve match** before anyone posts. Reading the file never writes to the chart.
 

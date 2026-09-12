@@ -28,10 +28,11 @@ Each row typically shows:
 - File name (for example `Cigna_EOB_2026-08-24.pdf`)
 - An **EOB ID** (Ordo’s internal number — useful when you email support)
 - When it was uploaded
-- How far along it is (Uploaded, Extracting, Extracted, Failed, Archived, …)
+- How far along it is (**Uploaded**, **Confirm layout**, **Queued**, **Extracting**, **Extracted**, **Failed**, **Archived**, …)
+- When the layout is known but not processed yet: a **Confirm layout** badge and a subline like **Detected Cigna**
 - Counts once reading finishes: patients, claims, procedure lines, payment amount
 
-The row menu (three dots) includes **Download EOB**. That saves the original uploaded PDF or image to your computer. It is the file you dropped, not an Ordo export. Use it when you need to re-read the remittance, attach it to a support email (prefer EOB ID first), or compare it to what Ordo extracted.
+The row menu (three dots) includes **Download EOB** and, when the file is waiting for confirmation, **Process {payer}** (or **Process EOB**). **Download EOB** saves the original uploaded PDF or image to your computer — the file you dropped, not an Ordo export. Use it when you need to re-read the remittance, attach it to a support email (prefer EOB ID first), or compare it to what Ordo extracted.
 
 ### Search
 
@@ -44,12 +45,14 @@ Type part of the **file name** or **EOB ID**. This does not search patient names
 | Tab | What it includes |
 | --- | --- |
 | **Active** | Everything that is not archived. Your normal working list. |
-| **Uploaded** | Arrived, reading not finished. |
+| **Uploaded** | Arrived; may still need detect or confirm. |
 | **Queued** | Waiting in line to be read. |
 | **Extracting** | Ordo is reading the PDF right now. |
 | **Extracted** | Reading succeeded; you can open and work it. |
 | **Failed** | Reading (or a later step) failed. |
 | **Archived** | Hidden from Active and from Reports. |
+
+There is **no separate Confirm layout tab**. Files waiting for confirmation usually sit under **Active** or **Uploaded**, with the **Confirm layout** badge on the row.
 
 ### Uploaded date
 
@@ -69,31 +72,42 @@ Export downloads the **current** list (after search and filters), not the entire
 
 ## Uploading EOBs
 
-If your role includes **Upload EOBs**, you will see an upload control.
+If your role includes **Upload EOBs**, you will see **Upload EOBs**. That opens **Upload EOB Documents**.
 
 **Accepted files:** PDF, JPG, and PNG, up to 50 MB each. Prefer a **text PDF** from the payer portal. Photos and scanned PDFs are read with on-server OCR when needed.
 
-**What happens after you drop a file:**
+### Three ways to upload
 
-1. The file is stored.
-2. Status moves through Uploaded → Queued → Extracting.
-3. Ordo detects the remittance layout and pulls out patients, claims, and procedure lines (plan covered amounts). You do not pick a carrier.
-4. Status becomes Extracted (ready) — or Failed if the layout is not supported or the image is unreadable.
+| Mode | What it does | Button |
+| --- | --- | --- |
+| **Upload** | Saves the file now. Detect and process later from the dashboard. | **Upload** |
+| **Detect & upload** | Identifies the remittance layout, then asks you to confirm before extracting patients. | **Detect & upload** |
+| **Fill from sample** | Download a sample, fill your text/CSV data, upload — it becomes the EOB. | **Upload template** |
+
+**Detect & upload** is the usual Monday path:
+
+1. Drop the remittance(s). Progress may say **Uploading & detecting…** / **Detecting…**.
+2. Ordo shows what it found — for example “This looks like **Cigna** · 3 pages” with a **Ready** badge. Unrecognized files show **Unsupported**.
+3. Toast: **Detected {payer} — confirm to process**.
+4. Click **Process EOB** (or **Process EOBs** for several). Click **Later** if you want to confirm from the list or inside the file.
+
+After you process, the row moves through Queued / Extracting and becomes **Extracted** — or **Failed** if reading fails.
+
+You can also open a **Confirm layout** row and click **Confirm & process** on the file page, or use **Process {payer}** on the row ⋯ menu.
 
 !!! note "Which insurance layouts work today?"
-    Ordo auto-detects many remittance layouts, including **Cigna Dental**, **Cigna DHMO**, **MetLife**, **Guardian**, **BCBS (HCSC)**, several **Delta Dental** printed forms (not one Delta-for-all), **MCNA**, **United Concordia / Equitable**, **Envolve**, **Physicians Mutual**, **Sun Life**, **DentaQuest**, and **Careington**.
+    Ordo auto-detects many remittance layouts, including **Cigna Dental**, **Cigna DHMO**, **MetLife**, **Guardian**, **BCBS (HCSC)**, several **Delta Dental** printed forms (not one Delta-for-all), **MCNA**, **United Concordia / Equitable**, **Envolve**, **Physicians Mutual**, **Sun Life**, **DentaQuest**, **Careington**, **Mutual of Omaha**, **Aetna Medicare**, **ManhattanLife**, **Lincoln Financial Group**, and **Premera Blue Cross**.
 
     The full table, file types, and OCR notes: [What files and layouts Ordo reads](../workflows/supported-formats.md).
 
-    - Open **What’s supported?** on the upload dialog for the short in-app list.
-    - Other carrier layouts land in **Failed** with a clear message. That is a limitation of the reader, not a problem with your PDF viewer.
+    Other carrier layouts land as **Unsupported** or **Failed** with a clear message. That is a limitation of the reader, not a problem with your PDF viewer.
 
 ### Example: Jennifer uploads Monday’s remittance
 
 1. Jennifer (Admin) opens **EOB Dashboard**.
-2. She clicks **Upload EOBs** and drops `Cigna_Remit_Aug24.pdf` (or any supported remittance PDF or image).
-3. She clicks **Upload & process** and waits until the status is **Extracted**.
-4. The row now shows something like **3 patients, 3 claims, 8 procedures**.
+2. She clicks **Upload EOBs**, chooses **Detect & upload**, and drops `Cigna_Remit_Aug24.pdf`.
+3. Ordo shows **Ready · This looks like Cigna**. She clicks **Process EOB**.
+4. When the status is **Extracted**, the row shows something like **3 patients, 3 claims, 8 procedures**.
 5. She clicks the row to start work. (Mike could also open it; he cannot upload if his role forbids it.)
 
 If she is in **Demo**, she may skip upload and use a sample file that is already there. Demo never writes to the live practice database.

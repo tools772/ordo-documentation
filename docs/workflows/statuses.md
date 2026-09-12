@@ -137,7 +137,7 @@ These are the words on the **file** row and on the dashboard tabs.
 | You see | What it means | What you do |
 | --- | --- | --- |
 | **Uploaded** | The file arrived. Reading has not finished. | Wait, or open if it sits here. |
-| **Confirm layout** | Ordo detected the remittance type (payer/layout) but has not extracted patients yet. | Open the file → **Confirm & process**, or use **Process** on the row ⋯ menu. |
+| **Confirm layout** | Ordo detected the remittance type (payer/layout) but has not extracted patients yet. | Open the file → **Confirm & process**, or use **Process {payer}** / **Process EOB** on the row ⋯ menu. There is no separate Confirm layout filter tab — look under Active / Uploaded. |
 | **Queued** | Waiting its turn to be read. | Wait. Refresh if it sits here a long time. |
 | **Extracting** | Ordo is reading the PDF right now. | Wait. Do not post from this file yet. |
 | **Extracted** | Patients and lines are ready. | Open the file. Fetch, review, post. |
@@ -312,7 +312,7 @@ If Open Dental already has the line on a check with the **same** `InsPayAmt`, Or
 
 ## Connection and sync statuses
 
-On **Clinic settings → Integrations**:
+On **Clinic settings → PMS Integrations**:
 
 | You might see | Meaning |
 | --- | --- |
@@ -330,7 +330,7 @@ Test connection does not change patient rows. It only proves the keys.
 
 | Time | What someone did | File | Maria |
 | --- | --- | --- | --- |
-| 8:07 | Jennifer uploads | Extracting → Extracted | Not fetched |
+| 8:07 | Jennifer uploads with **Detect & upload**, then **Process EOB** | Confirm layout → Extracting → Extracted | Not fetched |
 | 8:12 | Mike ticks Maria, Fetch | Extracted | Needs review |
 | 8:14 | Mike approves claim 18421 | Extracted | Approved |
 | 8:18 | Jennifer posts | Extracted | Posted |

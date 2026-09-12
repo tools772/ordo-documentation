@@ -1,6 +1,6 @@
 # Clinic settings
 
-**Clinic settings** is the practice office: who works here, what they are allowed to do, how Ordo talks to Open Dental, and the logs you open when something needs explaining.
+**Clinic settings** is the practice office: who works here, what they are allowed to do, how Ordo talks to Open Dental, which insurance formats this clinic uses, and the logs you open when something needs explaining.
 
 Open it from the sidebar: **Clinic settings**. You need a role that can view clinic settings. Changing team, roles, or the Open Dental connection needs **Manage team and roles**.
 
@@ -14,27 +14,23 @@ The **top header** shows the clinic and location you are in. If you have more th
 
 | Tab | What it is for |
 | --- | --- |
-| **Users** | People, roles, and locations for this practice. |
-| **Integrations** | Connect and test Open Dental; sync the replica. |
-| **API Logs** | Technical diary of Open Dental calls. |
-| **Audit** | Who uploaded, approved, rejected, posted. |
-| **Profile** | Your own name and display preferences (including theme). |
-| **Notifications** | How you want to be notified (for example extraction finished). |
-
-The Users tab also contains **roles** and **locations** for people who can manage the team.
+| **Profile** | Team (users, roles, locations), **EOB processing mode**, appearance, your profile, and notification toggles. |
+| **PMS Integrations** | Connect and test Open Dental; sync the replica. |
+| **Insurance** | Which catalog formats this clinic uses, aliases, and clinic sample files. |
+| **Audit** | Who uploaded, approved, rejected, posted — and Open Dental API call history. |
 
 ---
 
-## Users, roles, and locations
+## Profile — team, processing mode, and you
 
-### Users
+### Users, roles, and locations
 
 Each person has a name, email, role, active/inactive flag, and optional **locations**.
 
 **Example — grant access to someone who already signed up**
 
 1. Priya signs up on Ordo with `priya@brightsmile.com`. She sees **Waiting for access**.
-2. Sarah (Owner) opens **Clinic settings → Users** and invites that same email: `Priya Nair`, role **Reviewer**, location **Main Street**.
+2. Sarah (Owner) opens **Clinic settings → Profile** (team section) and invites that same email: `Priya Nair`, role **Reviewer**, location **Main Street**.
 3. Priya taps **I've been added — check again** (or signs out and in). She can now review and approve matches. She cannot post and cannot invite others.
 
 You can also add an email before they sign up. They will get in on first sign-in.
@@ -43,9 +39,7 @@ Deactivating someone keeps the history (audit still shows their name) but they c
 
 The last **Owner** cannot be demoted. That protects you from locking the practice out.
 
-### Roles
-
-Built-in starting points:
+**Roles** (built-in starting points):
 
 | Role | In one sentence |
 | --- | --- |
@@ -54,17 +48,34 @@ Built-in starting points:
 | **Reviewer** | Review EOBs and approve/reject matches. Cannot post or manage settings. |
 | **Viewer** | Read dashboard, patients, and reports. |
 
-You can **clone** a role and tick different permissions (for example an “Insurance poster” who can post but cannot invite users). Details and a permission table: [Roles and who can do what](../people/roles.md).
+You can **clone** a role and tick different permissions (for example an “Insurance poster” who can post but cannot invite users). Details: [Roles and who can do what](../people/roles.md).
 
-### Locations
+**Locations.** Multi-site practices can list locations (Main Street, North Clinic) and map users to them. If a new hire “cannot see files,” check location mapping before assuming the role is wrong.
 
-Multi-site practices can list locations (Main Street, North Clinic) and map users to them. A user with no locations may still be practice-wide depending on how your clinic was set up — if a new hire “cannot see files,” check location mapping before assuming the role is wrong.
+### EOB processing mode
+
+Card **EOB processing mode** chooses how Ordo reads remittances for this clinic:
+
+| Mode | Plain meaning |
+| --- | --- |
+| **Parser Mode** | Ordo’s normal layout readers only. |
+| **AI Mode** | AI reading for every remittance (when Ordo has enabled it for your practice). |
+| **Fallback Mode** | Try the parser first; if the layout is unknown, use AI. |
+
+After you change it, a toast confirms — for example **EOB processing set to Parser Mode**.
+
+If platform AI is off, you may see that this clinic stays on Parser Mode and that a platform administrator must enable AI first. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** if you expected AI and cannot turn it on.
+
+### Appearance, your profile, notifications
+
+- Theme (light/dark) and display name.
+- Notification toggles such as Extraction completed, Review needed, Payment posted, Extraction failed, Sync errors, Weekly summary — depending on what your practice enabled.
 
 ---
 
-## Integrations (Open Dental)
+## PMS Integrations (Open Dental)
 
-This is how Ordo learns your charts and how it posts.
+This is how Ordo learns your charts and how it posts. The tab label is **PMS Integrations**.
 
 Typical pieces:
 
@@ -82,7 +93,7 @@ A **developer key** is held by Ordo (platform). The practice provides the **cust
 
 **Example — first-time connect**
 
-1. Jennifer opens **Integrations**.
+1. Jennifer opens **PMS Integrations**.
 2. She pastes the customer key Open Dental support provided.
 3. She **Saves**. Toast: keys saved (even if Test is still pending).
 4. When the key is live in Open Dental, she clicks **Test**. Success toast: Ordo can reach Open Dental.
@@ -95,39 +106,42 @@ Until this is connected, **Fetch Open Dental** in Actual mode cannot load live c
 
 ---
 
-## API Logs
+## Insurance
 
-Each call to Open Dental can appear here: test connection, sync, fetch, post. If Test fails, open API Logs (or the error card on the integrations panel) and look at the latest row. The message is often enough for Ordo support without sending screenshots of patient names.
+**This clinic's formats** lists which remittance formats your office has enabled from the catalog, plus optional aliases and clinic sample files.
 
-The list is **paginated** (default 25 rows). You can search, filter to **success** or **failed**, and page through older calls. Expand a row for the endpoint and status code.
+| Column / control | Meaning |
+| --- | --- |
+| Format ID | Internal id (for example `FMT_#` / related `IPR_#` labels). |
+| Provider / Format | The carrier and printed layout name. |
+| Parser | How Ordo reads that format. |
+| Clinic sample | Optional sample file for **Fill from sample** on upload. |
+| Active | Whether this clinic treats the format as in use. |
 
-How to read the **status code** (400, 401, 429, …) and the posting refusals Open Dental sends: [Open Dental errors](../errors/open-dental.md).
+**Enable from catalog** opens **Enable catalog format**. Aliases are optional printed names (for example “Cigna Insurance”) so staff recognize the row. Samples: **Upload**, **Replace**, or **Remove** — toasts such as **Clinic sample saved for {name}**.
 
-Most coordinators will never need this tab. Office managers use it with support on the phone. Copy the error text (not patient names) into an email to **[help@perfect.ventures](mailto:help@perfect.ventures)**.
+!!! note "Upload still auto-detects"
+    Enabling formats here does **not** change what the reader can parse. You still drop a file without picking a carrier. Catalog: [What files and layouts Ordo reads](../workflows/supported-formats.md).
 
 ---
 
 ## Audit
 
-This is the human history:
+This is the human history — and the place Open Dental API call logs live now:
 
 - Who uploaded which file
 - Who approved or rejected a match
 - Who posted
 - Who changed settings, when that is logged
+- Technical diary of Open Dental calls (test, sync, fetch, post)
 
-Filter by event type (for example Payment Posted, Claim Approved, EOB Uploaded), by EOB, and by date range. Search and page through results the same way as API Logs.
+Filter by event type (for example Payment Posted, Claim Approved, EOB Uploaded), by EOB, and by date range. Search and page through results.
+
+For API-style rows, expand for endpoint and status code. How to read **400**, **401**, **429**, and posting refusals: [Open Dental errors](../errors/open-dental.md).
 
 **Example.** The dentist asks “who posted Maria Santos?” Jennifer opens **Audit**, filters to **Payment Posted**, searches the time window, and sees Jennifer Park posted at 2:14 p.m. after Mike approved at 2:09 p.m.
 
-Prefer Audit over API Logs when the question is about *people*. Prefer API Logs when the question is about *the wire to Open Dental*.
-
----
-
-## Profile and notifications
-
-- **Profile** — your display name, theme (light/dark).
-- **Notifications** — opt in to notices such as “extraction finished” or “extraction failed,” depending on what is enabled for your practice.
+Prefer people-focused filters when the question is about *who clicked*. Prefer API-style rows when the question is about *the wire to Open Dental*. Copy error text (not patient names) into an email to **[help@perfect.ventures](mailto:help@perfect.ventures)**.
 
 ---
 
@@ -142,4 +156,5 @@ Integrations may show that this practice is not set up yet. That is Ordo onboard
 - [Roles and who can do what](../people/roles.md)
 - [Demo vs Actual](../workflows/demo-vs-actual.md)
 - [What each operation does](../workflows/operations.md)
+- [What files and layouts Ordo reads](../workflows/supported-formats.md)
 - [Open Dental errors](../errors/open-dental.md)

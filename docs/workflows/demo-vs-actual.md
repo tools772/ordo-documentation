@@ -33,7 +33,7 @@ Choose Demo when you want to click without fear.
 
 Choose Actual when the PDF in your hand is a real remittance.
 
-- Sign in with email and password, or an email one-time code.
+- Sign in with **Continue with Google**, or with username/email and password.
 - You only see modules your **role** allows.
 - Upload, fetch, approve, and post talk to live storage and, when connected, live Open Dental.
 - Treat everything as **patient payment information**. Do not screenshot full EOBs into chat.

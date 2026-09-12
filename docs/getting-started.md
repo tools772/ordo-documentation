@@ -15,8 +15,8 @@ On the sign-in screen you will see two modes:
 
 For a first day, choose **Demo**. Then either:
 
-- Click through as the demo user (no real password needed in Demo), or
-- In Actual, sign in with email and password, or request a one-time email code.
+- Click **Enter Demo Mode** (no real password needed in Demo), or
+- In Actual, sign in with **Continue with Google**, or with username/email and password.
 
 More detail: [Sign in](people/signing-in.md).
 
@@ -49,13 +49,13 @@ You will see:
 - How many payments have been posted
 - Files that failed to read
 
-Under the summary is the **file list**. You can search by file name, filter by status (Uploaded, Extracting, Extracted, Failed, Archived), and filter by **uploaded date** (today, last 7 days, last 30 days, this month).
+Under the summary is the **file list**. You can search by file name, filter by status (Uploaded, Extracting, Extracted, Failed, Archived), and filter by **uploaded date** (today, last 7 days, last 30 days, this month). Files waiting for confirmation show a **Confirm layout** badge (usually under Active / Uploaded — there is no separate Confirm layout tab).
 
-If your role allows it, there is an **Upload EOBs** button. Demo may already have sample files so you can skip uploading.
+If your role allows it, there is an **Upload EOBs** button. Prefer **Detect & upload**, then **Process EOB** when Ordo shows the detected payer. Demo may already have sample files so you can skip uploading.
 
 Each row also has a menu with **Download EOB**. That downloads the original PDF (or image) you uploaded — useful when you want to compare what Ordo read against the paper.
 
-Upload accepts **PDF**, **JPG**, and **PNG** (up to 50 MB). Ordo auto-detects the remittance layout — Cigna, MetLife, Guardian, several Delta forms, and others. The full list: [What files and layouts Ordo reads](workflows/supported-formats.md).
+Upload accepts **PDF**, **JPG**, and **PNG** (up to 50 MB). Ordo auto-detects the remittance layout — Cigna, MetLife, Guardian, several Delta forms, Premera, Aetna Medicare, and others. The full list: [What files and layouts Ordo reads](workflows/supported-formats.md).
 
 ---
 

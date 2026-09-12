@@ -9,6 +9,21 @@ The page has two layers:
 
 ---
 
+## Confirm remittance layout
+
+If the file is still waiting for confirmation, you will not see patients yet. Instead:
+
+- Banner title: **Confirm remittance layout**
+- Body like: “This looks like **Cigna**. Use Confirm & process below…”
+- Empty state: **Layout detected — confirm to extract**
+- Button: **Confirm & process {payer}** (or **Confirm & process EOB**) — may show **Processing…**
+
+You need **Upload EOBs** permission to process. Viewers can open the file but cannot confirm.
+
+After confirm finishes, the patient list appears as usual. Full map: [Statuses](../workflows/statuses.md). Upload modes: [EOB Dashboard](eob-dashboard.md).
+
+---
+
 ## The patient list
 
 Each row is a person Ordo read from the PDF. You will see name, subscriber ID, claim #, date of service (DOS), procedure count, amount, **Status**, and a **Remark** column explaining what the status means and what to do next.
