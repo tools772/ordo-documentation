@@ -100,16 +100,17 @@ After **Push failed** or **Push requires review**, **Post payment** stays off un
 ```mermaid
 flowchart LR
   U[Uploaded]
-  Q[Queued]
-  X[Extracting]
+  C[Confirm layout]
+  Q[Queued / Extracting]
   E[Extracted]
   F[Failed]
   A[Archived]
 
-  U --> Q
-  Q --> X
-  X -->|Read succeeds| E
-  X -->|Read fails| F
+  U -->|Detect finds a layout| C
+  C -->|Confirm and process| Q
+  Q -->|Read succeeds| E
+  Q -->|Read fails| F
+  U -->|Detect fails| F
   E -->|Archive| A
   A -->|Restore| E
   F -.->|Fetch / Approve / Post| Xn[Does not move the file]
@@ -117,7 +118,9 @@ flowchart LR
 
   classDef done fill:#e0f2fe,stroke:#0891b2,color:#0e7490
   classDef off fill:#f1f5f9,stroke:#94a3b8,color:#64748b
+  classDef work fill:#fef3c7,stroke:#d97706,color:#92400e
   class E done
+  class C work
   class Xn off
 ```
 
@@ -133,7 +136,8 @@ These are the words on the **file** row and on the dashboard tabs.
 
 | You see | What it means | What you do |
 | --- | --- | --- |
-| **Uploaded** | The file arrived. Reading has not finished. | Wait. |
+| **Uploaded** | The file arrived. Reading has not finished. | Wait, or open if it sits here. |
+| **Confirm layout** | Ordo detected the remittance type (payer/layout) but has not extracted patients yet. | Open the file → **Confirm & process**, or use **Process** on the row ⋯ menu. |
 | **Queued** | Waiting its turn to be read. | Wait. Refresh if it sits here a long time. |
 | **Extracting** | Ordo is reading the PDF right now. | Wait. Do not post from this file yet. |
 | **Extracted** | Patients and lines are ready. | Open the file. Fetch, review, post. |
@@ -146,6 +150,7 @@ Older or internal labels you might hear from support (same idea, different word)
 | Internal name | On screen |
 | --- | --- |
 | `uploaded` / `queued` / `extracting` | Uploaded / Queued / Extracting |
+| `awaiting_confirm` | **Confirm layout** |
 | extraction `completed` | **Extracted** |
 | `failed` | Failed |
 | `archived` | Archived |
@@ -157,14 +162,14 @@ Older or internal labels you might hear from support (same idea, different word)
 
 | Operation | File status |
 | --- | --- |
-| Upload | Uploaded → Queued → Extracting |
-| Extraction succeeds | **Extracted** |
+| Upload + detect | Uploaded → **Confirm layout** (when layout is known) |
+| Confirm & process | Confirm layout → Queued / Extracting → **Extracted** |
 | Extraction fails | **Failed** |
 | Archive | **Archived** |
 | Restore | Back to Active (usually Extracted) |
 | Fetch / Approve / Post | **Does not change the file row** |
 
-**Example.** Jennifer uploads Monday’s Cigna. The row goes Extracting, then Extracted. Mike fetches and posts all three patients. The dashboard still says **Extracted** on the file — that is correct. Posted is a *person* status. Reports still count the posted payments.
+**Example.** Jennifer uploads Monday’s Cigna. The row shows **Confirm layout · Detected Cigna**. She opens the file, clicks **Confirm & process**, and the row becomes Extracted. Mike fetches and posts all three patients. The dashboard still says **Extracted** on the file — that is correct. Posted is a *person* status. Reports still count the posted payments.
 
 ---
 
