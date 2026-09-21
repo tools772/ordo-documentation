@@ -318,11 +318,12 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 | Result | Patient / match | Meaning |
 | --- | --- | --- |
-| Success (including already posted with the same amounts) | **Posted** | Money is on the claim. Remarks become read-only. **Post payment** is off. |
+| Success — new write | **Posted** | Money is on the claim. Remarks become read-only. **Post payment** is off. |
+| Success — same amounts already on a ClaimPayment | **Already Posted** | Not a failure. Ordo skipped the write. Same locks as **Posted**. |
 | Chart changed, or an attached check has a **different** amount | **Needs review** (match: **push requires review**) | Fetch, read the lines, approve again, post **once**. |
-| API / network failure | **Needs review** (match: **push failed**) | Approve again, then post. Check the chart first. |
+| Real API / network failure | **Needs review** (match: **push failed**) | Approve again, then post. Check the chart first. |
 
-**Success popup.** `Posted to Open Dental` with `ClaimPaymentNum` when the API returns one, plus the amount. Failed posts open a popup with the error and **View audit** (the patient’s **Audit** tab). Keep the claim payment number if the dentist asks “did it really post?”
+**Success popup.** `Posted to Open Dental` with `ClaimPaymentNum` when Ordo wrote a new payment, or **Already Posted** when Open Dental already had matching amounts on a check. Failed posts open a popup with the error and **View audit** (the patient’s **Audit** tab). Keep the claim payment number if the dentist asks “did it really post?”
 
 **Typical failures.**
 
@@ -332,7 +333,8 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 | **Open Dental is not connected…** | Connect and Test first. |
 | **Cannot post payment: Open Dental ClaimNum is missing** | The match snapshot has no claim number. Reject, fetch, approve again. |
 | **Push package not found** / **documentId and an approved push package are required** | Approve again, then post. |
-| **Post payment failed** / **Push failed** / **Open Dental API 400…** | The write did not finish cleanly. **Look in Open Dental first.** If the money is already there and matches the EOB, you are done — do not keep posting. If the amount is different, fetch and review. Decoder: [Open Dental errors](../errors/open-dental.md). |
+| **Already Posted** (success, not an error) | Open Dental already had matching amounts on a check. You are done. |
+| **Post payment failed** / **Push failed** / **Open Dental API 400…** | A *real* write failure. **Look in Open Dental first.** If the money already matches the EOB, Ordo should show **Already Posted** on retry — not Failed. If the amount is different, fetch and review. Decoder: [Open Dental errors](../errors/open-dental.md). |
 
 ---
 

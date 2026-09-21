@@ -95,7 +95,7 @@ A serious identity problem: the patient, date of service, or procedure codes do 
 Locks in the Open Dental claim you selected. **Does not post money.**
 
 **Post payment**  
-Writes the amounts (and optional notes) to Open Dental. Stays off until the match is **Approved**. After **Posted** it stays off.
+Writes the amounts (and optional notes) to Open Dental. Stays off until the match is **Approved**. After **Posted** or **Already Posted** it stays off.
 
 **Workflow guide**  
 An in-app button on the EOB patient list that maps which actions are allowed at each status. The longer version is [Statuses](workflows/statuses.md).
@@ -132,8 +132,9 @@ Statuses describe **where work is**, not whether anyone did a bad job.
 | Needs review | A person should look. Matching was unsure or flagged. |
 | Approved | Someone confirmed the Open Dental claim. Not posted yet. |
 | Posting | The write to Open Dental is in progress. |
-| Posted / Completed | The payment is in Open Dental. |
-| Failed | Reading, fetch, or posting did not succeed. Open the file or logs. |
+| Posted / Completed | Ordo wrote the payment to Open Dental. |
+| Already Posted | Open Dental already had matching amounts on a check. Success — not a failure. |
+| Failed | Reading, fetch, or a *real* post error. Do not confuse with Already Posted. |
 | Retry required | Try again after the underlying problem is fixed. |
 | Archived | Hidden from the active inbox and from Reports. Not deleted. |
 | Pending | Not fetched yet, or matching has not produced a decision. |

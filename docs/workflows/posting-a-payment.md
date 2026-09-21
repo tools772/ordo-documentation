@@ -119,11 +119,15 @@ Someone with **Post payment** clicks **Post payment**.
 
 In **Demo**, this is a simulation. In **Actual**, Ordo writes `InsPayAmt` on the matched Open Dental procedures (unless those lines are already on a check with the same amount) and sends the notes.
 
-A **popup** reports the result. On success you should see **ClaimPaymentNum** when Open Dental returns one. On failure, use **View audit** for the Open Dental calls. Keep that payment number if the dentist asks “did it really post?”
+A **popup** reports the result:
 
-Maria’s row should say **Posted**. **Post payment** and **Reject match** are off.
+- **Posted to Open Dental** — Ordo wrote new amounts (`ClaimPaymentNum` when Open Dental returns one).
+- **Already Posted** — Open Dental already had matching amounts on a check. That is success, not a failure.
+- On a *real* failure, use **View audit** for the Open Dental calls.
 
-If posting fails, do not click it ten times. Approve again only after you have looked at the chart. Open [When something looks wrong](../examples/when-things-go-wrong.md), [Open Dental errors](../errors/open-dental.md), and the patient’s **Audit** tab.
+Maria’s row should say **Posted** or **Already Posted**. **Post payment** and **Reject match** are off.
+
+If posting fails with a real error, do not click it ten times. Approve again only after you have looked at the chart. Open [When something looks wrong](../examples/when-things-go-wrong.md), [Open Dental errors](../errors/open-dental.md), and the patient’s **Audit** tab.
 
 ---
 

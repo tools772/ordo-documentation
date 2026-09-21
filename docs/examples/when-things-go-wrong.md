@@ -62,15 +62,16 @@ Stories and walkthroughs: [When something looks wrong](../examples/when-things-g
 
 ## Post payment failed
 
-**What you see.** Error toast; status may be failed or retry; Maria is not Posted.
+**What you see.** Error toast; status may be Needs review / Push failed; Maria is not Posted.
 
 **What to do.**
 
 1. Do not hammer the button.
 2. Note the time. Open **Clinic settings → API Logs** (or the error panel on the Open Dental tab).
-3. Common human fixes: connection dropped, customer key expired, eConnector stopped, claim was locked or already had a check in Open Dental after approve.
+3. Common human fixes: connection dropped, customer key expired, eConnector stopped, claim was locked after approve.
 4. If Ordo says the claim changed, **review again** (fetch, confirm lines, approve, then post once).
-5. If a payment number never appeared but Open Dental already shows the money, **stop**. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** before posting twice.
+5. If Open Dental already shows matching money on a check, Ordo should show **Already Posted** — that is success, not Failed. Stop and do not post again.
+6. If a payment number never appeared but Open Dental already shows a *different* amount, **stop**. Email **[help@perfect.ventures](mailto:help@perfect.ventures)** before posting twice.
 
 The full decoder for `Open Dental API 400` (and 401, 429, 504) is [Open Dental errors](../errors/open-dental.md).
 

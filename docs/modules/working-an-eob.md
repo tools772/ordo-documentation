@@ -61,10 +61,11 @@ You can fetch again later if someone just posted a claim in Open Dental and you 
 | **Pending** | Matching has not decided yet. Fetch if you have not; then look. |
 | **Needs review** | Ordo is unsure, or identity checks failed. Open **Audit**. |
 | **Approved** | Someone confirmed the claim. Ready to post (if your role allows). |
-| **Posted** | Payment is in Open Dental. You are done with this person on this file. |
+| **Posted** | Ordo wrote the payment to Open Dental. You are done with this person on this file. |
+| **Already Posted** | Open Dental already had matching amounts on a check. Success — not a failure. Same locks as Posted. |
 | **Rejected** | Match was thrown away. Decide whether to try another claim or leave it. |
 | **No match** | No plausible Open Dental claim. Search the chart; you may need to post by hand in Open Dental. |
-| **Failed** | Fetch or a later step failed. Retry fetch; check API logs if it keeps failing. |
+| **Failed** | Fetch or a later step failed. Retry fetch; check API logs if it keeps failing. Do not confuse with Already Posted. |
 
 The file can stay **Extracted** while people on it are in different statuses. Status map with arrows (what is allowed vs off): [Statuses](../workflows/statuses.md#status-map).
 
@@ -165,7 +166,7 @@ Use Audit when:
 4. Audit: all signals green.
 5. Mike clicks **Approve match**. Toast: nothing posted yet.
 6. Jennifer (who can post) clicks **Post payment**.
-7. A popup appears with a claim payment number. Maria’s row says **Posted**. **Post payment** is off.
+7. A popup appears with a claim payment number (or **Already Posted** if Open Dental already had matching amounts). Maria’s row says **Posted** or **Already Posted**. **Post payment** is off.
 
 If step 3 had recommended last year’s claim instead, Mike would pick the June 12 claim from the candidate list — or **Reject match** and stop.
 

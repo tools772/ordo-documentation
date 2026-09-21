@@ -2,7 +2,7 @@
 
 When Ordo talks to **Open Dental**, a failure often arrives as a toast plus a row in **Clinic settings → Audit** (and the **Open Dental errors** card on PMS Integrations). This page translates those messages into office language.
 
-The one rule after a **Post payment** failure: **look in Open Dental first.** If the insurance payment is already on the claim **and matches the EOB**, you can post again — Ordo will treat it as already posted. If the amount is different, stop, fetch, and review. Open Dental API calls for that EOB are on the patient’s **Audit** tab.
+The one rule after a **Post payment** attempt that looks wrong: **look in Open Dental first.** If the insurance payment is already on the claim **and matches the EOB**, Ordo treats that as **Already Posted** (success) — not Failed. If the amount is different, stop, fetch, and review. Open Dental API calls for that EOB are on the patient’s **Audit** tab.
 
 Stories: [When something looks wrong](../examples/when-things-go-wrong.md). Other Ordo messages (upload, matching, sign-in): [Errors and getting help](index.md).
 
@@ -22,7 +22,7 @@ Stories: [When something looks wrong](../examples/when-things-go-wrong.md). Othe
 
 A toast often starts with `Open Dental API 400:` (or 401, 404, …) and then Open Dental’s own explanation. The number is an **HTTP status**. The text after the colon is Open Dental (or the eConnector) talking.
 
-**Example.** Jennifer posts Maria. Popup: `Cannot change InsPayAmt when Status is Received and attached to a ClaimPayment.` She opens the chart. If the payment already matches the EOB, she can post again — Ordo skips that line. If a *different* amount is on the check, she does not post; she fetches and reviews.
+**Example.** Jennifer posts Maria. Open Dental replies that InsPayAmt cannot change because the line is already on a ClaimPayment. Ordo checks the amounts. If they match the EOB, the popup and patient badge say **Already Posted** — not Failed. If a *different* amount is on the check, she does not post; she fetches and reviews.
 
 ---
 
@@ -96,13 +96,13 @@ This is the first write during **Post payment**. Open Dental treats claim proced
 
 | You might see (idea) | Meaning | What to do |
 | --- | --- | --- |
-| **InsPayAmt cannot be updated once the procedure is attached to a check** / **Cannot change InsPayAmt when Status is Received and attached to a ClaimPayment** | That line already has a **ClaimPayment** (a check). Open Dental will not let Ordo change the paid amount. | Open the claim in Open Dental. If the payment **matches** the EOB, post again — Ordo skips the write and marks **Posted**. If a *different* check or amount is attached, fetch and review; this visit cannot be overwritten through Ordo. |
+| **InsPayAmt cannot be updated once the procedure is attached to a check** / **Cannot change InsPayAmt when Status is Received and attached to a ClaimPayment** | That line already has a **ClaimPayment** (a check). Open Dental will not let Ordo change the paid amount. | If the payment **matches** the EOB, Ordo marks **Already Posted** (success — not Failed). If a *different* check or amount is attached, fetch and review; this visit cannot be overwritten through Ordo. |
 | Cannot update a ClaimProc that **IsTransfer** is true | This row is an income transfer, not a normal insurance line. | Do not post this candidate. Pick another claim or post by hand. |
 | Cannot update status **Adjustment**, **InsHist**, **CapClaim**, **CapComplete**, **CapEstimate** | That row type is not a receivable claim line Ordo can receive. | Wrong claim or a capitation/adjustment row. Reject or handle in Open Dental. |
 | ClaimProc not found (404) | The procedure number from approval no longer exists. | Same as “chart changed.” Fetch, approve again. |
 | Editing a received ClaimProc can delete income transfers | Open Dental’s own warning: changing a received line has side effects. | If you see unexpected transfers disappear in the chart, stop and call Ordo / your OD admin. |
 
-Ordo tries to be careful: if a line is **already** attached to a check, it does **not** send a Status change or a new `InsPayAmt`. If the amounts already match, the post succeeds as **Posted**. If they differ, you are asked to review.
+Ordo tries to be careful: if a line is **already** attached to a check, it does **not** send a Status change or a new `InsPayAmt`. If the amounts already match, the post succeeds as **Already Posted**. If they differ, you are asked to review. Do not read an attached-check message with matching amounts as “Ordo failed to sync.”
 
 ### Posting — mark claim received (`PUT /claims/…`)
 

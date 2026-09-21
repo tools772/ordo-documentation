@@ -31,6 +31,7 @@ flowchart LR
   NR[Needs review]
   AP[Approved]
   PO[Posted]
+  AP2[Already Posted]
   RJ[Rejected]
   NM[No match]
   FL[Failed]
@@ -40,9 +41,10 @@ flowchart LR
   NF -->|Fetch errors| FL
   NR -->|Approve match| AP
   NR -->|Reject match| RJ
-  AP -->|Post payment| PO
+  AP -->|Post payment — new write| PO
+  AP -->|Post — same amounts already on a check| AP2
   AP -->|Reject match| RJ
-  AP -->|Post failed or chart changed| NR
+  AP -->|Real API failure or amount mismatch| NR
   FL -->|Retry Fetch| NR
   NM -->|Fetch after the visit is charted| NR
   RJ -->|Pick again and Approve| AP
@@ -51,16 +53,19 @@ flowchart LR
   PO -.->|Reject match| X2[Off]
   PO -.->|Approve match| X3[Off]
   PO -->|Fetch / Refetch| PO
+  AP2 -.->|Post payment| X4[Off]
+  AP2 -.->|Reject match| X5[Off]
+  AP2 -->|Fetch / Refetch| AP2
 
   classDef done fill:#d1fae5,stroke:#059669,color:#065f46
   classDef off fill:#f1f5f9,stroke:#94a3b8,color:#64748b
   classDef work fill:#e0f2fe,stroke:#0891b2,color:#0e7490
-  class PO done
-  class X1,X2,X3 off
+  class PO,AP2 done
+  class X1,X2,X3,X4,X5 off
   class NF,NR,AP work
 ```
 
-**Posted is the end of the line.** Fetch still runs, but it does not take Maria back to Needs review, and it does not turn **Post payment** back on.
+**Posted** and **Already Posted** are both the end of the line. Fetch still runs, but it does not take Maria back to Needs review, and it does not turn **Post payment** back on. **Already Posted** means Open Dental already had matching amounts on a check — that is success, not a bug.
 
 ### Match — Open Dental tab
 
@@ -69,16 +74,18 @@ flowchart LR
   C[Candidate / Needs manual]
   A[Approved]
   P[Posted]
+  AP[Already Posted]
   R[Rejected]
   F[Push failed]
   V[Push requires review]
 
   C -->|Approve match| A
   C -->|Reject match| R
-  A -->|Post payment| P
+  A -->|Post payment — new write| P
+  A -->|Same amounts already on a check| AP
   A -->|Reject match| R
   A -->|API / network failed| F
-  A -->|Chart changed after approve| V
+  A -->|Chart changed or different amount on check| V
   F -->|Approve again| A
   V -->|Fetch, confirm, Approve again| A
   R -->|Pick again and Approve| A
@@ -86,14 +93,16 @@ flowchart LR
   P -.->|Post payment| X1[Off]
   P -.->|Reject match| X2[Off]
   P -.->|Switch claim / edit remarks| X3[Off]
+  AP -.->|Post payment| X4[Off]
+  AP -.->|Reject match| X5[Off]
 
   classDef done fill:#d1fae5,stroke:#059669,color:#065f46
   classDef off fill:#f1f5f9,stroke:#94a3b8,color:#64748b
-  class P done
-  class X1,X2,X3 off
+  class P,AP done
+  class X1,X2,X3,X4,X5 off
 ```
 
-After **Push failed** or **Push requires review**, **Post payment** stays off until you **Approve match** again.
+After **Push failed** or **Push requires review**, **Post payment** stays off until you **Approve match** again. Messages like *Cannot change InsPayAmt…attached to a ClaimPayment* with **matching** amounts become **Already Posted**, not Push failed.
 
 ### File — the envelope on the dashboard
 
@@ -156,7 +165,7 @@ Older or internal labels you might hear from support (same idea, different word)
 | `archived` | Archived |
 
 !!! note "Review is not a file status"
-    **Needs review**, **Approved**, and **Posted** live on the **patient**, not on the envelope. The dashboard “Pending review” card is a count of work still to do, not a file-row label.
+    **Needs review**, **Approved**, **Posted**, and **Already Posted** live on the **patient**, not on the envelope. The dashboard “Pending review” card is a count of work still to do, not a file-row label.
 
 ### What moves the file
 
@@ -183,10 +192,11 @@ These are the badges on each **person** in the file.
 | **Pending** | Matching has not produced a decision yet (rare on a fetched row). | Fetch if you have not; otherwise open the patient. |
 | **Needs review** | Candidates exist, or identity checks need a person. | Open **Open Dental** and **Audit**. |
 | **Approved** | Someone confirmed the Open Dental claim. Money is **not** posted. | Someone with Post payment clicks **Post payment**. |
-| **Posted** | Payment is in Open Dental (or simulated in Demo). | Done for this person. **Post payment** is off. |
+| **Posted** | Ordo wrote the payment to Open Dental (or simulated in Demo). | Done for this person. **Post payment** is off. |
+| **Already Posted** | Open Dental already had the **same** amounts on a check. Ordo did not treat this as a failure. | Done for this person — same locks as **Posted**. |
 | **Rejected** | Match was thrown away. | Another candidate, post by hand in Open Dental, or leave it. |
 | **No match** | Fetch ran; no plausible Open Dental claim. | Search the chart; Sync; enter the claim in Open Dental if it was never charted. |
-| **Failed** | Fetch (or a later Open Dental call for this person) errored. | Retry Fetch. Check API Logs. |
+| **Failed** | Fetch (or a later Open Dental call for this person) errored. | Retry Fetch. Check API Logs. Do **not** confuse this with **Already Posted**. |
 
 ### What moves the patient
 
@@ -197,12 +207,13 @@ These are the badges on each **person** in the file.
 | Fetch finds nobody | **No match** |
 | Fetch API error | **Failed** |
 | Approve match | **Approved** |
-| Post succeeds (or Open Dental already had the same payment) | **Posted** |
-| Post: chart changed | Back toward **Needs review** (match: **Push requires review**) |
-| Post: API failed | **Needs review** (match: **Push failed**) — approve again before posting |
+| Post succeeds (new write) | **Posted** |
+| Post finds matching amounts already on a ClaimPayment | **Already Posted** |
+| Post: chart changed, or attached check has a **different** amount | Back toward **Needs review** (match: **Push requires review**) |
+| Post: real API / network failure | **Needs review** (match: **Push failed**) — approve again before posting |
 | Reject match | **Rejected** |
 
-**Posted**, **Approved**, and **Rejected** win over fetch: refetching Maria after she is Posted does not take her back to Needs review.
+**Posted**, **Already Posted**, **Approved**, and **Rejected** win over fetch: refetching Maria after she is Posted does not take her back to Needs review.
 
 ### What you can do on the patient row
 
@@ -212,11 +223,12 @@ These are the badges on each **person** in the file.
 | **Needs review** | Yes | Yes, unless hard mismatch | No — approve first | Yes |
 | **Approved** | Yes (does not undo approve) | Already done | **Yes** | Yes |
 | **Posted** | Yes (does not undo posted) | No | **No** — already posted | **No** |
+| **Already Posted** | Yes (does not undo) | No | **No** — already on the check | **No** |
 | **Rejected** | Yes | Yes — pick again | No | Already rejected |
 | **No match** | Yes | No — no claim to approve | No | No |
 | **Failed** | Yes — retry | No until fetch succeeds | No | No |
 
-The Open Dental tab buttons follow the **match** status in the next section. If a patient has more than one claim, the row uses the “furthest along” rule: all posted → **Posted**; all approved or posted → **Approved**.
+The Open Dental tab buttons follow the **match** status in the next section. If a patient has more than one claim, the row uses the “furthest along” rule: all posted / already posted → **Posted** or **Already Posted**; all approved or posted → **Approved**.
 
 **Example.** Mike fetches Maria and James. Maria becomes Needs review. James is No match (no chart claim). Mike approves Maria. Jennifer posts Maria → Posted. James is still No match until someone charts the visit in Open Dental and Mike fetches again.
 
@@ -237,15 +249,16 @@ Approve match
     → Approved          (claim locked in Ordo; money not written yet)
 
 Post payment
-    → Posted                    (write succeeded, or Open Dental already had the same payment)
-    → Push failed               (Open Dental or the network did not finish)
-    → Push requires review      (the chart changed after approve)
+    → Posted                    (Ordo wrote new amounts)
+    → Already Posted            (Open Dental already had the same amounts on a check — success)
+    → Push failed               (real API / network failure — not the attached-check case)
+    → Push requires review      (the chart changed after approve, or attached check has a different amount)
 
 Reject match
     → Rejected
 ```
 
-After **Posted**, **Post payment** and **Reject match** are off, and remarks are read-only. If Open Dental already had the same amounts on a check, Ordo still treats the first successful post as **Posted** (it does not try to change `InsPayAmt` a second time). After **Push failed** or **Push requires review**, **Post payment** is off until you **Approve match** again.
+After **Posted** or **Already Posted**, **Post payment** and **Reject match** are off, and remarks are read-only. If Open Dental already had the same amounts on a check, Ordo skips changing `InsPayAmt` and shows **Already Posted** — that is not a failure. After **Push failed** or **Push requires review**, **Post payment** is off until you **Approve match** again.
 
 ### What you can click
 
@@ -257,13 +270,14 @@ You also need the matching **permission** (Approve match, Post payment, Reject m
 | **Needs manual** | Yes | Yes | Yes, after you pick a safe candidate | No — approve first | Yes |
 | **Approved** | Yes | Yes | Hidden (already done) | **Yes** | Yes |
 | **Posted** | No | No (read-only) | Hidden | **No** — already done | **No** |
+| **Already Posted** | No | No (read-only) | Hidden | **No** — already on the check | **No** |
 | **Rejected** | Yes | Yes | Yes — pick again and approve | No | Yes |
 | **Push failed** | Yes | Yes | **Yes** — approve again before a new post | No until you approve again | Yes |
 | **Push requires review** | Yes | Yes | **Yes** — fetch, confirm, approve again | No until you approve again | Yes |
 
 **Hard mismatch** is a flag on a candidate, not a status. Approve stays disabled for that claim. Pick another claim or reject. The patient row can still say **Needs review**.
 
-Open Dental API calls for fetch, reject, and post live on the patient’s **Audit** tab. After **Post payment**, a popup reports success (including **ClaimPaymentNum** when Open Dental returns one) or the error, with a **View audit** link.
+Open Dental API calls for fetch, reject, and post live on the patient’s **Audit** tab. After **Post payment**, a popup reports **Posted**, **Already Posted**, or the error, with a **View audit** link.
 
 ---
 
@@ -306,7 +320,7 @@ Open Dental uses a letter. After a successful post, Ordo sets the claim to **Rec
 | **Supplemental** | Extra payment after the first receive. |
 | **Estimate** / **Adjustment** / capitation types | Special rows Ordo does not treat as a normal EOB line to post. |
 
-If Open Dental already has the line on a check with the **same** `InsPayAmt`, Ordo skips that write and still treats the post as **Posted**. If the attached check has a **different** amount, post stops and asks you to review. Open Dental will **refuse** a new `InsPayAmt` on an attached line — that used to be a common **400**. See [Open Dental errors](../errors/open-dental.md).
+If Open Dental already has the line on a check with the **same** `InsPayAmt`, Ordo skips that write and shows **Already Posted**. That is success — not Failed. If the attached check has a **different** amount, post stops and asks you to review. Open Dental will **refuse** a new `InsPayAmt` on an attached line; Ordo maps the matching-amount case to **Already Posted** instead of treating the 400 as a sync failure. See [Open Dental errors](../errors/open-dental.md).
 
 ---
 
