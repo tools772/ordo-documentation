@@ -63,6 +63,9 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
+not_in_nav: |
+  /modules/reports.md
+
 nav:
   - Home:
       - Welcome: index.md
@@ -74,10 +77,16 @@ nav:
       - EOB Dashboard: modules/eob-dashboard.md
       - Inside an EOB: modules/working-an-eob.md
       - Patients: modules/patients.md
-      - Reports: modules/reports.md
+      - Analytics:
+          - Analytics overview: modules/analytics.md
+          - Posting Analytics: modules/posting-analytics.md
+          - Payment Analytics: modules/payment-analytics.md
+          - Fee Analysis: modules/fee-analysis.md
       - Clinic settings: modules/clinic-settings.md
   - How to:
       - Post a payment: workflows/posting-a-payment.md
+      - Check for underpayments on an EOB: workflows/payment-analysis.md
+      - Set up fee schedules and date maps: workflows/fee-schedules.md
       - What files and layouts Ordo reads: workflows/supported-formats.md
       - What each operation does: workflows/operations.md
       - Statuses — what changes when: workflows/statuses.md

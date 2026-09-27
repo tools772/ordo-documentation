@@ -54,13 +54,23 @@ Maria is at the front desk: “Did Cigna pay my cleaning?” Alex (Viewer) is co
 
 Front desk confirms Patel’s date of birth. Mike fetches again, selects the correct claim, approves. Jennifer posts.
 
-The file’s patients are all **Posted**. Jennifer leaves it in Active until Friday in case Cigna sends a correction. Next week she may **Archive** it so it stops cluttering the inbox. Reports will still have counted it while it was active; after archive it drops out of Reports — so she archives *after* the owner has seen Friday’s numbers, not before.
+The file’s patients are all **Posted**. Jennifer leaves it in Active until Friday in case Cigna sends a correction. Next week she may **Archive** it so it stops cluttering the inbox. Posting Analytics will still have counted it while it was active; after archive it drops out — so she archives *after* the owner has seen Friday’s numbers, not before.
 
 ---
 
-## Friday 4:00 p.m. — Reports
+## 1:00 p.m. — Was it the right amount?
 
-Sarah opens **Reports**, last 7 days, all EOBs. Posted count includes Monday’s Cigna. Failed jobs is zero. She does not need to open Maria’s claim unless a dollar looks wrong.
+Before lunch ends, Jennifer opens the Cigna file’s **Payment Analysis** tab and clicks **Run analysis**. One line is flagged: Maria’s cleaning, **Potential underpayment**, $15. **How calculated** shows Cigna’s contract is $100, Maria’s share is $20, and Cigna paid $65.
+
+She opens Maria → **Payment Analysis** → **Review**, picks **Confirm Underpayment**, and writes “Called Cigna 3/9, ref #44821.” The payment was already posted; the review is a separate follow-up.
+
+---
+
+## Friday 4:00 p.m. — Analytics
+
+Sarah opens **Analytics → Posting Analytics**, clicks **Load overview**, picks last 7 days and all EOBs. Posted count includes Monday’s Cigna. Failed jobs is zero.
+
+Then she opens **Payment Analytics → Remittances**, clicks **Load saved results**, and sees the open underpayment work items for the week — including Maria’s $15, now marked Confirmed. She does not need to open Maria’s claim unless a dollar looks wrong.
 
 ---
 
@@ -71,7 +81,8 @@ Sarah opens **Reports**, last 7 days, all EOBs. Posted count includes Monday’s
 3. Approve and post can be two people.
 4. Stop on hard mismatch / two similar names.
 5. Patients module is for “where is this person?”
-6. Reports is for the week, not for arguing with a patient at the window.
+6. Posting a payment and checking it was the right amount are two separate steps. Payment Analysis does the second.
+7. Analytics is for the week, not for arguing with a patient at the window.
 
 ---
 

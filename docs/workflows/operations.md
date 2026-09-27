@@ -344,7 +344,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 **Writes to Open Dental?** No.
 
-**What happens.** **Archive** hides the remittance from Active and from Reports. **Restore** (from the Archived tab) puts it back. Nothing is deleted.
+**What happens.** **Archive** hides the remittance from Active and from Posting Analytics. **Restore** (from the Archived tab) puts it back. Nothing is deleted.
 
 **Status change (file).** **Archived**, or back to its previous working status (usually **Extracted**).
 
@@ -366,7 +366,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 13. Test Open Dental connection
 
-**Who.** Permission **Manage team and roles** (Owner / Admin). Clinic settings → **PMS Integrations**.
+**Who.** Permission **Manage PMS integrations** (Owner / Admin). Clinic settings → **PMS Integrations**.
 
 **Writes to Open Dental?** No. Ordo only **reads** a small claim list (`GET /claims` with status Sent) to prove the keys work.
 
@@ -388,7 +388,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 14. Save Open Dental connection
 
-**Who.** Manage team and roles.
+**Who.** Manage PMS integrations.
 
 **Writes to Open Dental?** No.
 
@@ -400,7 +400,7 @@ You can fetch again later (**Refetch**) if someone just entered a claim in Open 
 
 ## 15. Sync (refresh the replica)
 
-**Who.** Manage team and roles. Clinic settings → PMS Integrations → **Sync**. (Fetch on a file is a *patient-scoped* sync plus match. This Sync is the clinic-wide refresh.)
+**Who.** Manage PMS integrations. Clinic settings → PMS Integrations → **Sync**. (Fetch on a file is a *patient-scoped* sync plus match. This Sync is the clinic-wide refresh.)
 
 **Writes to Open Dental?** No. Read-only copy into Ordo.
 
@@ -424,13 +424,61 @@ Until Sync (or Fetch) has succeeded at least once, matching has nothing to compa
 
 ## 16. Export
 
-**Who.** Anyone who can see the current list (Dashboard, Patients, inside an EOB, Reports depending on the screen).
+**Who.** Anyone who can see the current list (Dashboard, Patients, inside an EOB, Posting Analytics, fee schedules, depending on the screen).
 
 **Writes to Open Dental?** No.
 
 **What happens.** Downloads the **current** filtered view, not the entire history.
 
 **Status change.** None.
+
+---
+
+## 17. Run payment analysis (inside an EOB)
+
+**Who.** Anyone who can open the EOB (**View dashboard**).
+
+**Writes to Open Dental?** No.
+
+**What happens.** On the file’s **Payment Analysis** tab, **Run analysis** / **Run again** compares each procedure’s paid amount with the contracted fee for that insurer and date of service. The result is saved with the fee schedules used and the time. A patient’s **Payment Analysis** tab loads the saved result, or runs on first open; **Refresh** recalculates. Details: [Payment Analysis inside an EOB](payment-analysis.md).
+
+**Status change.** None to the file or patient. Gaps of $10 or 5% and up become **work items** (status **Needs review**).
+
+---
+
+## 18. Review an underpayment
+
+**Who.** Permission **Edit extracted data**.
+
+**Writes to Open Dental?** No.
+
+**What happens.** **Review** on a flagged line opens **Underpayment review**. Pick Confirm Underpayment, Valid Adjustment, Fee Schedule Incorrect, Not an Underpayment, or Needs Manual Review, and type a reason.
+
+**Status change (work item).** From **Needs review** to the decision you picked. It leaves the default list in Payment Analytics → Remittances.
+
+---
+
+## 19. Submit a fetch job (Historical Analysis / Missing Posting)
+
+**Who.** Permission **View analytics**.
+
+**Writes to Open Dental?** No — it only reads claims.
+
+**What happens.** Pulls claims from Open Dental in the background: Received claims for up to 30 days (Historical), or Sent and Received claims for one day (Missing Posting). You then pick the finished job and **Run analysis**. Details: [Analytics](../modules/analytics.md#fetch-first-then-analyze).
+
+**Status change (job).** Queued → Fetching → Complete, Partially complete, or Failed. **Archive** hides a job for good. Finished jobs are removed after 90 days.
+
+---
+
+## 20. Add a fee schedule or date map
+
+**Who.** Permission **Manage fee schedules**.
+
+**Writes to Open Dental?** No. (**Fetch fees** reads an Open Dental fee schedule.)
+
+**What happens.** Clinic settings → Insurance → an insurer (or **Office Fee / UCR**). **Add fee schedule** saves a list of CDT fees; **Add date map** says which dates it covers. Overlapping ranges for one insurer are refused. Details: [Fee schedules and date maps](fee-schedules.md).
+
+**Status change.** None. Re-run payment analysis afterwards — saved results keep the fees they were calculated with.
 
 ---
 
@@ -444,6 +492,9 @@ Until Sync (or Fetch) has succeeded at least once, matching has nothing to compa
 | Approve match | No | No |
 | Reject match | Only if you send a remark | Note only, not money |
 | Post payment | Yes (to verify) | **Yes** — amounts, claim received, claim payment |
+| Payment analysis / review an underpayment | Ordo’s copy only | No |
+| Fetch job / Fetch fees | Yes | No |
+| Fee schedules and date maps | No | No |
 
 ---
 

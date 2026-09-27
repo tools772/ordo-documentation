@@ -151,7 +151,7 @@ These are the words on the **file** row and on the dashboard tabs.
 | **Extracting** | Ordo is reading the PDF right now. | Wait. Do not post from this file yet. |
 | **Extracted** | Patients and lines are ready. | Open the file. Fetch, review, post. |
 | **Failed** | Reading (or a rare later file-level error) did not succeed. | Open the row, read the message. See [Errors](../errors/index.md). |
-| **Archived** | Hidden from Active and from Reports. Not deleted. | Restore if that was a mistake. |
+| **Archived** | Hidden from Active and from Posting Analytics. Not deleted. | Restore if that was a mistake. |
 | **Retry required** | Try the failed step again after the underlying problem is fixed. | Read the message; often a post or connection issue. |
 
 Older or internal labels you might hear from support (same idea, different word):
@@ -178,7 +178,7 @@ Older or internal labels you might hear from support (same idea, different word)
 | Restore | Back to Active (usually Extracted) |
 | Fetch / Approve / Post | **Does not change the file row** |
 
-**Example.** Jennifer uploads Monday’s Cigna. The row shows **Confirm layout · Detected Cigna**. She opens the file, clicks **Confirm & process**, and the row becomes Extracted. Mike fetches and posts all three patients. The dashboard still says **Extracted** on the file — that is correct. Posted is a *person* status. Reports still count the posted payments.
+**Example.** Jennifer uploads Monday’s Cigna. The row shows **Confirm layout · Detected Cigna**. She opens the file, clicks **Confirm & process**, and the row becomes Extracted. Mike fetches and posts all three patients. The dashboard still says **Extracted** on the file — that is correct. Posted is a *person* status. Posting Analytics still counts the posted payments.
 
 ---
 

@@ -10,23 +10,25 @@ Insurance posting is a pipeline:
 
 **File arrives → people are read off the page → someone matches them to the chart → someone posts → someone checks the numbers later.**
 
-Each module is one stage of that pipeline (plus settings and help):
+Each module is one stage of that pipeline (plus settings):
 
 ```
-  Upload PDF          Find a person         Check the books
-       │                    │                      │
-       ▼                    ▼                      ▼
- EOB Dashboard  ←──  Patients list  ──→  Reports
-       │
-       ▼
+  Upload PDF          Find a person           Check the numbers
+       │                    │                         │
+       ▼                    ▼                         ▼
+ EOB Dashboard  ←──  Patients list  ──→  Analytics
+       │                                  (Posting · Payment ·
+       ▼                                   Fee Analysis · AI)
   Open one file
-  (EOB Review / Open Dental / Audit)
+  (Posting / Payment Analysis;
+   per patient: EOB Review / Payment Analysis /
+   Open Dental / Audit)
        │
        ▼
-  Clinic settings (people, Open Dental connection)
+  Clinic settings (people, Open Dental connection, fee schedules)
 ```
 
-You do not have to visit every room every day. Many coordinators live in **EOB Dashboard**. The office manager dips into **Reports** on Friday. The owner opens **Clinic settings** when a new hire starts.
+You do not have to visit every room every day. Many coordinators live in **EOB Dashboard**. The office manager dips into **Analytics** on Friday. The owner opens **Clinic settings** when a new hire starts or a new insurance contract arrives.
 
 ---
 
@@ -38,14 +40,26 @@ You do not have to visit every room every day. Many coordinators live in **EOB D
 | --- | --- | --- |
 | **EOB Dashboard** | Inbox of remittance files. | Everyone who posts or reviews. |
 | **Patients** | All extracted people, across files, plus EOB history on the person. | “Where is this patient?” questions. |
-| **Reports** | Uploaded / posted / failed, with filters. | Office manager, owner. |
-| **Docs** | Short in-app articles, plus a link here. | Anyone. |
+| **Analytics** | A collapsible group with four pages (below). | Office manager, owner, billing lead. |
+
+Inside **Analytics**:
+
+| Menu label | Job in one sentence |
+| --- | --- |
+| **Posting Analytics** | Uploaded / posted / failed counts (**Overview**, formerly Reports), plus claims in Open Dental with nothing posted (**Missing Posting**). |
+| **Payment Analytics** | Underpayments against your contracted fees — on uploaded EOBs (**Remittances**) and on past Open Dental claims (**Historical Analysis**). |
+| **Fee Analysis** | Contracted fees side by side with your office UCR, for any date. |
+| **Analytics AI** | Ask analytics questions in plain English. |
+
+Details: [Analytics](analytics.md).
 
 ### Practice
 
 | Menu label | Job in one sentence | Typical visitor |
 | --- | --- | --- |
-| **Clinic settings** | Team, roles, locations, Open Dental connection, logs. | Owner, clinic admin. |
+| **Clinic settings** | Team, roles, locations, Open Dental connection, insurance formats, fee schedules, logs. | Owner, clinic admin. |
+
+At the bottom of the sidebar: **Help & docs** (this site), the support email, and the **App mode** switch (Demo / Actual).
 
 If a menu item is missing, that is normal. Your role only shows the rooms you are allowed to enter.
 
@@ -57,10 +71,10 @@ Bright Smile Dental has four people in the demo story:
 
 | Person | Role | Modules they live in |
 | --- | --- | --- |
-| **Sarah Chen** | Owner | Everything clinic-side. She sets roles, glances at Reports on Monday, rarely posts. |
-| **Jennifer Park** | Admin | Dashboard (upload + post), Clinic settings (invite staff), Reports. |
-| **Mike Johnson** | Reviewer | Dashboard and the Open Dental tab. He approves and rejects. He cannot post and cannot change settings. |
-| **Alex Rivera** | Viewer | Dashboard, Patients, Reports — read only. Useful for a new hire shadowing, or an accountant who should not click Post. |
+| **Sarah Chen** | Owner | Everything clinic-side. She sets roles and fee schedules, glances at Analytics on Monday, rarely posts. |
+| **Jennifer Park** | Admin | Dashboard (upload + post), Payment Analytics (underpayments), Clinic settings (invite staff). |
+| **Mike Johnson** | Reviewer | Dashboard and the Open Dental tab. He approves and rejects. He cannot post, cannot change settings, and does not see Analytics by default. |
+| **Alex Rivera** | Viewer | Dashboard, Patients, Analytics — read only. Useful for a new hire shadowing, or an accountant who should not click Post. |
 
 If Alex opens an EOB, he can read Maria Santos’s lines. He will not see **Post payment**. That is the product working as designed, not a broken button.
 
@@ -81,6 +95,6 @@ Three common reasons:
 - [EOB Dashboard](eob-dashboard.md)
 - [Inside an EOB](working-an-eob.md)
 - [Patients](patients.md)
-- [Reports](reports.md)
+- [Analytics](analytics.md)
 - [Clinic settings](clinic-settings.md)
 - [Roles and who can do what](../people/roles.md)

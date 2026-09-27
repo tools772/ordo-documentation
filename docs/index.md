@@ -31,6 +31,7 @@ That work is slow, easy to mistype, and hard to audit later. Ordo is the inbox, 
 | Show you the Open Dental claim it thinks is the right match | Automatically write money into Open Dental without a person clicking **Post payment** |
 | Let a reviewer approve the match, then a poster write the payment | Decide medical necessity or change what the insurance paid |
 | Keep a log of who uploaded, approved, rejected, or posted | File the original claim with the payer |
+| Compare what insurance paid with your contracted fee schedule and flag underpayments | Send appeals to the payer for you |
 
 The golden rule: **nothing is written to Open Dental until someone with the right role clicks Post payment.** Approve is a confirmation, not a post.
 
@@ -38,7 +39,7 @@ The golden rule: **nothing is written to Open Dental until someone with the righ
 
 ## A 30-second picture of the day
 
-Imagine Bright Smile Dental. Jennifer (office manager) uploads this week's Cigna remittance. Ordo reads the PDF and lists every patient on it. Mike (insurance coordinator) opens Maria Santos, fetches her Open Dental chart, checks that the cleaning and exam lines match, and approves. Jennifer then posts. Open Dental now shows the insurance paid amount. Reports later show how many files were posted that week.
+Imagine Bright Smile Dental. Jennifer (office manager) uploads this week's Cigna remittance. Ordo reads the PDF and lists every patient on it. Mike (insurance coordinator) opens Maria Santos, fetches her Open Dental chart, checks that the cleaning and exam lines match, and approves. Jennifer then posts. Open Dental now shows the insurance paid amount. Payment Analysis flags that Cigna paid $15 short on one cleaning, so Jennifer marks it for appeal. On Friday, Posting Analytics shows how many files were posted that week.
 
 That same path is described step by step in [Post a payment](workflows/posting-a-payment.md) and as a story in [A typical Monday morning](examples/typical-morning.md).
 
@@ -52,9 +53,8 @@ Ordo is organized into **modules**. A module is simply a section of the product 
 | --- | --- |
 | **EOB Dashboard** | The file inbox. Upload remittances, see their status, download the original file, open a file to work it. |
 | **Patients** | Find a person across all files without opening the EOB first. Open a row to see EOB history for that person. |
-| **Reports** | Counts and dollars for operations: uploaded, posted, failed, by carrier. |
-| **Docs** | Short in-app help, plus a link to this longer site. |
-| **Clinic settings** | Your practice: people, roles, locations, Open Dental connection, logs. |
+| **Analytics** | Posting counts (uploaded, posted, failed, missing posting), underpayments against your contracted fees, fee comparisons, and Analytics AI. |
+| **Clinic settings** | Your practice: people, roles, locations, Open Dental connection, insurance formats, fee schedules, logs. |
 
 Start with [What is a module?](modules/overview.md) if you want a map before diving in.
 

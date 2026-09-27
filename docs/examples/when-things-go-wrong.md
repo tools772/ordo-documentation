@@ -79,7 +79,7 @@ The full decoder for `Open Dental API 400` (and 401, 429, 504) is [Open Dental e
 
 ## I cannot see a button or a module
 
-**Usual cause.** Your **role**. Viewers cannot post. Reviewers cannot post (by default) and cannot open Clinic settings.
+**Usual cause.** Your **role**. Viewers cannot post. Reviewers cannot post (by default), cannot open Clinic settings, and do not see Analytics.
 
 **What to do.** Ask an Owner to check [Roles](../people/roles.md). Do not use someone else’s login.
 
@@ -87,16 +87,40 @@ If the whole clinic cannot sign in, the practice may not be set up yet. Email **
 
 ---
 
-## Reports look too high or too low
+## Posting Analytics looks too high or too low
 
 | Symptom | Likely cause | Fix |
 | --- | --- | --- |
+| Nothing shows at all | The Overview starts idle | Click **Load overview** |
 | Uploads doubled | Same PDF uploaded twice | Archive the duplicate file |
 | Posted looks low | Files still Approved, not Posted | Finish posting, or check Failed |
 | Today’s uploads is zero | Date filter is not today | Change the date preset |
-| A file vanished from Reports | It was **Archived** | Restore from Dashboard → Archived if that was a mistake |
+| A file vanished from the Overview | It was **Archived** | Restore from Dashboard → Archived if that was a mistake |
 
-Reports use **upload date**, not date of service. June treatment uploaded in August counts in August.
+The Overview uses **upload date**, not date of service. June treatment uploaded in August counts in August.
+
+---
+
+## Payment Analysis shows NA, or flags lines that look fine
+
+| Symptom | Likely cause | Fix |
+| --- | --- | --- |
+| **NA** with **Missing clinic fee** on many lines | This insurer has no fee schedule mapped for that date of service, or the schedule is missing those codes. | An Owner or Admin adds or fixes it: [Fee schedules and date maps](../workflows/fee-schedules.md). Then **Run again**. |
+| **NA** with **Patient share unclear** | The EOB’s deductible + coinsurance and its patient responsibility disagree. | Read the EOB line. Decide it with **Review** if there is a real gap. |
+| Every line on one payer says **Potential underpayment** | The mapped fee schedule is out of date (last year’s contract, or the wrong plan). | Check the date map with [Fee Analysis](../modules/fee-analysis.md) for that date. |
+| Numbers did not change after fixing a fee schedule | Saved results keep the fees they were calculated with. | Click **Run again** (EOB) or **Refresh** (patient). |
+
+---
+
+## A fetch job says Partially complete or Failed
+
+**What you see.** On Historical Analysis or Missing Posting, a job did not finish cleanly.
+
+**What to do.**
+
+1. Open the job (**See claims** for Historical) and click **Retry errored dates**, or **Retry** on the job.
+2. If it keeps failing, the Open Dental connection is usually the cause. An Admin should **Test** under [Clinic settings → PMS Integrations](../modules/clinic-settings.md).
+3. You can still analyze a **Partially complete** job — just know some days are missing.
 
 ---
 

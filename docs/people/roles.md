@@ -2,7 +2,7 @@
 
 A **role** is a nametag that turns modules and buttons on or off. Two people can work the same EOB and see different buttons. That is intentional.
 
-Owners and Admins manage roles in **Clinic settings → Users** (roles panel).
+Owners and Admins manage roles in **Clinic settings → Profile** (team and roles section).
 
 ---
 
@@ -23,33 +23,58 @@ Admins start with the same clinic abilities as owners in the default setup (uplo
 
 ## Permission catalog (clinic)
 
-Grouped the way the product labels them.
+The role editor groups permissions by area. Labels below match the screen.
 
-### View
-
-| Permission | What it unlocks |
-| --- | --- |
-| EOB dashboard | See the inbox and open files |
-| Patients | See the cross-file patient list |
-| Reports | See Reports |
-| Clinic settings | Open practice settings (read) |
-
-### Work
+### EOBs
 
 | Permission | What it unlocks |
 | --- | --- |
-| Upload EOBs | Drop new remittance files |
+| View dashboard | See uploaded EOBs and open a file |
+| Upload | Upload new EOB files |
 | Archive | Archive or restore EOBs and patients |
-| Edit extracted data | Correct names, lines, amounts Ordo read |
-| Approve match | Confirm the Open Dental claim |
+| Edit extracted data | Change patient details and procedure lines |
+
+### Patients
+
+| Permission | What it unlocks |
+| --- | --- |
+| View queue | See the cross-file patient list |
+| Link OD patient | Confirm or clear the Open Dental patient link |
+
+### Matching
+
+| Permission | What it unlocks |
+| --- | --- |
+| Run matching | Compute or refresh Open Dental claim matches |
+| Fetch Open Dental | Pull Open Dental chart data for patients on an EOB |
+| Approve match | Confirm an Open Dental claim match |
 | Reject match | Discard a candidate without posting |
+
+### Payments
+
+| Permission | What it unlocks |
+| --- | --- |
 | Post payment | Write `InsPayAmt` to Open Dental |
 
-### Clinic admin
+### Analytics
 
 | Permission | What it unlocks |
 | --- | --- |
-| Manage team and roles | Create roles, invite users, edit locations, manage the Open Dental connection |
+| View analytics | Posting Analytics, Payment Analytics, and Fee Analysis |
+| Analytics AI chat | The Analytics AI page |
+| Fetch schedules | Schedule automatic Historical and Missing Posting data fetches |
+
+The **Payment Analysis** tab inside an EOB comes with **View dashboard** — it does not need **View analytics**. Recording a decision there (**Review**) needs **Edit extracted data**.
+
+### Clinic settings
+
+| Area | Permission | What it unlocks |
+| --- | --- | --- |
+| Team & locations | View | Open practice settings |
+| Team & locations | Manage | Create roles, assign users, edit locations and clinic profile |
+| Insurance | Manage formats | Enable catalog formats, aliases, and clinic sample EOBs |
+| Fee schedules | Manage | Upload and edit fee schedules and date maps |
+| PMS integrations | Manage | Connect Open Dental, save keys, and run clinic-wide sync |
 
 ---
 
@@ -58,15 +83,16 @@ Grouped the way the product labels them.
 | Ability | Owner | Admin | Reviewer | Viewer |
 | --- | --- | --- | --- | --- |
 | See dashboard, patients | Yes | Yes | Yes | Yes |
-| See reports | Yes | Yes | No* | Yes |
-| Upload / archive / edit | Yes | Yes | Edit only | No |
+| See Analytics (and Analytics AI) | Yes | Yes | No* | Yes |
+| Upload / archive | Yes | Yes | No | No |
+| Edit extracted data | Yes | Yes | Yes | No |
+| Fetch, run matching, link patient | Yes | Yes | Yes | No |
 | Approve / reject match | Yes | Yes | Yes | No |
 | Post payment | Yes | Yes | No | No |
-| Manage team | Yes | Yes | No | No |
+| Open Clinic settings | Yes | Yes | No | No |
+| Manage team, fee schedules, formats, Open Dental connection | Yes | Yes | No | No |
 
-\*Default Reviewer does **not** include Reports. If your coordinators should see the scoreboard, clone Reviewer and tick **Reports**.
-
-Default Reviewer **does** include edit, approve, and reject, and **does not** include upload, archive, or post.
+\*Default Reviewer does **not** include Analytics. If your coordinators should see the numbers, clone Reviewer and tick **View analytics** (and **Analytics AI chat** if they want it).
 
 ---
 
@@ -80,18 +106,18 @@ If the office later decides Mike should post, Sarah clones Reviewer, names it **
 
 ### Alex (Viewer) — “I only wanted to watch”
 
-Alex can open Reports for the owner meeting. He cannot archive a file, cannot approve, cannot post. If a button is missing, he should not hunt for a bug.
+Alex can open Posting Analytics for the owner meeting, or ask Analytics AI a question. He cannot archive a file, cannot approve, cannot post. If a button is missing, he should not hunt for a bug.
 
 ### Priya — custom “Insurance poster”
 
 Sarah wants someone who can upload and post but **cannot** invite users or change roles:
 
 1. Clone **Admin**.
-2. Untick **Manage team and roles**.
+2. Under **Clinic settings**, untick every **Manage** box (team & locations, formats, fee schedules, PMS integrations).
 3. Save as **Insurance poster**.
 4. Assign Priya.
 
-Priya still sees Clinic settings if View settings is ticked, but she cannot rewrite the team.
+Priya still sees Clinic settings if **Team & locations → View** is ticked, but she cannot rewrite the team or change fee schedules.
 
 ---
 
@@ -104,4 +130,5 @@ A user can be Admin and still “see nothing” if they are mapped to **North Cl
 ## Related pages
 
 - [Clinic settings](../modules/clinic-settings.md)
+- [Analytics](../modules/analytics.md)
 - [Post a payment](../workflows/posting-a-payment.md)

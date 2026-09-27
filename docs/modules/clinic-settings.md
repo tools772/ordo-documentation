@@ -1,8 +1,8 @@
 # Clinic settings
 
-**Clinic settings** is the practice office: who works here, what they are allowed to do, how Ordo talks to Open Dental, which insurance formats this clinic uses, and the logs you open when something needs explaining.
+**Clinic settings** is the practice office: who works here, what they are allowed to do, how Ordo talks to Open Dental, which insurance formats and fee schedules this clinic uses, and the logs you open when something needs explaining.
 
-Open it from the sidebar: **Clinic settings**. You need a role that can view clinic settings. Changing team, roles, or the Open Dental connection needs **Manage team and roles**.
+Open it from the sidebar: **Clinic settings**. You need a role that can view clinic settings. Changing things needs the matching permission: **Manage team and locations** (users, roles, locations), **Manage PMS integrations** (Open Dental connection and sync), **Manage insurance formats**, or **Manage fee schedules**.
 
 If you do not see this item, your role is view-or-work only (for example Viewer or Reviewer). Ask an Owner or Admin.
 
@@ -16,7 +16,7 @@ The **top header** shows the clinic and location you are in. If you have more th
 | --- | --- |
 | **Profile** | Team (users, roles, locations), **EOB processing mode**, appearance, your profile, and notification toggles. |
 | **PMS Integrations** | Connect and test Open Dental; sync the replica. |
-| **Insurance** | Which catalog formats this clinic uses, aliases, and clinic sample files. |
+| **Insurance** | Per insurer: which catalog formats it sends, and its fee schedules and date maps. Plus your Office / UCR fees. |
 | **Audit** | Who uploaded, approved, rejected, posted — and Open Dental API call history. |
 
 ---
@@ -45,8 +45,8 @@ The last **Owner** cannot be demoted. That protects you from locking the practic
 | --- | --- |
 | **Owner** | Full clinic access. Last owner stays an owner. |
 | **Admin** | Run the practice: upload, review, post, manage the team. |
-| **Reviewer** | Review EOBs and approve/reject matches. Cannot post or manage settings. |
-| **Viewer** | Read dashboard, patients, and reports. |
+| **Reviewer** | Review EOBs and approve/reject matches. Cannot post, manage settings, or see Analytics. |
+| **Viewer** | Read-only access to dashboard, patients, Analytics, and Analytics AI. |
 
 You can **clone** a role and tick different permissions (for example an “Insurance poster” who can post but cannot invite users). Details: [Roles and who can do what](../people/roles.md).
 
@@ -108,6 +108,26 @@ Until this is connected, **Fetch Open Dental** in Actual mode cannot load live c
 
 ## Insurance
 
+The Insurance tab has two sub-tabs:
+
+| Sub-tab | What is in it |
+| --- | --- |
+| **Insurers** | One row per insurance company. Open an insurer to see two tabs: **Formats** (the EOB layouts it sends) and **Fee schedule** (contracted fees and date maps). |
+| **Office Fee / UCR (N)** | Your office’s own fees (UCR). N is how many Office / UCR schedules the clinic has. |
+
+### Fee schedules and date maps
+
+Payment Analysis needs to know what each insurer agreed to pay. On an insurer’s **Fee schedule** tab:
+
+- **Add fee schedule** — upload a fee file (`.txt`, `.tsv`, or `.csv`: CDT, fee, abbreviation, description) or pull one from Open Dental with **Fetch fees**.
+- **Date mapping** → **Add date map** — say which schedule applies from which date of service (**Effective from**, optional **Effective to**). Overlapping ranges for the same insurer are blocked.
+
+The **Office Fee / UCR** sub-tab works the same way for your office fees, which are shown for comparison only.
+
+Changing fee schedules needs **Manage fee schedules**. Step-by-step with examples: [Fee schedules and date maps](../workflows/fee-schedules.md).
+
+### Formats
+
 **This clinic's formats** lists which remittance formats your office has enabled from the catalog, plus optional aliases and clinic sample files.
 
 | Column / control | Meaning |
@@ -154,6 +174,7 @@ Integrations may show that this practice is not set up yet. That is Ordo onboard
 ## Related pages
 
 - [Roles and who can do what](../people/roles.md)
+- [Fee schedules and date maps](../workflows/fee-schedules.md)
 - [Demo vs Actual](../workflows/demo-vs-actual.md)
 - [What each operation does](../workflows/operations.md)
 - [What files and layouts Ordo reads](../workflows/supported-formats.md)

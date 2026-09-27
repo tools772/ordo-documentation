@@ -17,7 +17,7 @@ Four summary cards (the exact numbers come from files your role can see):
 | **Payments posted** | Files that made it through to Open Dental. |
 | **Failed jobs** | Files Ordo could not read, or posts that failed. |
 
-There are also small charts (daily uploads vs posted, mix of statuses, payment value). They are a pulse check, not a financial close. For sliced numbers, use [Reports](reports.md).
+There are also small charts (daily uploads vs posted, mix of statuses, payment value). They are a pulse check, not a financial close. For sliced numbers, use [Posting Analytics](posting-analytics.md).
 
 ---
 
@@ -50,13 +50,13 @@ Type part of the **file name** or **EOB ID**. This does not search patient names
 | **Extracting** | Ordo is reading the PDF right now. |
 | **Extracted** | Reading succeeded; you can open and work it. |
 | **Failed** | Reading (or a later step) failed. |
-| **Archived** | Hidden from Active and from Reports. |
+| **Archived** | Hidden from Active and from Posting Analytics. |
 
 There is **no separate Confirm layout tab**. Files waiting for confirmation usually sit under **Active** or **Uploaded**, with the **Confirm layout** badge on the row.
 
 ### Uploaded date
 
-Same date control as Reports. Presets include **today**, **last 7 days**, **last 30 days**, and **this month**. Combine it with a status tab.
+Same date control as Posting Analytics → Overview. Presets include **today**, **last 7 days**, **last 30 days**, and **this month**. Combine it with a status tab.
 
 **Example.** Friday afternoon, Jennifer wants only this week’s failed files:
 
@@ -126,12 +126,12 @@ Nothing has been posted yet. Opening is always safe.
 
 If your role includes **Archive**:
 
-- **Archive** takes the file out of Active and out of Reports. Use this for duplicates, test files, or remittances you will not post.
+- **Archive** takes the file out of Active and out of Posting Analytics. Use this for duplicates, test files, or remittances you will not post.
 - **Restore** (from the Archived tab) puts it back.
 
 Archiving is not deleting. The file and its extracted patients are still there.
 
-**Example.** A coordinator uploaded the same PDF twice. Archive the duplicate so Reports does not double-count uploads. Work the copy that extracted cleanly.
+**Example.** A coordinator uploaded the same PDF twice. Archive the duplicate so Posting Analytics does not double-count uploads. Work the copy that extracted cleanly.
 
 ---
 
@@ -151,7 +151,7 @@ Viewers can watch the inbox. They cannot upload or archive.
 
 - [Inside an EOB](working-an-eob.md) — after you click a file
 - [Patients](patients.md) — find a person without knowing the file
-- [Reports](reports.md) — the same files, totaled
+- [Posting Analytics](posting-analytics.md) — the same files, totaled
 - [What files and layouts Ordo reads](../workflows/supported-formats.md)
 - [Statuses](../workflows/statuses.md) — what Uploaded / Extracted / Failed mean
 - [When something looks wrong](../examples/when-things-go-wrong.md)

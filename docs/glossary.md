@@ -117,6 +117,65 @@ One row on that checklist. A failed signal is Ordo saying “these two values ar
 
 ---
 
+## Fees and underpayments
+
+**Fee schedule**  
+A list of CDT codes and fees. An insurer’s fee schedule holds the **contracted** fees; the Office / UCR schedule holds your office fees. Managed in Clinic settings → Insurance. See [Fee schedules and date maps](workflows/fee-schedules.md).
+
+**Date map**  
+Says which fee schedule applies from which date of service (Effective from, optional Effective to). For each date of service, Ordo uses the covering map with the latest start date. Overlapping ranges for the same insurer are blocked.
+
+**Contracted fee**  
+What your clinic agreed with an insurer to accept for a CDT code. The starting point for every underpayment number.
+
+**UCR / Office fee**  
+“Usual, customary, and reasonable” — your office’s own full fee (what you bill). Shown for comparison. **Never** used to calculate an underpayment.
+
+**Allowed amount (EOB Allowed)**  
+The amount the insurer says it allowed on the EOB. Shown for context only; Ordo uses your contracted fee instead.
+
+**Patient portion / patient’s share**  
+The part the patient owes: deductible plus coinsurance from the EOB, or the EOB’s patient responsibility when those are missing.
+
+**Expected**  
+What insurance should have paid: contracted fee minus the patient’s share, never below zero.
+
+**Underpayment**  
+Expected minus what insurance actually paid, never below zero. Calculated per procedure, then added up.
+
+**NA**  
+“Ordo cannot give an honest number here” — usually no contracted fee was found (**Missing clinic fee**) or the EOB’s patient amounts disagree (**Patient share unclear**). Not the same as zero.
+
+**Work item**  
+A flagged procedure that needs a decision — created when the underpayment is at least $10 or 5%. Decided with **Review** on an EOB’s Payment Analysis tab.
+
+**Parent carrier**  
+A larger insurer whose fee schedule a smaller plan shares. If a plan has no date map of its own, Ordo falls back to the parent’s.
+
+---
+
+## Analytics
+
+**Posting Analytics**  
+Upload / post / fail counts (**Overview**, formerly **Reports**) and claims with nothing posted (**Missing Posting**). See [Posting Analytics](modules/posting-analytics.md).
+
+**Payment Analytics**  
+Underpayments across uploaded EOBs (**Remittances**) and past Open Dental claims (**Historical Analysis**). See [Payment Analytics](modules/payment-analytics.md).
+
+**Payment Analysis**  
+The tab inside an EOB (and each patient) that checks the payment against the contract. See [Payment Analysis inside an EOB](workflows/payment-analysis.md).
+
+**Fetch job**  
+A background pull of claims from Open Dental for a date range, used by Historical Analysis and Missing Posting. You analyze a finished job, so the numbers do not shift while you read them. Finished jobs are removed after 90 days.
+
+**Missing posting**  
+A claim that is Sent or Received in Open Dental but has no insurance payment (check or EFT) attached.
+
+**Days outstanding**  
+How long a claim has waited: from the date sent, or from the date of service when no sent date is recorded.
+
+---
+
 ## Status words you will see
 
 Statuses describe **where work is**, not whether anyone did a bad job.
@@ -136,7 +195,7 @@ Statuses describe **where work is**, not whether anyone did a bad job.
 | Already Posted | Open Dental already had matching amounts on a check. Success — not a failure. |
 | Failed | Reading, fetch, or a *real* post error. Do not confuse with Already Posted. |
 | Retry required | Try again after the underlying problem is fixed. |
-| Archived | Hidden from the active inbox and from Reports. Not deleted. |
+| Archived | Hidden from the active inbox and from Posting Analytics. Not deleted. |
 | Pending | Not fetched yet, or matching has not produced a decision. |
 | No match | Ordo could not find a plausible Open Dental claim. |
 | Rejected | Someone threw away the match without posting. |

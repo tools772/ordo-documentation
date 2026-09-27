@@ -2,6 +2,8 @@
 
 You will hit a sign-in screen before any module. It asks two questions: **which world** (Demo or Actual) and **who you are**.
 
+The live address is **[ordo.perfect.ventures](https://ordo.perfect.ventures)**. An old bookmark to `www.ordo.perfect.ventures` still works — it forwards you to the same address. Update the bookmark when you can.
+
 On the live production site, a blue **Production** bar sits at the top so you know this is the live host, not a training URL. You can still pick **Demo** there; Demo still uses sample data only.
 
 The card title is **Welcome back** — choose a mode, then continue.
@@ -21,7 +23,7 @@ The same toggle exists later in the sidebar. Details: [Demo vs Actual](../workfl
 
 ## Demo sign-in
 
-In Demo, click **Enter Demo Mode** (“Explore sample EOBs as a viewer…”). You typically continue as the sample user (no production password). You land in the modules that sample role can see — often **Viewer**: Dashboard, Patients, Reports, read-only.
+In Demo, click **Enter Demo Mode** (“Explore sample EOBs as a viewer…”). You typically continue as the sample user (no production password). You land in the modules that sample role can see — often **Viewer**: Dashboard, Patients, and the Analytics pages, read-only.
 
 That is enough to learn the inbox. It is not enough to practice **Post payment**. If you need to train posting, use a live training clinic in Actual with a dummy (fake) EOB, or ask an Owner to watch you in a safe environment.
 
@@ -74,7 +76,7 @@ Follow the on-screen labels; then you land in the app as usual.
 
 ## After you sign in
 
-If a clinic admin has granted access, Ordo sends you to the first module you are allowed to see (often EOB Dashboard).
+If a clinic admin has granted access, Ordo sends you to the first module you are allowed to see — usually EOB Dashboard, or Posting Analytics for a role that can only see Analytics.
 
 If nobody has added your email yet, you stay on **Waiting for access** and cannot open Dashboard, Patients, or Settings.
 

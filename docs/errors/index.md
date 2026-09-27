@@ -32,7 +32,8 @@ Try it yourself when:
 - The recommended claim is the wrong visit
 - You are in **Demo** instead of **Actual** (or the reverse)
 - Your role does not include that button
-- Reports look wrong because of filters or a duplicate upload
+- Posting Analytics looks wrong because of filters or a duplicate upload
+- Payment Analysis shows **NA** because a fee schedule or date map is missing
 
 **Contact Ordo** when:
 
@@ -97,6 +98,18 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 | **Open Dental API 429** / **504** | Too many requests queued, or the office took longer than 60 seconds. | Wait, then retry **once**. If this was Post, check the chart first. | **Yes** if it keeps happening. |
 | **eConnector is not running** | The office connector service is stopped. | IT / Open Dental: start eConnector, then Test in Ordo. | Yes if you cannot start it. |
 | **No organization found for your account** | The user is not attached to a practice. | Do not keep signing up. | **Yes**. |
+
+### Analytics and fee schedules
+
+| You see | Why | What you can do | Need Ordo? |
+| --- | --- | --- | --- |
+| **NA** in Contracted / Expected / Underpay, remark **Missing clinic fee** | No contracted fee for this insurer, code, and date of service. | Owner/Admin: add or fix the fee schedule or date map, then **Run again**. See [Fee schedules and date maps](../workflows/fee-schedules.md). | No. |
+| **Date range overlaps an existing mapping (…)** | Two date maps for the same insurer would cover the same day. | Give the older map an end date first, then add the new one. | No. |
+| **No extracted EOBs match these filters** | Payment Analytics → Remittances has nothing in scope. | Widen the payer, EOB, or date filters. | No. |
+| **No CDT fees found for this date** | Fee Analysis found no mapped schedule for the insurers and date you picked. | Check the insurers’ date maps cover that date. | No. |
+| Fetch job **Failed** / **Partially complete** | Open Dental did not answer for some or all dates. | **Retry errored dates** or **Retry**. If it repeats, Admin: **Test** the Open Dental connection. | **Yes** if Test passes and jobs still fail. |
+| **You don’t have the Analytics AI permission** | Your role lacks **Analytics AI chat**. | Ask an Owner to tick it on your role. | No. |
+| **Payment analysis failed** / **Fee analysis failed** / **Analytics AI chat failed** | The calculation did not complete (session, server, or a very large request). | Sign in again and try once. For Fee Analysis, pick fewer insurers or codes. | **Yes** after one retry. |
 
 ---
 

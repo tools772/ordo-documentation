@@ -6,7 +6,7 @@ This page is the orientation. After you finish it, you should be able to sign in
 
 ## 1. Sign in
 
-Go to the Ordo website your practice was given.
+Go to **[ordo.perfect.ventures](https://ordo.perfect.ventures)** (or the address your practice was given).
 
 On the sign-in screen you will see two modes:
 
@@ -29,9 +29,9 @@ The **top header** shows the clinic name and location you are working in. If you
 The **left sidebar** is the building directory. From top to bottom you will typically see:
 
 1. **Ordo** (the logo) — you are in payment operations.
-2. **Modules** — EOB Dashboard, Patients, Reports, Docs.
+2. **Modules** — EOB Dashboard, Patients, and a collapsible **Analytics** group (Posting Analytics, Payment Analytics, Fee Analysis, Analytics AI).
 3. **Practice** — Clinic settings (if your role can open it).
-4. **Help** — a link to this site, plus **help@perfect.ventures** if you need to raise an issue.
+4. **Help & docs** — a link to this site, plus **help@perfect.ventures** if you need to raise an issue.
 5. **App mode** — Demo or Actual toggle, plus a HIPAA-ready note.
 
 If a module is missing, that is normal. Your **role** hides what you are not allowed to use. A Viewer will not see posting buttons. An insurance reviewer may not see Clinic settings. See [Roles and who can do what](people/roles.md).
@@ -68,8 +68,9 @@ Do this in order the first time:
 1. Tick the checkbox next to one patient (or a few).
 2. Click **Fetch Open Dental**. Wait for **Fetching from Open Dental…** to finish. This loads matching chart data so the Open Dental tab is not empty.
 3. Click the patient name. A **Workflow guide** button on the page explains which actions are allowed at each status.
-4. Look at the three tabs:
+4. Look at the four tabs:
    - **EOB Review** — what Ordo read from the PDF.
+   - **Payment Analysis** — did insurance pay the contracted fee? (You can skip this on day one.)
    - **Open Dental** — the claim Ordo thinks is the match, line by line.
    - **Audit** — the individual checks (name, date of service, procedure codes, amounts).
 
@@ -96,10 +97,11 @@ Walk through a full example: [Post a payment](workflows/posting-a-payment.md).
 
 ---
 
-## 6. Peek at Patients and Reports
+## 6. Peek at Patients and Analytics
 
 - **Patients** is the same extracted people, but across every file. Use it when someone asks “where is Maria Santos?” and you do not remember which PDF she was on. Click a row to open her detail page, including **EOB History** if she appears on more than one remittance.
-- **Reports** is the operations scoreboard. Filter by uploaded date and by which EOBs you care about. Archived files are left out.
+- **Analytics → Posting Analytics** is the operations scoreboard (it used to be called Reports). Click **Load overview**, then filter by uploaded date and by which EOBs you care about. Archived files are left out.
+- **Analytics → Payment Analytics** shows where insurance paid less than your contract. Your office manager usually owns this. More: [Analytics](modules/analytics.md).
 
 ---
 

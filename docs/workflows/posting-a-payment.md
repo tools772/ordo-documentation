@@ -16,7 +16,8 @@ At a small office one person may do everything (Owner or Admin). At Bright Smile
 | Fetch and review | Mike | View EOBs; edit if needed |
 | Approve match | Mike | Approve match |
 | Post payment | Jennifer | Post payment |
-| Spot-check Reports | Sarah | View reports |
+| Check for underpayments | Jennifer | View dashboard (decide lines: Edit extracted data) |
+| Spot-check Posting Analytics | Sarah | View analytics |
 
 A Reviewer **cannot** post. That is a safety rail, not an insult. If your office wants reviewers to post, an Owner can clone a role and tick **Post payment**.
 
@@ -134,8 +135,9 @@ If posting fails with a real error, do not click it ten times. Approve again onl
 ## Step 8 — Optional wrap-up
 
 - Repeat for the next patient on the same file.
-- Check **Reports** with this week’s date filter: posted count should have moved.
-- If the whole file was a duplicate test, **Archive** it so it does not clutter Reports.
+- Open the file’s **Payment Analysis** tab and click **Run analysis** to see whether the payer paid the contracted fee. See [Payment Analysis inside an EOB](payment-analysis.md).
+- Check **Analytics → Posting Analytics** with this week’s date filter: posted count should have moved.
+- If the whole file was a duplicate test, **Archive** it so it does not clutter Posting Analytics.
 
 ---
 

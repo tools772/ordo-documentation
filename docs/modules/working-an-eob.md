@@ -4,8 +4,10 @@ This is the screen you get after you click a file on the [EOB Dashboard](eob-das
 
 The page has two layers:
 
-1. **The patient list** for this file (the “who is on this check?” table).
-2. **One patient at a time**, with three tabs: **EOB Review**, **Open Dental**, and **Audit**.
+1. **The whole file**, with two tabs: **Posting** (the patient list — “who is on this check?”) and **Payment Analysis** (did the insurer pay the contracted fee?).
+2. **One patient at a time**, with four tabs: **EOB Review**, **Payment Analysis**, **Open Dental**, and **Audit**.
+
+Posting is covered on this page. Both Payment Analysis tabs have their own page: [Payment Analysis inside an EOB](../workflows/payment-analysis.md).
 
 ---
 
@@ -24,9 +26,9 @@ After confirm finishes, the patient list appears as usual. Full map: [Statuses](
 
 ---
 
-## The patient list
+## The patient list (Posting tab)
 
-Each row is a person Ordo read from the PDF. You will see name, subscriber ID, claim #, date of service (DOS), procedure count, amount, **Status**, and a **Remark** column explaining what the status means and what to do next.
+This is the **Posting** tab, and it is where the file opens. Each row is a person Ordo read from the PDF. You will see name, subscriber ID, claim #, date of service (DOS), procedure count, amount, **Status**, and a **Remark** column explaining what the status means and what to do next.
 
 A **Workflow guide** button on this page (and on a single-patient header) opens a short map of which actions are allowed at each status. The full version is [Statuses](../workflows/statuses.md).
 
@@ -83,7 +85,17 @@ If your role includes **Edit extracted data**, you can correct a misspelled name
 
 ---
 
-## Tab 2 — Open Dental
+## Tab 2 — Payment Analysis
+
+“Did the insurer pay what our contract says?” for this patient, line by line: contracted fee, patient’s share, expected, paid, and underpayment. It loads the saved result (or runs on first open); **Refresh** recalculates.
+
+This tab does not affect posting. You can post a payment that is short — then flag it here with **Review** so someone follows up with the payer.
+
+If a line shows **NA**, Ordo is missing a contracted fee or the EOB’s patient amounts disagree. Full explanation: [Payment Analysis inside an EOB](../workflows/payment-analysis.md).
+
+---
+
+## Tab 3 — Open Dental
 
 If the EOB name and the Open Dental name disagree (nickname, missing middle name, spelling), do **not** start by rewriting the EOB. Open the **Open Dental** tab and use **Find possible patients** — Ordo can search by date of birth and similar names, then you select the chart. Details: [Finding the patient](../workflows/finding-the-patient.md).
 
@@ -115,7 +127,7 @@ After a successful post you should see a **popup**, including the Open Dental cl
 
 ---
 
-## Tab 3 — Audit
+## Tab 4 — Audit
 
 Two things live here:
 
@@ -147,6 +159,7 @@ Use Audit when:
 
 - **Download EOB** — saves the original uploaded remittance (PDF or image), the same file as the dashboard row menu.
 - **Workflow guide** — which buttons work at each patient, match, and file status.
+- **Posting** / **Payment Analysis** — switch between working the patients and checking the whole file for underpayments.
 - **Export** — download this file’s current *list* view (or the open patient tab) as a spreadsheet. That is not the original PDF.
 - Summary / board panels — totals for the remittance, useful on a long file.
 - Back to dashboard — returns to the inbox. Your work is saved; you do not “lose” an approval by leaving.
@@ -170,11 +183,14 @@ Use Audit when:
 
 If step 3 had recommended last year’s claim instead, Mike would pick the June 12 claim from the candidate list — or **Reject match** and stop.
 
+Afterwards, Jennifer opens the file’s **Payment Analysis** tab and clicks **Run analysis**. Both lines say **On contract** — Cigna paid the contracted fee.
+
 ---
 
 ## Related pages
 
 - [Post a payment](../workflows/posting-a-payment.md) — the full ritual
+- [Payment Analysis inside an EOB](../workflows/payment-analysis.md) — was it the right amount?
 - [What each operation does](../workflows/operations.md)
 - [Statuses](../workflows/statuses.md)
 - [Matching and remarks](../workflows/matching-and-remarks.md)

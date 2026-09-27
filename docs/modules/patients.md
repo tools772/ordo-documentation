@@ -14,7 +14,7 @@ This is not the Open Dental chart, and it is not a medical record. It is a **wor
 | --- | --- |
 | The file name, or “today’s Cigna remittance” | [EOB Dashboard](eob-dashboard.md) |
 | “Maria Santos called — is her payment posted?” | **Patients** |
-| You want totals for the week | [Reports](reports.md) |
+| You want totals for the week | [Posting Analytics](posting-analytics.md) |
 
 **Example.** The front desk says Maria is at the window asking about her Cigna payment. Jennifer does not remember which remittance. She opens **Patients**, types `Santos`, sees the row, and clicks it. Ordo opens Maria’s detail page. If she has more than one file, **EOB History** lists them.
 
@@ -78,7 +78,7 @@ If your role includes **Archive**, you can archive or restore a **patient row**.
 
 That is different from archiving an entire EOB:
 
-- Archive **file** — the whole remittance leaves the inbox and Reports.
+- Archive **file** — the whole remittance leaves the inbox and Posting Analytics.
 - Archive **patient** — that person drops off the Patients active list (for example a duplicate extraction), without throwing away the rest of the file.
 
 Use patient archive sparingly. If the whole check is a test upload, archive the **file** on the Dashboard instead.
