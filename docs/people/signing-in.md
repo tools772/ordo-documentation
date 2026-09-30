@@ -2,7 +2,7 @@
 
 You will hit a sign-in screen before any module. It asks two questions: **which world** (Demo or Actual) and **who you are**.
 
-The live address is **[ordo.perfect.ventures](https://ordo.perfect.ventures)**. An old bookmark to `www.ordo.perfect.ventures` still works — it forwards you to the same address. Update the bookmark when you can.
+The live address is **[app.useordo.ai](https://app.useordo.ai)**. Older bookmarks still work, but update them to this address when you can.
 
 On the live production site, a blue **Production** bar sits at the top so you know this is the live host, not a training URL. You can still pick **Demo** there; Demo still uses sample data only.
 

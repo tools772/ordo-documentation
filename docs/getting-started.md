@@ -6,7 +6,7 @@ This page is the orientation. After you finish it, you should be able to sign in
 
 ## 1. Sign in
 
-Go to **[ordo.perfect.ventures](https://ordo.perfect.ventures)** (or the address your practice was given).
+Go to **[app.useordo.ai](https://app.useordo.ai)** (or the address your practice was given).
 
 On the sign-in screen you will see two modes:
 
