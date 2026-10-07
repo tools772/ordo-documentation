@@ -17,6 +17,8 @@ The **top header** shows the clinic and location you are in. If you have more th
 | **Profile** | Team (users, roles, locations), **EOB processing mode**, appearance, your profile, and notification toggles. |
 | **PMS Integrations** | Connect and test Open Dental; sync the replica. |
 | **Insurance** | Per insurer: which catalog formats it sends, and its fee schedules and date maps. Plus your Office / UCR fees. |
+| **Modules** | Which modules Ordo has turned on for your clinic. Read only. |
+| **Appointments** | What your clinic allows for appointments, your online booking page, the website button, testing mode, patient messages, and the booking-page insurance list. |
 | **Audit** | Who uploaded, approved, rejected, posted — and Open Dental API call history. |
 
 ---
@@ -145,6 +147,38 @@ Changing fee schedules needs **Manage fee schedules**. Step-by-step with example
 
 ---
 
+## Modules
+
+Ordo turns modules on and off for each clinic during onboarding. This tab shows what is on, so you know what your team should see in the sidebar. Every card is marked **Managed by Ordo**: *Ordo sets up this module for your clinic. Contact Ordo support to change it. Your roles decide which team members can use it.*
+
+| Card | Switches | What it controls |
+| --- | --- | --- |
+| **EOB processing module** | **EOB processing** | The EOB Dashboard: upload, read, match, and post EOBs. |
+| **Analytics module** | **Analytics**, then one switch per screen: **Posting Analytics**, **Payment Analytics** (needs EOB processing), **Fee Analysis**, **Analytics AI** | Which Analytics pages appear in the sidebar. Analytics AI sends clinic data to an AI model, so Ordo only turns it on when you ask. |
+| **Appointments module** | **Appointments**, **Clinic allows rescheduling**, **Clinic allows cancelling**, **Patient change cutoff** | The Appointments page and what staff and patients may change. See [Appointments](appointments.md#what-your-clinic-allows). |
+
+Under each card, a line counts how many of your roles can use the module — for example *3 of 5 roles can see the schedule*. If the module is on but nobody sees it, check the roles under **Profile → Roles**.
+
+To change a module, email **[help@perfect.ventures](mailto:help@perfect.ventures)**.
+
+---
+
+## Appointments
+
+Everything about your online booking page and the messages patients receive. It shows the **Appointments module** card (read only) followed by:
+
+| Card | What it is for | Full guide |
+| --- | --- | --- |
+| **Online booking page** | Web address, page name, time zone, and the **Accept online bookings** switch, per location. | [Online booking page](online-booking.md#online-booking-page_1) |
+| **Website booking button** | Code to paste into your website. | [Online booking page](online-booking.md#website-booking-button) |
+| **Testing mode** | Send every patient message to your own test contacts. Also lists **Recent messages**. | [Patient messages](patient-messages.md#testing-mode) |
+| **Patient messages** | Which emails and texts patients get, and their wording. | [Patient messages](patient-messages.md) |
+| **Insurance on your booking page** | The insurance companies patients choose from. | [Online booking page](online-booking.md#insurance-on-your-booking-page) |
+
+Changing these needs **Manage team and locations**. Step by step: [Set up online booking](../workflows/set-up-online-booking.md).
+
+---
+
 ## Audit
 
 This is the human history — and the place Open Dental API call logs live now:
@@ -173,6 +207,9 @@ Integrations may show that this practice is not set up yet. That is Ordo onboard
 
 ## Related pages
 
+- [Appointments](appointments.md)
+- [Online booking page](online-booking.md)
+- [Patient messages](patient-messages.md)
 - [Roles and who can do what](../people/roles.md)
 - [Fee schedules and date maps](../workflows/fee-schedules.md)
 - [Demo vs Actual](../workflows/demo-vs-actual.md)

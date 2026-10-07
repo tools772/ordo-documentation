@@ -69,6 +69,7 @@ not_in_nav: |
 nav:
   - Home:
       - Welcome: index.md
+      - What's new: whats-new.md
       - First day with Ordo: getting-started.md
       - Where the name comes from: origination.md
       - Word list: glossary.md
@@ -77,6 +78,10 @@ nav:
       - EOB Dashboard: modules/eob-dashboard.md
       - Inside an EOB: modules/working-an-eob.md
       - Patients: modules/patients.md
+      - Appointments:
+          - Appointments: modules/appointments.md
+          - Online booking page: modules/online-booking.md
+          - Patient messages: modules/patient-messages.md
       - Analytics:
           - Analytics overview: modules/analytics.md
           - Posting Analytics: modules/posting-analytics.md
@@ -87,6 +92,8 @@ nav:
       - Post a payment: workflows/posting-a-payment.md
       - Check for underpayments on an EOB: workflows/payment-analysis.md
       - Set up fee schedules and date maps: workflows/fee-schedules.md
+      - Book an appointment on a call: workflows/book-by-phone.md
+      - Set up online booking: workflows/set-up-online-booking.md
       - What files and layouts Ordo reads: workflows/supported-formats.md
       - What each operation does: workflows/operations.md
       - Statuses — what changes when: workflows/statuses.md
@@ -101,3 +108,4 @@ nav:
   - Errors:
       - Errors and getting help: errors/index.md
       - Open Dental errors: errors/open-dental.md
+      - Appointments and booking errors: errors/appointments.md

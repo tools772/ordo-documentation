@@ -28,7 +28,18 @@ Each module is one stage of that pipeline (plus settings):
   Clinic settings (people, Open Dental connection, fee schedules)
 ```
 
-You do not have to visit every room every day. Many coordinators live in **EOB Dashboard**. The office manager dips into **Analytics** on Friday. The owner opens **Clinic settings** when a new hire starts or a new insurance contract arrives.
+Alongside that pipeline sits the front desk:
+
+```
+  Patient books online ──┐
+  Patient calls ─────────┼──→  Appointments  ──→  Open Dental schedule
+  Visit moves / cancels ─┘     (Day · Week · List)
+                                     │
+                                     ▼
+                          Patient messages (confirmations, reminders)
+```
+
+You do not have to visit every room every day. Many coordinators live in **EOB Dashboard**; the front desk lives in **Appointments**. The office manager dips into **Analytics** on Friday. The owner opens **Clinic settings** when a new hire starts or a new insurance contract arrives.
 
 ---
 
@@ -40,7 +51,10 @@ You do not have to visit every room every day. Many coordinators live in **EOB D
 | --- | --- | --- |
 | **EOB Dashboard** | Inbox of remittance files. | Everyone who posts or reviews. |
 | **Patients** | All extracted people, across files, plus EOB history on the person. | “Where is this patient?” questions. |
+| **Appointments** | The Open Dental schedule: book, reschedule, cancel, comment, export. Only shown when Ordo has turned it on for your clinic. | Front desk, office manager. |
 | **Analytics** | A collapsible group with four pages (below). | Office manager, owner, billing lead. |
+
+Details: [Appointments](appointments.md). Patients book themselves on the [online booking page](online-booking.md), and get [patient messages](patient-messages.md) you choose.
 
 Inside **Analytics**:
 
@@ -57,11 +71,11 @@ Details: [Analytics](analytics.md).
 
 | Menu label | Job in one sentence | Typical visitor |
 | --- | --- | --- |
-| **Clinic settings** | Team, roles, locations, Open Dental connection, insurance formats, fee schedules, logs. | Owner, clinic admin. |
+| **Clinic settings** | Team, roles, locations, Open Dental connection, insurance formats, fee schedules, modules, booking page and patient messages, logs. | Owner, clinic admin. |
 
 At the bottom of the sidebar: **Help & docs** (this site), the support email, and the **App mode** switch (Demo / Actual).
 
-If a menu item is missing, that is normal. Your role only shows the rooms you are allowed to enter.
+If a menu item is missing, that is normal. Your role only shows the rooms you are allowed to enter, and some modules (Appointments, and individual Analytics pages) only appear once Ordo has turned them on for your clinic. **Clinic settings → Modules** shows which are on.
 
 ---
 
@@ -95,6 +109,9 @@ Three common reasons:
 - [EOB Dashboard](eob-dashboard.md)
 - [Inside an EOB](working-an-eob.md)
 - [Patients](patients.md)
+- [Appointments](appointments.md)
+- [Online booking page](online-booking.md)
+- [Patient messages](patient-messages.md)
 - [Analytics](analytics.md)
 - [Clinic settings](clinic-settings.md)
 - [Roles and who can do what](../people/roles.md)

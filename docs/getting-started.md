@@ -29,7 +29,7 @@ The **top header** shows the clinic name and location you are working in. If you
 The **left sidebar** is the building directory. From top to bottom you will typically see:
 
 1. **Ordo** (the logo) — you are in payment operations.
-2. **Modules** — EOB Dashboard, Patients, and a collapsible **Analytics** group (Posting Analytics, Payment Analytics, Fee Analysis, Analytics AI).
+2. **Modules** — EOB Dashboard, Patients, **Appointments** (if Ordo has turned it on for your clinic), and a collapsible **Analytics** group (Posting Analytics, Payment Analytics, Fee Analysis, Analytics AI).
 3. **Practice** — Clinic settings (if your role can open it).
 4. **Help & docs** — a link to this site, plus **help@perfect.ventures** if you need to raise an issue.
 5. **App mode** — Demo or Actual toggle, plus a HIPAA-ready note.

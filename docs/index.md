@@ -53,10 +53,11 @@ Ordo is organized into **modules**. A module is simply a section of the product 
 | --- | --- |
 | **EOB Dashboard** | The file inbox. Upload remittances, see their status, download the original file, open a file to work it. |
 | **Patients** | Find a person across all files without opening the EOB first. Open a row to see EOB history for that person. |
+| **Appointments** | Your Open Dental schedule: book patients on a call, reschedule, cancel, leave notes and files, export to a calendar. Comes with an [online booking page](modules/online-booking.md) for patients and [patient messages](modules/patient-messages.md). Turned on per clinic by Ordo. |
 | **Analytics** | Posting counts (uploaded, posted, failed, missing posting), underpayments against your contracted fees, fee comparisons, and Analytics AI. |
-| **Clinic settings** | Your practice: people, roles, locations, Open Dental connection, insurance formats, fee schedules, logs. |
+| **Clinic settings** | Your practice: people, roles, locations, Open Dental connection, insurance formats, fee schedules, modules, booking page, logs. |
 
-Start with [What is a module?](modules/overview.md) if you want a map before diving in.
+Start with [What is a module?](modules/overview.md) if you want a map before diving in. New in October 2026: **Appointments**, the **online booking page**, and **patient messages** — see [What's new](whats-new.md).
 
 ---
 

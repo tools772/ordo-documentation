@@ -64,6 +64,18 @@ The role editor groups permissions by area. Labels below match the screen.
 | Analytics AI chat | The Analytics AI page |
 | Fetch schedules | Schedule automatic Historical and Missing Posting data fetches |
 
+### Appointments
+
+Only matter when Ordo has turned on the Appointments module for your clinic.
+
+| Permission | What it unlocks |
+| --- | --- |
+| View schedule | See the Appointments page, open appointments, read comments and files |
+| Edit details | Change appointment colour, add comments, attach and remove files |
+| Reschedule and cancel | Book appointments on a call, and reschedule or cancel when your clinic allows it |
+
+The **Patient** tab inside an appointment also needs **View patients**. Details: [Appointments](../modules/appointments.md#who-can-do-what).
+
 The **Payment Analysis** tab inside an EOB comes with **View dashboard** — it does not need **View analytics**. Recording a decision there (**Review**) needs **Edit extracted data**.
 
 ### Clinic settings
@@ -89,6 +101,9 @@ The **Payment Analysis** tab inside an EOB comes with **View dashboard** — it 
 | Fetch, run matching, link patient | Yes | Yes | Yes | No |
 | Approve / reject match | Yes | Yes | Yes | No |
 | Post payment | Yes | Yes | No | No |
+| See the appointment schedule | Yes | Yes | Yes | Yes |
+| Appointment colour, comments, files | Yes | Yes | No | No |
+| Book, reschedule, cancel appointments | Yes | Yes | No | No |
 | Open Clinic settings | Yes | Yes | No | No |
 | Manage team, fee schedules, formats, Open Dental connection | Yes | Yes | No | No |
 

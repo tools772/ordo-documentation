@@ -209,6 +209,43 @@ The full lifecycle (file vs patient vs match): [Statuses](workflows/statuses.md)
 
 ---
 
+## Appointments and booking
+
+**Operatory**  
+A treatment room or chair in Open Dental (Op 1, Hygiene 2…). Day view shows one column per operatory.
+
+**Broken appointment**  
+Open Dental's word for a visit the patient missed or cancelled. When you cancel in Ordo, or a patient cancels online, the visit is marked Broken and moved to the Unscheduled List. Ordo never posts a broken-appointment fee.
+
+**Unscheduled List**  
+Open Dental's follow-up list of visits that need a new time. Broken appointments go there so the office can call the patient back.
+
+**Confirmation status**  
+Your clinic's own Open Dental label for whether the patient confirmed (for example *Confirmed*, *Left Msg*). Ordo shows it but does not change it.
+
+**Online booking page**  
+The web page where patients book, reschedule, or cancel their own visits. See [Online booking page](modules/online-booking.md).
+
+**Booked online / Booked on call**  
+Markers on visits booked through Ordo: by the patient on the booking page, or by staff on a phone call. Visits booked directly in Open Dental have neither.
+
+**Visit type**  
+A reason patients can choose on the booking page, such as *Cleaning* or *New patient exam*, with its own length and audience (new patients, existing patients, or everyone).
+
+**Booking window / minimum notice**  
+How far ahead patients can book online (30 days by default), and how soon they can book (2 hours from now by default).
+
+**Patient change cutoff**  
+How close to a visit patients can still reschedule or cancel online (24 hours by default). Staff are never blocked.
+
+**Testing mode**  
+A switch that sends every patient message to your own test email and phone, marked [Test]. Bookings made while it is on are still real.
+
+**.ics file**  
+A standard calendar file. **Export .ics** on the Appointments page saves the schedule you are looking at for Google Calendar, Apple Calendar, or Outlook.
+
+---
+
 ## Practice and access
 
 **Role**  

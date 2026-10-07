@@ -111,6 +111,10 @@ Each row: what you see, why it happens, what to do, and whether you need us.
 | **You don’t have the Analytics AI permission** | Your role lacks **Analytics AI chat**. | Ask an Owner to tick it on your role. | No. |
 | **Payment analysis failed** / **Fee analysis failed** / **Analytics AI chat failed** | The calculation did not complete (session, server, or a very large request). | Sign in again and try once. For Fee Analysis, pick fewer insurers or codes. | **Yes** after one retry. |
 
+### Appointments, online booking, and patient messages
+
+These have their own page: [Appointments and booking errors](appointments.md) — including what patients may see on your booking page.
+
 ---
 
 ## Reach out to Ordo
@@ -142,6 +146,7 @@ If posting might have happened twice, say that in the first sentence. We would r
 ## Related pages
 
 - [Open Dental errors](open-dental.md) — HTTP codes, posting refusals, API Logs
+- [Appointments and booking errors](appointments.md)
 - [What files and layouts Ordo reads](../workflows/supported-formats.md)
 - [What each operation does](../workflows/operations.md)
 - [Statuses](../workflows/statuses.md)
