@@ -66,6 +66,8 @@ Delta is not one template. If the footer or title matches one of these, it shoul
 | **Delta Dental (portal FFS)** | Delta Dental **Provider Tools** fee-for-service claim detail. |
 | **Delta Dental (EOB ODS)** | Delta Dental **EOB ODS** form (for example Kentucky). |
 | **Delta Dental of Idaho** | Idaho **Claims Remittance Advice**. |
+| **Delta Dental (Check Disbursement)** | **Check Disbursement** statement with a **TOTAL** line per claim (for example Delta Dental of Illinois). |
+| **Delta Dental of Washington** | Washington payment voucher listing **Total New Claims for this Service Office**. |
 
 ### Other carriers
 
@@ -83,6 +85,7 @@ Delta is not one template. If the footer or title matches one of these, it shoul
 | **ManhattanLife** | ManhattanLife dental explanation of benefits. |
 | **Lincoln Financial Group** | Lincoln Financial **QuicRemit** / ECHO remittance. |
 | **Premera Blue Cross** | Premera Blue Cross **Detailed Explanation of Payment**. |
+| **Ameritas** | Ameritas dental EOB with a **Payment Ref #** and **Submitd / Covered / Payable** columns. |
 
 ---
 
